@@ -80,7 +80,7 @@ export default function Button({ children, type, className, to, href, variant = 
 
 
     const Element = to ? Link : href ? 'a' : 'button';
-    const elementProps = to ? { ...props, to } : href ? { ...props, href } : { ...props, type: type || 'button' };
+    const elementProps = to ? { ...props, href: to } : href ? { ...props, href } : { ...props, type: type || 'button' };
 
     return (
         <Element className={classes} {...elementProps}>

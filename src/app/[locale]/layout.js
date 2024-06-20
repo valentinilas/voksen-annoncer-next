@@ -1,11 +1,14 @@
 import "./globals.css";
 
 import { NextIntlClientProvider } from 'next-intl';
+import { UserProvider } from "@/lib/userContextProvider";
 import { getMessages } from 'next-intl/server';
 
 import Footer from "@/components/footer/footer";
 import NavBar from "@/components/navbar/navbar";
 
+import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
+import { fetchUserProfile } from "@/lib/fetchUserProfile";
 
 export const metadata = {
     title: "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
@@ -14,24 +17,32 @@ export const metadata = {
 
 export default async function RootLayout({ children, params: { locale } }) {
     const messages = await getMessages();
+    const { user } = await fetchCurrentUser();
+    const { userProfile } = user
+        ? await fetchUserProfile(user.id)
+        : { userProfile: null };
+
+    const userContextValue = { user, userProfile };
 
     return (
         <html lang={locale}>
             <NextIntlClientProvider messages={messages}>
-                <head>
-                    <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" />
-                </head>
-                <body className="bg-base-300 min-h-screen">
-                    <div className="container mx-auto p-5">
-                        <NavBar />
-                    </div>
-                    <div className="container mx-auto p-5">
-                        {children}
-                    </div>
-                    <div className="container mx-auto p-5">
-                        <Footer />
-                    </div>
-                </body>
+                <UserProvider value={userContextValue}>
+                    <head>
+                        <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" />
+                    </head>
+                    <body className="bg-base-300 min-h-screen">
+                        <div className="container mx-auto p-5">
+                            <NavBar />
+                        </div>
+                        <div className="container mx-auto p-5">
+                            {children}
+                        </div>
+                        <div className="container mx-auto p-5">
+                            <Footer />
+                        </div>
+                    </body>
+                </UserProvider>
             </NextIntlClientProvider>
         </html>
     );
