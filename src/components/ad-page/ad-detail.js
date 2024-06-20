@@ -2,11 +2,21 @@ import { useTranslations } from "next-intl";
 import Label from "../label/label";
 import { formatDate } from "@/utils/formatter/format-date";
 import { CalendarDaysIcon, TagIcon, MapPinIcon } from "@heroicons/react/24/outline";
-
+import SimpleGallery from "./ad-gallery";
 
 export default function AdDetail({ data }) {
-    const { title, description, created_at, regions, ad_categories, ad_sub_categories } = data;
+    const { title, description, created_at, regions, ad_categories, ad_sub_categories, ad_images } = data;
     const t = useTranslations();
+
+    const galleryImages = ad_images.map(image => {
+        return {
+            ...image,
+            largeURL: image.image_url.split('?')[0],
+            thumbnailURL: image.image_url,
+            width: image.image_width,
+            height: image.image_height
+        }
+    })
 
     return (
         <>
@@ -16,11 +26,11 @@ export default function AdDetail({ data }) {
             </div>
 
 
-            {/* {galleryImages.length > 0 ? <SimpleGallery
-                    galleryID="my-test-gallery"
-                    images={galleryImages}
+            {galleryImages.length > 0 ? <SimpleGallery
+                galleryID="my-test-gallery"
+                images={galleryImages}
 
-                /> : null} */}
+            /> : null}
 
             <div className="border-t pt-5 mt-5 border-base-300  flex flex-wrap gap-2 ">
                 <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
