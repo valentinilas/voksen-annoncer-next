@@ -1,28 +1,19 @@
-import Link from "next/link";
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
+import { fetchCategories } from "@/lib/fetchCategories";
+import { fetchRegions } from "@/lib/fetchRegions";
+import AdListingResult from "@/components/ad-listing/ad-listing-result";
+import Filters from "@/components/filters/filters";
 
+export default async function Ads({ searchParams }) {
+    const { category, subcategory, region, search } = searchParams;
 
-
-
-export default async function Ads(){
-
-    const {ads, total, error} = await fetchPublicAds();
-    console.log(ads);
-
-    return  <>
-       <h1>Ads</h1>
-        <p><Link href="/ads/ad-1">Ad1</Link></p>
-        <p><Link href="/ads/ad-2">Ad1</Link></p>
-
-        {ads.map(ad=>{
-                return <div key={ad.uuid}>{ad.uuid}
-                    <Link href={`ads/${ad.uuid}`}>View</Link>
-                </div>
+    const { ads, total } = await fetchPublicAds(category, subcategory, region, search);
+    const { categories } = await fetchCategories();
+    const { regions } = await fetchRegions();
+    return <>
+        <Filters categories={categories} regions={regions} />
+        {ads.map(ad => {
+            return <AdListingResult key={ad.uuid} data={ad} />
         })}
-       
-           
-        
     </>
-       
- 
 }
