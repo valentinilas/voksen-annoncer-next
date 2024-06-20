@@ -27,11 +27,11 @@ export default function AdListingResult({ data }) {
             {/* Card main content */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                 <div className="result-image col-span-1 md:col-span-3">
-                    <Link href={`/ad/${uuid}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" /> : <DefaultImage />}</Link>
+                    <Link href={`/ads/${uuid}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" /> : <DefaultImage />}</Link>
                 </div>
                 <div className="result-text col-span-1 md:col-span-9  flex flex-col justify-start items-start gap-2">
-                    <Link href={`/ad/${uuid}`}><h3 className=" text-2xl mb-4">{title}</h3></Link>
-                    <Link href={`/ad/${uuid}`}><div>{truncateText(description, 350)}</div></Link>
+                    <Link href={`/ads/${uuid}`}><h3 className=" text-2xl mb-4">{title}</h3></Link>
+                    <Link href={`/ads/${uuid}`}><div>{truncateText(description, 350)}</div></Link>
                 </div>
 
             </div>

@@ -108,7 +108,6 @@ export default function Filters({ categories, regions }) {
     return null;
   };
 
-  console.log(categories);
 
   const translatedCategories = categories
     ? translateArray(t, 'categories', 'category_name', categories)
