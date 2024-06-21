@@ -8,10 +8,8 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState('light');
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
         const savedTheme = localStorage.getItem('theme') || 'light';
         setTheme(savedTheme);
         document.documentElement.dataset.theme = savedTheme;
@@ -24,9 +22,7 @@ export const ThemeProvider = ({ children }) => {
         document.documentElement.dataset.theme = newTheme;
     };
 
-    if (!mounted) {
-        return null; // or a loading spinner
-    }
+
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

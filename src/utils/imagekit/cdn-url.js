@@ -1,7 +1,6 @@
 export function cdnUrl(imagePath, width, height) {
     // Base URL for ImageKit
     const imagekitBaseUrl = 'https://ik.imagekit.io/wo0srdcz6/';
-    
     // Create a URL object from the imagePath
     const urlObject = new URL(imagePath);
     

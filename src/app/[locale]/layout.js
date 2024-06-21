@@ -1,3 +1,4 @@
+
 import "./globals.css";
 
 import { NextIntlClientProvider } from 'next-intl';
@@ -37,6 +38,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                         </head>
                         <body className="bg-base-300 min-h-screen">
                             <div className="drawer drawer-end">
+
                                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                                 <div className="drawer-content">
 
@@ -55,7 +57,9 @@ export default async function RootLayout({ children, params: { locale } }) {
                                     <DrawerMenu />
 
                                 </div>
+
                             </div>
+
                         </body>
                     </ThemeProvider>
                 </UserProvider>
