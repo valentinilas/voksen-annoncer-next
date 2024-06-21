@@ -24,12 +24,8 @@ export default function NavBar() {
 
     const t = useTranslations();
     const { user, userProfile } = useUser();
-
-    console.log('userProfile', userProfile);
-
     const isLoggedIn = user !== null
 
-    console.log('isLoggedIn', isLoggedIn)
 
 
     // const { profile, loading: loadingProfile, error: errorProfile } = profileData;

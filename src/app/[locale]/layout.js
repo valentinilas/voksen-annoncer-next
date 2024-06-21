@@ -2,10 +2,12 @@ import "./globals.css";
 
 import { NextIntlClientProvider } from 'next-intl';
 import { UserProvider } from "@/lib/userContextProvider";
+import { ThemeProvider } from "@/lib/themeContextProvider";
 import { getMessages } from 'next-intl/server';
 
 import Footer from "@/components/footer/footer";
 import NavBar from "@/components/navbar/navbar";
+import { DrawerMenu } from "@/components/drawer-menu/drawer-menu";
 
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
@@ -17,6 +19,7 @@ export const metadata = {
 
 export default async function RootLayout({ children, params: { locale } }) {
     const messages = await getMessages();
+
     const { user } = await fetchCurrentUser();
     const { userProfile } = user
         ? await fetchUserProfile(user.id)
@@ -28,23 +31,38 @@ export default async function RootLayout({ children, params: { locale } }) {
         <html lang={locale}>
             <NextIntlClientProvider messages={messages}>
                 <UserProvider value={userContextValue}>
-                    <head>
-                        <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" />
-                    </head>
-                    <body className="bg-base-300 min-h-screen">
-                        <div className="container mx-auto p-5">
-                            <NavBar />
-                        </div>
-                        <div className="container mx-auto p-5">
-                            {children}
-                        </div>
-                        <div className="container mx-auto p-5">
-                            <Footer />
-                        </div>
-                    </body>
+                    <ThemeProvider>
+                        <head>
+                            <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" />
+                        </head>
+                        <body className="bg-base-300 min-h-screen">
+                            <div className="drawer drawer-end">
+                                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                                <div className="drawer-content">
+
+                                    <div className="container mx-auto p-5">
+                                        <NavBar />
+                                    </div>
+                                    <div className="container mx-auto p-5">
+                                        {children}
+                                    </div>
+                                    <div className="container mx-auto p-5">
+                                        <Footer />
+                                    </div>
+                                </div>
+                                <div className="drawer-side">
+                                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                                    <DrawerMenu />
+
+                                </div>
+                            </div>
+                        </body>
+                    </ThemeProvider>
                 </UserProvider>
             </NextIntlClientProvider>
         </html>
     );
 
 }
+
+

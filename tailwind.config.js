@@ -7,9 +7,6 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  daisyui: {
-    themes: ["light", "dark"],
-  },
   theme: {
     extend: {
       colors: {
@@ -30,5 +27,8 @@ module.exports = {
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 
 };

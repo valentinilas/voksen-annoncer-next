@@ -9,7 +9,7 @@ export const fetchCurrentUser = async () => {
         if (error) {
             throw new Error(error.message); // Throw the error if there is one
         }
-        console.log(data.user);
+        // console.log(data.user);
 
         return { user: data.user, userError: null }; // Return user and no error
     } catch (error) {
