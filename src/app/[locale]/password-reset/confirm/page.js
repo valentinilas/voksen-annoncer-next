@@ -34,7 +34,7 @@ export default function ResetPasswordConfirm() {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-2xl font-bold mb-4">Set New Password</h2>
         <form action={formAction}>
-          <input type="hidden" name="token" value={searchParams.get('code') || ''} />
+          <input type="hidden" name="token" value={searchParams.get('token_hash') || ''} />
           <input
             type="password"
             name="password"
