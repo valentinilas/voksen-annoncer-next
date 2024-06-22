@@ -20,7 +20,6 @@ export default async function AdDetailPage({ params }) {
                 <AdDetail data={ad} />
             </div>
             <div className="col-span-12 lg:col-span-4">
-                {/* <AdProfile profileData={ad.profiles} /> */}
                 <AdProfile profileData={ad.profiles} currentSessionUser={user} />
             </div>
 

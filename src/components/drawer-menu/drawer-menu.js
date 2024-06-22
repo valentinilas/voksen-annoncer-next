@@ -52,7 +52,7 @@ export function DrawerMenu() {
             </>
         }
         {/* Generic */}
-        <li><Link href="/ads">{t("navigation.ads")}</Link></li>
+        <li><Link href="/posts">{t("navigation.ads")}</Link></li>
         <li><Link href="/support">{t("navigation.support")}</Link></li>
         <li><Link href="/about">{t("navigation.about")}</Link></li>
         <li><Link href="/cookie-policy">{t("navigation.cookie-policy")}</Link></li>
