@@ -135,7 +135,7 @@
     },
     "validation": {
         "username-required": "Username is required",
-        "username-length": "Username must be 12 characters or less",
+        "username-length": "Username must be between 3 and 12 characters",
         "username-symbols": "Username must contain only letters and numbers",
         "bio-length": "Bio must be 160 characters or less",
         "gender-required": "Gender is required",
@@ -143,6 +143,7 @@
         "email-invalid": "Invalid email address",
         "phone-invalid": "Invalid email phone number",
         "password-required": "Password is required",
+        "password-length": "Password must be longer than 6 characters",
         "title-length": "Title must be 160 characters or less",
         "select-category": "Please select a category",
         "select-subcategory": "Please select a sub-category"

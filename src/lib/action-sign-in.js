@@ -33,6 +33,6 @@ export async function login(prevState, formData) {
     }
 
     revalidatePath('/', 'layout')
-    redirect('/')
+    redirect('/dashboard')
 }
 

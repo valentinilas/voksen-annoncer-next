@@ -6,15 +6,11 @@ import * as Yup from 'yup';
 import { useFormState } from 'react-dom';
 import { SubmitButton } from './submit-button';
 
-import Button from '@/components/button/button';
 import Link from 'next/link';
 
 import { useTranslations } from 'next-intl';
 
-const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email address').required('Required'),
-  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required')
-});
+
 
 
 
@@ -24,7 +20,10 @@ export default function SignIn() {
   const [state, formAction] = useFormState(login, { error: null });
 
 
-
+  const validationSchema = Yup.object({
+    email: Yup.string().email(`${t("validation.email-invalid")}`).required(`${t("validation.required")}`),
+    password: Yup.string().required(`${t("validation.required")}`)
+  });
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,14 +34,6 @@ export default function SignIn() {
     }
   });
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (formik.isValid && !isSubmitting) {
-  //     setIsSubmitting(true);
-  //     await formAction(new FormData(e.target));
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
 
   return (

@@ -134,7 +134,7 @@
     },
     "validation": {
         "username-required": "Brugernavn er påkrævet",
-        "username-length": "Brugernavn skal være 12 tegn eller færre",
+        "username-length": "Brugernavn skal være mellem 3 og 12 tegn",
         "username-symbols": "Brugernavn må kun indeholde bogstaver og tal",
         "bio-length": "Biografi skal være 160 tegn eller færre",
         "gender-required": "Køn er påkrævet",
@@ -142,6 +142,7 @@
         "email-invalid": "Ugyldig e-mail-adresse",
         "phone-invalid": "Ugyldigt telefonnummer",
         "password-required": "Adgangskode er påkrævet",
+        "password-length": "Adgangskode skal være længere end 6 tegn",
         "title-length": "Titel skal være 160 tegn eller færre",
         "select-category": "Vælg venligst en kategori",
         "select-subcategory": "Vælg venligst en underkategori"

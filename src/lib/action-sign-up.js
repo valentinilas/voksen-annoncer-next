@@ -16,7 +16,7 @@ const signupSchema = Yup.object().shape({
         .required('Password is required')
 });
 
-export async function signup(formData) {
+export async function signup(prevState, formData) {
     const supabase = createClient();
 
     const data = {
@@ -42,13 +42,14 @@ export async function signup(formData) {
 
         if (error) {
             console.error('Supabase error:', error.message);
-            redirect(`/error?message=${encodeURIComponent(error.message)}`);
+            // redirect(`/error?message=${encodeURIComponent(error.message)}`);
+            return {error: error.message}
         }
 
-        redirect('/account');
+        redirect('/welcome');
     } catch (error) {
         if (error instanceof Yup.ValidationError) {
-            return redirect('/error?message=' + encodeURIComponent(error.message));
+            return {error: error.message}
         }
         // If it's not a validation error, it's likely a redirect
         throw error;
