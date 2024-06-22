@@ -29,7 +29,6 @@ export default function ResetPasswordConfirm() {
     }
   });
 
-  console.log()
 
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">

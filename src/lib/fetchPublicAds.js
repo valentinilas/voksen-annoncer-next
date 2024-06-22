@@ -15,7 +15,7 @@ export const fetchPublicAds = async (category, subcategory,region,search, page =
         ad_sub_categories (sub_category_id, sub_category_name),
         profiles(username)
       `, { count: 'exact' })
-      .eq('is_approved', true)
+      // .eq('is_approved', true)
       .order('created_at', { ascending: false })
       .range((page - 1) * pageSize, page * pageSize - 1);
 

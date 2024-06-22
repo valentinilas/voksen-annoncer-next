@@ -12,7 +12,7 @@ export default function Home() {
       <ul>
         <li><Link className="btn" href="/about">About</Link></li>
         <li><Link className="btn" href="/admin">{t("navigation.admin")}</Link></li>
-        <li><Link className="btn" href="/ads">Ads</Link></li>
+        <li><Link className="btn" href="/posts">Ads</Link></li>
         <li><Link className="btn" href="/cookie-policy">Cookie Policy</Link></li>
         <li><Link className="btn" href="/create-ad">Create ad</Link></li>
         <li><Link className="btn" href="/dashboard">Dashboard</Link></li>

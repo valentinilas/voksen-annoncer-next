@@ -45,7 +45,7 @@ export function DrawerMenu() {
             <>
                 {is_admin && <li><Link href="/admin"> <Cog6ToothIcon className="size-5" />{t("navigation.admin")}</Link></li>}
                 <li><Link href="/dashboard"><UserIcon className="size-5" />{t("navigation.profile")}</Link></li>
-                <li><Link href="/new-ad"><PlusIcon className="size-5" />{t("navigation.create-ad")}</Link></li>
+                <li><Link href="/new-post"><PlusIcon className="size-5" />{t("navigation.create-ad")}</Link></li>
                 <li><button onClick={handleLogout}><ArrowLeftStartOnRectangleIcon className="size-5" />{t("navigation.log-out")}</button></li>
                 <li className="border-b border-b-base-300 my-4"> </li>
 

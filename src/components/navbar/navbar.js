@@ -105,7 +105,7 @@ export default function NavBar() {
                             </li>
                             }
                             <li>
-                                <Link href="/create-ad"><PlusIcon className="size-5" /> {t("navigation.create-ad")}</Link>
+                                <Link href="/new-post"><PlusIcon className="size-5" /> {t("navigation.create-ad")}</Link>
                             </li>
                             <li>
                                 <Link href="/dashboard"><UserIcon className="size-5" /> {t("navigation.profile")}</Link>

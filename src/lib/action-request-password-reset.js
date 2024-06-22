@@ -13,7 +13,6 @@ export async function requestPasswordReset(prevState, formData) {
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/password-reset/confirm`,
     });
-    console.log(data);
 
     if (error) {
         console.error('Password reset error:', error);
