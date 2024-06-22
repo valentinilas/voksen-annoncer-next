@@ -82,7 +82,7 @@ export default function NavBar() {
                 </div>
             }
             {isLoggedIn &&
-                <div className="navbar-end gap-4">
+                <div className="navbar-end gap-2">
 
                     {username && <Link className="link link-hover text-sm font-bold hidden md:block" href="/dashboard">{username}</Link>}
                     <div className="dropdown dropdown-end">
@@ -96,7 +96,7 @@ export default function NavBar() {
                                     alt={`Avatar ${username ?? username}`}
                                 />
                             ) : (
-                                <UserIcon className="w-8 h-8" />
+                                <UserIcon className="size-5" />
                             )}
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

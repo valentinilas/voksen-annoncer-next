@@ -3,12 +3,13 @@
 import { login } from '@/lib/action-sign-in';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useTranslations } from 'next-intl';
 import { useFormState } from 'react-dom';
 import { SubmitButton } from './submit-button';
 
 import Link from 'next/link';
 
-import { useTranslations } from 'next-intl';
+
 
 
 
@@ -62,7 +63,7 @@ export default function SignIn() {
             <div className="flex items-center justify-between mb-2">
               <label htmlFor="password" className="block  text-sm font-bold mb-2">{t("auth.password")}</label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-cherry-600 hover:text-cherry-700">{t("auth.forgot-password")}</a>
+                <Link href="/password-reset" className="font-semibold text-cherry-600 hover:text-cherry-700">{t("auth.forgot-password")}</Link>
               </div>
             </div>
             <input
