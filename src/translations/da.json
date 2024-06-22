@@ -158,7 +158,11 @@
         "yes-account": "Har du allerede en konto?",
         "email-confirmed-headline": "Email bekræftet med succes!",
         "email-confirmed-body1": "Tak for at bekræfte din emailadresse.",
-        "email-confirmed-body2": "Din konto er nu fuldt aktiveret, og du kan nyde alle de funktioner og fordele, vi tilbyder."
+        "email-confirmed-body2": "Din konto er nu fuldt aktiveret, og du kan nyde alle de funktioner og fordele, vi tilbyder.",
+        "password-reset-sent": "Email til nulstilling af adgangskode sendt. Tjek venligst din indbakke.",
+        "reset-password": "Nulstil adgangskode",
+        "set-new-password": "Indstil en ny adgangskode",
+        "new-password": "Ny adgangskode"
     },
     "welcome": {
         "headline": "Tak for din tilmelding!",
@@ -244,12 +248,12 @@
         "changesPolicyDesc": "Vi kan opdatere denne Cookiepolitik fra tid til anden for at afspejle ændringer i vores praksis eller af andre driftsmæssige, juridiske eller regulerende årsager. Når vi foretager ændringer i denne politik, opdaterer vi 'Effektiv dato' øverst på denne side.",
         "contactUs": "Kontakt os",
         "contactUsDesc": "Hvis du har spørgsmål vedrørende vores brug af cookies eller denne Cookiepolitik, bedes du kontakte os på:",
-        "email": "Email: voksenannoncer@protonmail.com"
+        "email": "Email: support@voksen-annoncer.com"
     },
     "support": {
         "title": "Support",
         "contactEmail": "Har du spørgsmål eller problemer, er du velkommen til at kontakte os på",
-        "emailAddress": "voksenannoncer@protonmail.com",
+        "emailAddress": "support@voksen-annoncer.com",
         "cookiePolicy": {
             "title": "Cookie- og privatlivspolitik",
             "description": "Voksen Annoncer bruger cookies til at huske dine indstillinger og statistik. Disse oplysninger deles med tredjeparter. Læs vores fulde cookie- og privatlivspolitik her.",

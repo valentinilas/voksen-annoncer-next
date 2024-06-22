@@ -157,9 +157,13 @@
         "forgot-password": "Forgot password?",
         "no-account": "Don't have an account?",
         "yes-account": "Already have an account?",
-        "email-confirmed-headline":"Email Confirmed Successfully!",
-        "email-confirmed-body1":"Thank you for confirming your email address.",
-        "email-confirmed-body2":"Your account is now fully activated, and you can enjoy all the features and benefits we offer."
+        "email-confirmed-headline": "Email Confirmed Successfully!",
+        "email-confirmed-body1": "Thank you for confirming your email address.",
+        "email-confirmed-body2": "Your account is now fully activated, and you can enjoy all the features and benefits we offer.",
+        "password-reset-sent": "Password reset email sent. Please check your inbox.",
+        "reset-password": "Reset password",
+        "set-new-password": "Set a new password",
+        "new-password": "New password"
     },
     "welcome": {
         "headline": "Thank you for signing up!",
@@ -245,17 +249,17 @@
         "changesPolicyDesc": "We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. When we make changes to this policy, we will update the 'Effective Date' at the top of this page.",
         "contactUs": "Contact Us",
         "contactUsDesc": "If you have any questions about our use of cookies or this Cookie Policy, please contact us at:",
-        "email": "Email: voksenannoncer@protonmail.com"
+        "email": "Email: support@voksen-annoncer.com"
     },
     "support": {
         "title": "Support",
         "contactEmail": "For any questions or issues please contact",
-        "emailAddress": "voksenannoncer@protonmail.com",
+        "emailAddress": "support@voksen-annoncer.com",
         "cookiePolicy": {
-          "title": "Cookie and Privacy Policy",
-          "description": "Voksen Annoncer uses cookies to remember your settings and statistics. This information is shared with third parties. Read our full cookie and privacy policy here.",
-          "linkText": "Read our full cookie and privacy policy here",
-          "policyLink": "/cookie-policy"
+            "title": "Cookie and Privacy Policy",
+            "description": "Voksen Annoncer uses cookies to remember your settings and statistics. This information is shared with third parties. Read our full cookie and privacy policy here.",
+            "linkText": "Read our full cookie and privacy policy here",
+            "policyLink": "/cookie-policy"
         }
-      }
+    }
 }

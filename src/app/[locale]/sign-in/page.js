@@ -78,11 +78,6 @@ export default function SignIn() {
               <div className="text-red-500 text-sm mt-2">{formik.errors.password}</div>
             ) : null}
           </div>
-          {/* <Button type="submit" className="mt-10 w-full justify-center" disabled={!formik.isValid || isSubmitting}>
-            {isSubmitting ? 'Submitting...' : t("auth.login")}
-          </Button> */}
-          {/* <Button type="submit" className="mt-10 w-full justify-center" disabled={formik.isSubmitting}>{t("auth.login")}</Button>
-           */}
            <SubmitButton/>
         </form>
         <p className="mt-10 text-center text-sm ">

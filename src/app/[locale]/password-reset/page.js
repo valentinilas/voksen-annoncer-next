@@ -29,12 +29,12 @@ export default function ResetPasswordRequest() {
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="text-2xl font-bold mb-10 text-center">Reset Password</h2>
+        <h2 className="text-2xl font-bold mb-10 text-center">{t("auth.reset-password")}</h2>
         <form action={formAction}>
           <input
             type="email"
             name="email"
-            placeholder="Your email"
+            placeholder="E-mail"
             required
             className="input input-bordered w-full"
             {...formik.getFieldProps('email')}
@@ -45,7 +45,7 @@ export default function ResetPasswordRequest() {
           <SubmitButton />
         </form>
         {state.error && <p className="text-red-500 mt-2">{state.error}</p>}
-        {state.success && <p className="text-green-500 mt-2">Password reset email sent. Please check your inbox.</p>}
+        {state.success && <p className="text-green-500 mt-2">{t("auth.password-reset-sent")}</p>}
       </div>
     </div>
   );

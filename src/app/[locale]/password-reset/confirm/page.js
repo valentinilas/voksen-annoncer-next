@@ -34,13 +34,13 @@ export default function ResetPasswordConfirm() {
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="text-2xl font-bold mb-4">Set New Password</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("auth.set-new-password")}</h2>
         <form action={formAction}>
           <input type="hidden" name="code" value={searchParams.get('code') || ''} />
           <input
             type="password"
             name="password"
-            placeholder="New password"
+            placeholder={t("auth.new-password")}
             required
             className="input input-bordered w-full"
             {...formik.getFieldProps('password')}
