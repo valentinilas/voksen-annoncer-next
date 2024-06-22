@@ -1,6 +1,3 @@
-// import { useEffect, useState } from 'react';
-// import { supabase } from '../lib/supabase';
-// import { cdnUrl } from '../util/cdn-url';
 import { createClient } from "@/utils/supabase/server";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 
