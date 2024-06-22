@@ -29,12 +29,14 @@ export default function ResetPasswordConfirm() {
     }
   });
 
+  console.log()
+
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-2xl font-bold mb-4">Set New Password</h2>
         <form action={formAction}>
-          <input type="hidden" name="token" value={searchParams.get('code') || ''} />
+          <input type="hidden" name="code" value={searchParams.get('code') || ''} />
           <input
             type="password"
             name="password"
