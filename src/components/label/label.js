@@ -18,5 +18,5 @@ export default function Label({ children, type, Icon, className, ...props }) {
         classes = `badge badge-warning py-4 px-4 ${className}`
     }
  
-    return <label className={classes} {...props}>{Icon && <Icon className="size-5 dark:text-zinc-200" />} {children}</label>
+    return <label className={classes} {...props}>{Icon && <Icon className="size-5 " />} {children}</label>
 }

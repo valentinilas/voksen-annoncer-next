@@ -13,7 +13,7 @@ export const fetchCurrentUser = async () => {
 
         return { user: data.user, userError: null }; // Return user and no error
     } catch (error) {
-        console.error('Error fetching current user:', error);
+        // console.error('Error fetching current user:', error);
         return { user: null, userError: error.toString() }; // Return null user and error details
     }
 };
