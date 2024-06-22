@@ -5,12 +5,15 @@ import { createClient } from '@/utils/supabase/server'
 export async function confirmPasswordReset(prevState, formData) {
     const supabase = createClient();
     const password = formData.get('password');
-    const token = formData.get('token_hash');
+    const code = formData.get('code');
   
-    if (!token) {
+    if (!code) {
       return { error: 'Invalid or missing reset token' };
     }
-  
+    supabase.auth.exchangeCodeForSession(code);
+
+
+
     const { error } = await supabase.auth.updateUser({ password });
   
     if (error) {
