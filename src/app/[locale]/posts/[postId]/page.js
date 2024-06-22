@@ -7,7 +7,7 @@ import AdProfile from "@/components/ad-page/ad-profile";
 export default async function AdDetailPage({ params }) {
 
     const [adData, userData] = await Promise.all([
-        fetchPublicSingleAd(params.ad),
+        fetchPublicSingleAd(params.postId),
         fetchCurrentUser()
     ]);
 
