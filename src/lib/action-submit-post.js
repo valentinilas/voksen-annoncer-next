@@ -154,11 +154,13 @@ export async function submitPost(prevState, formData) {
 
 
 
-        revalidatePath('/', 'layout')
-        redirect('/posts')
-      
+       
+
     } catch (error) {
         console.error('Error submitting post:', error);
         return { error: error.message };
     }
+
+    revalidatePath('/', 'layout')
+    redirect('/dashboard')
 }
