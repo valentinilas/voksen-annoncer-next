@@ -156,7 +156,10 @@
         "password": "Password",
         "forgot-password": "Forgot password?",
         "no-account": "Don't have an account?",
-        "yes-account": "Already have an account?"
+        "yes-account": "Already have an account?",
+        "email-confirmed-headline":"Email Confirmed Successfully!",
+        "email-confirmed-body1":"Thank you for confirming your email address.",
+        "email-confirmed-body2":"Your account is now fully activated, and you can enjoy all the features and benefits we offer."
     },
     "welcome": {
         "headline": "Thank you for signing up!",
