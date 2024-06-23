@@ -47,10 +47,12 @@ export async function signup(formData) {
             console.error('Authentication error:', error.message);
             return { error: [error.message] }
         }
-        revalidatePath('/', 'layout')
-        redirect('/welcome');
+
     } catch (error) {
         console.error('Authentication error:', error.message);
         return { error: [error.message] }
     }
+
+    revalidatePath('/', 'layout')
+    redirect('/welcome');
 }
