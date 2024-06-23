@@ -8,15 +8,14 @@ import { getTranslations } from "next-intl/server";
 
 export default async function Ads({ searchParams }) {
     const t = await getTranslations();
-
-    const { category, subcategory, region, search, page = 1 } = searchParams;
-    console.log('FETCHING PAGE ', page );
     const pageSize = 2;
-    const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
+    const { category, subcategory, region, search, page = 1 } = searchParams;
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
+    const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
 
-  
+
+
 
     const totalPages = Math.ceil(total / pageSize);
 
@@ -35,24 +34,24 @@ export default async function Ads({ searchParams }) {
         {/* Pagination Controls */}
 
         <div className="flex justify-center">
-                <div className="join mx-auto mt-2">
-                    <Link
-                        className={`join-item btn ${page <= 1 ? 'btn-disabled' : ''}`}
-                        href={buildUrl(Math.max(1, parseInt(page) - 1))}
-                    >
-                        «
-                    </Link>
-                    <button className="join-item btn">
-                        {t("pagination.Page")} {page} {t("pagination.of")} {totalPages}
-                    </button>
-                    <Link
-                        className={`join-item btn ${page >= totalPages ? 'btn-disabled' : ''}`}
-                        href={buildUrl(Math.min(totalPages, parseInt(page) + 1))}
-                    >
-                        »
-                    </Link>
-                </div>
+            <div className="join mx-auto mt-2">
+                <Link
+                    className={`join-item btn ${page <= 1 ? 'btn-disabled' : ''}`}
+                    href={buildUrl(Math.max(1, parseInt(page) - 1))}
+                >
+                    «
+                </Link>
+                <button className="join-item btn">
+                    {t("pagination.Page")} {page} {t("pagination.of")} {totalPages}
+                </button>
+                <Link
+                    className={`join-item btn ${page >= totalPages ? 'btn-disabled' : ''}`}
+                    href={buildUrl(Math.min(totalPages, parseInt(page) + 1))}
+                >
+                    »
+                </Link>
             </div>
+        </div>
 
     </>
 }
