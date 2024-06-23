@@ -153,7 +153,9 @@
         "region-required": "Region is required",
         "category-required": "Category is required",
         "subcategory-required": "Sub-category is required",
-        "submit": "Submit"
+        "submit": "Submit",
+        "password-must-match": "Password must match",
+        "code-required": "Verification token missing"
     },
     "auth": {
         "login": "Log in",
@@ -170,7 +172,9 @@
         "password-reset-sent": "Password reset email sent. Please check your inbox.",
         "reset-password": "Reset password",
         "set-new-password": "Set a new password",
-        "new-password": "New password"
+        "new-password": "New password",
+        "repeat-password": "Repeat password"
+
     },
     "welcome": {
         "headline": "Thank you for signing up!",

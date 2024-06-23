@@ -40,6 +40,7 @@ export default function ResetPasswordConfirm() {
     const formData = new FormData();
     // Append text fields
     formData.append('password', data.password);
+    formData.append('repeatPassword', data.repeatPassword);
     formData.append('code', data.code);
 
 
@@ -68,21 +69,38 @@ export default function ResetPasswordConfirm() {
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
           {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}
-          <input 
-          type="hidden" 
-          name="code" 
-          value={searchParams.get('code') || ''} 
-          {...register("code")}
-          />
+
           <input
-            type="password"
-            name="password"
-            placeholder={t("auth.new-password")}
-            required
-            className="input input-bordered w-full"
-            {...register("password")}
+            type="hidden"
+            name="code"
+            value={searchParams.get('code') || ''}
+            {...register("code")}
           />
-          {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
+
+          <div className="mt-4" >
+            <label htmlFor="password" className="block  text-sm font-bold mb-2">{t("auth.password")}</label>
+
+            <input
+              type="password"
+              name="password"
+              required
+              className="input input-bordered w-full"
+              {...register("password")}
+            />
+            {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
+          </div>
+          <div className="mt-4" >
+            <label htmlFor="repeatPassword" className="block  text-sm font-bold mb-2">{t("auth.repeat-password")}</label>
+
+            <input
+              type="password"
+              name="repeatPassword"
+              required
+              className="input input-bordered w-full "
+              {...register("repeatPassword")}
+            />
+            {errors?.repeatPassword && <p className="error text-red-500 text-sm mt-2">{errors?.repeatPassword?.message}</p>}
+          </div>
           <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
         </form>
 

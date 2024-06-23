@@ -152,7 +152,9 @@
         "region-required": "Region er påkrævet",
         "category-required": "Kategori er påkrævet",
         "subcategory-required": "Underkategori er påkrævet",
-        "submit": "Indsend"
+        "submit": "Indsend",
+        "passwords-must-match": "Adgangskoderne skal være ens",
+        "code-required": "Verifikationstoken mangler"
     },
     "auth": {
         "login": "Log ind",
@@ -169,7 +171,9 @@
         "password-reset-sent": "Email til nulstilling af adgangskode sendt. Tjek venligst din indbakke.",
         "reset-password": "Nulstil adgangskode",
         "set-new-password": "Indstil en ny adgangskode",
-        "new-password": "Ny adgangskode"
+        "new-password": "Ny adgangskode",
+        "repeat-password": "Gentag adgangskode"
+
     },
     "welcome": {
         "headline": "Tak for din tilmelding!",

@@ -23,10 +23,10 @@ export async function confirmPasswordReset(formData) {
   }
 
 
-  const { error: tokenExchangeError } = await supabase.auth.exchangeCodeForSession(code)
+  const { error: tokenExchangeError } = await supabase.auth.exchangeCodeForSession(data.code)
 
   if (tokenExchangeError) {
-    return { error: [error.message] };
+    return { error: [tokenExchangeError.message] };
   }
 
 
