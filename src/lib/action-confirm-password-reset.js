@@ -11,6 +11,7 @@ export async function confirmPasswordReset(formData) {
 
   const data = {
     password: formData.get('password'),
+    repeatPassword: formData.get('repeatPassword'),
     code: formData.get('code'),
   }
 
@@ -30,7 +31,7 @@ export async function confirmPasswordReset(formData) {
   }
 
 
-  const { error } = await supabase.auth.updateUser({ password });
+  const { error } = await supabase.auth.updateUser({ password:data.password });
 
   if (error) {
     return { error: [error.message] };

@@ -7,8 +7,9 @@ export const createValidationSchema = (t) => {
             .required(t("validation.password-required"))
             .min(6, t("validation.password-length")),
         repeatPassword: Yup.string()
-            .oneOf([Yup.ref('password'), null], t('validation.password-must-match'))
-            .required(t('validation.password-required')),
+            .required(t('validation.password-required'))
+            .oneOf([Yup.ref('password'), null], t('validation.password-must-match')),
+            
         code: Yup.string().required(t('validation.code-required')),
 
     });
