@@ -3,18 +3,57 @@ import { fetchCategories } from "@/lib/fetchCategories";
 import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
-import { calculateAge } from "@/utils/calculate-age/calculate-age";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 export default async function Ads({ searchParams }) {
-    const { category, subcategory, region, search } = searchParams;
+    const t = await getTranslations();
 
-    const { ads, total } = await fetchPublicAds(category, subcategory, region, search);
+    const { category, subcategory, region, search, page = 1 } = searchParams;
+    console.log('FETCHING PAGE ', page );
+    const pageSize = 2;
+    const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
+
+  
+
+    const totalPages = Math.ceil(total / pageSize);
+
+    const buildUrl = (newPage) => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', newPage.toString());
+        return `?${params.toString()}`;
+    };
+
     return <>
-        <Filters categories={categories} regions={regions} />
+        <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}
+
+        {/* Pagination Controls */}
+
+        <div className="flex justify-center">
+                <div className="join mx-auto mt-2">
+                    <Link
+                        className={`join-item btn ${page <= 1 ? 'btn-disabled' : ''}`}
+                        href={buildUrl(Math.max(1, parseInt(page) - 1))}
+                    >
+                        «
+                    </Link>
+                    <button className="join-item btn">
+                        {t("pagination.Page")} {page} {t("pagination.of")} {totalPages}
+                    </button>
+                    <Link
+                        className={`join-item btn ${page >= totalPages ? 'btn-disabled' : ''}`}
+                        href={buildUrl(Math.min(totalPages, parseInt(page) + 1))}
+                    >
+                        »
+                    </Link>
+                </div>
+            </div>
+
     </>
 }
+

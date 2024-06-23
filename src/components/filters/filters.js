@@ -52,9 +52,10 @@ export default function Filters({ categories, regions }) {
     }
   }
 
-
   const updateQueryParams = () => {
     const params = new URLSearchParams(searchParams);
+    // Reset to page 1
+    params.set('page', 1);
 
     if (selectedCategory !== 'all') {
       params.set('category', selectedCategory);
