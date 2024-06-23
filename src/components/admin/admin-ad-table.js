@@ -1,7 +1,6 @@
 import AdRow from "./admin-ad-row";
 
 export const AdTable = async ({ ads }) => {
-    console.log(ads);
     return <>
         {ads && ads.length > 0 ? (
             <div className="overflow-x-auto">

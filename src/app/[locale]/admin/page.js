@@ -1,6 +1,7 @@
 
 import { AdTable } from "@/components/admin/admin-ad-table";
 import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
+import { AdminWrapper } from "@/components/admin/admin-wrapper";
 
 export default async function AdminPage() {
 
@@ -9,9 +10,11 @@ export default async function AdminPage() {
 
     return (
         <>
-            <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm">
-                <AdTable ads={ads} />
-            </div>
+            <AdminWrapper>
+                <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm">
+                    <AdTable ads={ads} />
+                </div>
+            </AdminWrapper>
         </>
 
     );

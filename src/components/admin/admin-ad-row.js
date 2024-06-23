@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import ConfirmationModal from "../confirmation-modal/confirmation-modal";
 
-// import { handleAdminDeleteRow } from "@/lib/handleAdminDeleteRow";
+import { handleAdminDeleteRow } from "@/lib/handleAdminDeleteRow";
 import { handleAdminAdApproval } from "@/lib/handleAdminAdApproval";
 
 const AdRow = ({ ad, index }) => {
@@ -21,8 +21,7 @@ const AdRow = ({ ad, index }) => {
 
     // Toggle ad approval status
     const toggleAdApproval = async (ad) => {
-       const response = await handleAdminAdApproval(ad)
-       console.log(response);
+       await handleAdminAdApproval(ad)
     };
 
 
@@ -37,7 +36,7 @@ const AdRow = ({ ad, index }) => {
     }
 
     async function confirmDelete(uuid) {
-        // await handleAdminDeleteRow(uuid);
+        await handleAdminDeleteRow(uuid);
         dialog.current.close();
 
     }

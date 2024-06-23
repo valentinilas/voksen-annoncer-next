@@ -1,3 +1,5 @@
+'use server';
+
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from 'next/cache';
 
@@ -43,10 +45,11 @@ export async function handleAdminDeleteRow(adId) {
         // Success messages and updates
         console.log('Ad and associated images deleted successfully.');
 
-        // Revalidate the home page after deletion
-        revalidatePath('/', 'layout');
+
     } catch (error) {
         console.error('Delete operation failed:', error);
         return { error: error.message };
     }
+    // Revalidate the home page after deletion
+    revalidatePath('/', 'layout');
 }
