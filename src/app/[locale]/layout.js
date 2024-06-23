@@ -12,6 +12,8 @@ import { DrawerMenu } from "@/components/drawer-menu/drawer-menu";
 
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 export const metadata = {
     title: "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
@@ -64,6 +66,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                     </ThemeProvider>
                 </UserProvider>
             </NextIntlClientProvider>
+            <GoogleAnalytics gaId="G-5646RZSCFV" />
         </html>
     );
 
