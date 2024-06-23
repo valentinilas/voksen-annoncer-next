@@ -8,7 +8,7 @@ export function SubmitButton({ isSubmitting, isValid }) {
     return <Button type="submit" className="mt-10 w-full justify-center"
         disabled={isSubmitting || !isValid}>
         {isSubmitting ?
-            (<><span className="loading loading-dots loading-sm"></span> {t("create-ad.creating-ad")}</>) : (t("create-ad.submit"))
+            (<><span className="loading loading-spinner loading-sm"></span> {t("create-ad.creating-ad")}</>) : (t("create-ad.submit"))
         }
     </Button>
 

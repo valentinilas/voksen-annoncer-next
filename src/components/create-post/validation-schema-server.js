@@ -24,7 +24,7 @@ export const createServerValidationSchema = (t) => Yup.object({
             return value.every(file => file.size <= 2 * 1024 * 1024);
         })
 
-        .test('fileCount', t('create-ad.image-count'), (value) => {
+        .test('fileCount', t('create-ad.image-length'), (value) => {
             if (!value || !value.length) return true;
             return value.length <= 12;
         })
