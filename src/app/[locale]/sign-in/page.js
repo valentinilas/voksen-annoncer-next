@@ -1,48 +1,62 @@
 'use client';
 
 import { login } from '@/lib/action-sign-in';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useTranslations } from 'next-intl';
-import { useFormState } from 'react-dom';
 import { SubmitButton } from './submit-button';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup"
+import { createValidationSchema } from './validation-schema';
 
 import Link from 'next/link';
 
 
-
-
-
-
-
 export default function SignIn() {
+  const [serverValidationError, setServerValidationError] = useState({ error: null });
+
+
+  // Translations
   const t = useTranslations();
 
-  const [state, formAction] = useFormState(login, { error: null });
+  const validationSchema = createValidationSchema(t);
 
-
-  const validationSchema = Yup.object({
-    email: Yup.string().email(`${t("validation.email-invalid")}`).required(`${t("validation.required")}`),
-    password: Yup.string().required(`${t("validation.required")}`)
+  // React Hook Form
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(validationSchema)
   });
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values) => {
+
+
+  const onSubmit = handleSubmit(async data => {
+
+    const formData = new FormData();
+    // Append text fields
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+
+
+    const response = await login(formData);
+
+    if (response?.error) {
+      console.log(response.error);
+      setServerValidationError({ error: response.error })
+    } else {
+      reset();
     }
   });
-
 
 
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-2xl font-bold mb-10 text-center dark:text-zinc-400">{t("auth.login")}</h2>
-        <form action={formAction} >
-          {state.error && <p className="error text-red-500 text-sm">{state.error}</p>}
+        <form onSubmit={onSubmit} >
+          {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2">{error}</p>)}</div>}
 
           <div className="mt-4">
             <label htmlFor="email" className="block  text-sm font-bold mb-2">Email:</label>
@@ -51,13 +65,11 @@ export default function SignIn() {
               type="email"
               id="email"
               name="email"
-              {...formik.getFieldProps('email')}
+              {...register("email")}
 
-              required
             />
-            {formik.touched.email && formik.errors.email ? (
-              <div className="text-red-500 text-sm mt-2">{formik.errors.email}</div>
-            ) : null}
+            {errors?.email && <p className="error text-red-500 text-sm mt-2">{errors?.email?.message}</p>}
+
           </div>
           <div className="mt-4">
             <div className="flex items-center justify-between mb-2">
@@ -71,14 +83,13 @@ export default function SignIn() {
               type="password"
               id="password"
               name="password"
-              {...formik.getFieldProps('password')}
-              required
+              {...register("password")}
+
             />
-            {formik.touched.password && formik.errors.password ? (
-              <div className="text-red-500 text-sm mt-2">{formik.errors.password}</div>
-            ) : null}
+            {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
+
           </div>
-           <SubmitButton/>
+          <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
         </form>
         <p className="mt-10 text-center text-sm ">
           <span className="mr-1 ">{t("auth.no-account")}</span>

@@ -143,6 +143,7 @@
         "email-invalid": "Invalid email address",
         "phone-invalid": "Invalid email phone number",
         "password-required": "Password is required",
+        "email-required": "E-mail is required",
         "password-length": "Password must be longer than 6 characters",
         "title-length": "Title must be 160 characters or less",
         "select-category": "Please select a category",

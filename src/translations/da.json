@@ -142,6 +142,7 @@
         "email-invalid": "Ugyldig e-mail-adresse",
         "phone-invalid": "Ugyldigt telefonnummer",
         "password-required": "Adgangskode er påkrævet",
+        "email-required": "E-mail er påkrævet",
         "password-length": "Adgangskode skal være længere end 6 tegn",
         "title-length": "Titel skal være 160 tegn eller færre",
         "select-category": "Vælg venligst en kategori",

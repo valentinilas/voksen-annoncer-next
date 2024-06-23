@@ -3,36 +3,35 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { createServerValidationSchema } from '@/app/[locale]/sign-in/validation-schema-server'
+import { getTranslations } from 'next-intl/server';
 
-import * as Yup from 'yup';
-const loginSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).required()
-});
-
-export async function login(prevState, formData) {
-
+export async function login(formData) {
     const supabase = createClient()
-
+    const t = await getTranslations();
+    const serverValidationSchema = createServerValidationSchema(t);
 
     const data = {
         email: formData.get('email'),
         password: formData.get('password'),
     }
 
+    // Validate the data
     try {
-        await loginSchema.validate(data);
+        await serverValidationSchema.validate(data, { abortEarly: false });
     } catch (validationError) {
-        return { error: validationError.errors.join(', ') };
+        console.error('Validation error:', validationError.errors);
+        return { error: validationError.errors };
     }
 
+    // Attempt to sign in
     const { error } = await supabase.auth.signInWithPassword(data)
 
     if (error) {
-        return { error: error.message };
+        console.error('Authentication error:', error.message);
+        return { error: [error.message] }; // Return as array for consistency with validation errors
     }
 
     revalidatePath('/', 'layout')
     redirect('/dashboard')
 }
-
