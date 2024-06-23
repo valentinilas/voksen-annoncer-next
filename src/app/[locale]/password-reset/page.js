@@ -62,19 +62,24 @@ export default function ResetPasswordRequest() {
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
           {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}
-          <div className="mt-4">
-            <label htmlFor="repeatPassword" className="block  text-sm font-bold mb-2">{t("auth.email")}</label>
+          {!serverSuccess.success && (
+            <>
+              <div className="mt-4">
+                <label htmlFor="repeatPassword" className="block  text-sm font-bold mb-2">{t("auth.email")}</label>
 
-            <input
-              type="email"
-              name="email"
-              required
-              className="input input-bordered w-full"
-              {...register("email")}
-            />
-            {errors?.email && <p className="error text-red-500 text-sm mt-2">{errors?.email?.message}</p>}
-          </div>
-          <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="input input-bordered w-full"
+                  {...register("email")}
+                />
+                {errors?.email && <p className="error text-red-500 text-sm mt-2">{errors?.email?.message}</p>}
+              </div>
+              <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
+            </>
+          )}
+
         </form>
 
       </div>
