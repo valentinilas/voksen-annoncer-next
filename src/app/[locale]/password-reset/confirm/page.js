@@ -68,7 +68,12 @@ export default function ResetPasswordConfirm() {
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
           {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}
-          <input type="hidden" name="code" value={searchParams.get('code') || ''} />
+          <input 
+          type="hidden" 
+          name="code" 
+          value={searchParams.get('code') || ''} 
+          {...register("code")}
+          />
           <input
             type="password"
             name="password"
