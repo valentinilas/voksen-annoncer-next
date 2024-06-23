@@ -97,6 +97,8 @@ export default function NewPost({ categories, regions }) {
         <div className="bg-base-200 p-5  rounded-box shadow-sm">
             <h2 className="text-2xl font-bold mb-4 dark:text-zinc-400">Create Ad</h2>
             <form action={formAction}>
+                {state.error && <p className="error text-red-500 text-sm">{state.error}</p>}
+
                 {/* Title input */}
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2" htmlFor="title">
@@ -232,7 +234,7 @@ export default function NewPost({ categories, regions }) {
                 )}
 
                 <div className="flex items-center justify-between">
-       
+
                     <SubmitButton />
                 </div>
             </form>

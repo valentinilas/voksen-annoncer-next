@@ -18,9 +18,14 @@ export async function submitPost(prevState, formData) {
     const images = formData.getAll('images');
     const region = formData.get('region');
     const category = formData.get('category');
-    const subcategory = formData.get('sub-category');
+    const subcategory = formData.get('subCategory');
 
-    console.log('FORM DATA RECEIVED');
+    console.log(formData);
+
+    // Validate number of images
+    if (region > MAX_IMAGES) {
+        return { error: `Region is requited` };
+    }
 
     // Validate number of images
     if (images.length > MAX_IMAGES) {

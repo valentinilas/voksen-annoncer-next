@@ -100,6 +100,7 @@ export default function Filters({ categories, regions }) {
     if (mainCategory && mainCategory.ad_sub_categories) {
       const subCategories = mainCategory.ad_sub_categories || [];
 
+
       const translatedSubCategories = translateArray(t, 'subcategories', 'sub_category_name', subCategories);
       return translatedSubCategories.map(subcategory => (
         <option key={subcategory.sub_category_id} value={subcategory.sub_category_id}>{subcategory.sub_category_name}</option>
