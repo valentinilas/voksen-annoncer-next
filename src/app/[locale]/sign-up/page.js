@@ -70,7 +70,7 @@ export default function SignUp() {
                             id="username"
                             name="username"
                             {...register("username")}
-                            // required
+                            required
                         />
                        {errors?.username && <p className="error text-red-500 text-sm mt-2">{errors?.username?.message}</p>}
                     </div>
@@ -82,7 +82,7 @@ export default function SignUp() {
                             id="email"
                             name="email"
                             {...register("email")}
-                            // required
+                            required
                         />
                        {errors?.email && <p className="error text-red-500 text-sm mt-2">{errors?.email?.message}</p>}
                     </div>
@@ -95,7 +95,7 @@ export default function SignUp() {
                             id="password"
                             name="password"
                             {...register("password")}
-                            // required
+                            required
                         />
                        {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
                     </div>

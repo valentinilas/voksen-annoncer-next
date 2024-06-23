@@ -151,7 +151,8 @@
         "description-required": "Beskrivelse er påkrævet",
         "region-required": "Region er påkrævet",
         "category-required": "Kategori er påkrævet",
-        "subcategory-required": "Underkategori er påkrævet"
+        "subcategory-required": "Underkategori er påkrævet",
+        "submit": "Indsend"
     },
     "auth": {
         "login": "Log ind",
