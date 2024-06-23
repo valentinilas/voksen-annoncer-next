@@ -3,103 +3,115 @@
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { createServerValidationSchema } from '@/components/create-post/validation-schema-server';
+import { getTranslations } from 'next-intl/server';
 
 // Maximum number of images allowed
 const MAX_IMAGES = 12;
 // Maximum file size allowed (2 MB in bytes)
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-export async function submitPost(prevState, formData) {
-    const supabase = createClient();
+const supabase = createClient();
+
+// Helper function to handle image upload
+const handleImageUpload = async (file) => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}.${fileExt}`;
+    const filePath = `ad-images/${fileName}`;
+
+    // Validate file type (should be image)
+    if (!file.type.startsWith('image/')) {
+        return { error: 'File is not an image.' };
+    }
+
+    // Validate file size
+    if (file.size > MAX_FILE_SIZE) {
+        return { error: `Maximum file size exceeded (${MAX_FILE_SIZE / 1024 / 1024} MB).` };
+    }
+
+    // Use a server-side image processing library like Sharp
+    const sharp = require('sharp');
+    const metadata = await sharp(await file.arrayBuffer()).metadata();
+
+    const { error } = await supabase.storage
+        .from('voksen-annoncer')
+        .upload(filePath, file);
+
+    if (error) {
+        console.error('Error uploading image:', error);
+        return null;
+    }
+
+    return { filePath, width: metadata.width, height: metadata.height };
+};
+
+// Helper function to get public URL of uploaded image
+const getPublicUrl = (filePath) => {
+    const { data, error } = supabase.storage.from('voksen-annoncer').getPublicUrl(filePath);
+    if (error) {
+        console.error('Error getting public URL:', error);
+        return null;
+    }
+    return data.publicUrl;
+};
+
+export async function submitPost(formData) {
+
 
     // Extract form data
     const title = formData.get('title');
     const description = formData.get('description');
-    const images = formData.getAll('images');
     const region = formData.get('region');
     const category = formData.get('category');
-    const subcategory = formData.get('subCategory');
+    const subcategory = formData.get('subcategory');
 
-    console.log(formData);
+    // Extract files
+    const images = formData.getAll('images');
 
-    // Validate number of images
-    if (region > MAX_IMAGES) {
-        return { error: `Region is requited` };
+    const t = await getTranslations();
+    const serverValidationSchema = createServerValidationSchema(t);
+
+
+
+    // Validate the data
+    try {
+        await serverValidationSchema.validate({
+            title,
+            description,
+            region,
+            category,
+            subcategory,
+            images
+        }, { abortEarly: false });
+    } catch (validationError) {
+        console.error('Validation error:', validationError.errors);
+        return { error: validationError.errors };
     }
 
-    // Validate number of images
-    if (images.length > MAX_IMAGES) {
-        return { error: `Maximum ${MAX_IMAGES} images allowed.` };
-    }
-
-    // Helper function to handle image upload
-    const handleImageUpload = async (file) => {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Date.now()}.${fileExt}`;
-        const filePath = `ad-images/${fileName}`;
-
-        // Validate file type (should be image)
-        if (!file.type.startsWith('image/')) {
-            return { error: 'File is not an image.' };
-        }
-
-        // Validate file size
-        if (file.size > MAX_FILE_SIZE) {
-            return { error: `Maximum file size exceeded (${MAX_FILE_SIZE / 1024 / 1024} MB).` };
-        }
-
-        // Use a server-side image processing library like Sharp
-        const sharp = require('sharp');
-        const metadata = await sharp(await file.arrayBuffer()).metadata();
-
-        const { error } = await supabase.storage
-            .from('voksen-annoncer')
-            .upload(filePath, file);
-
-        if (error) {
-            console.error('Error uploading image:', error);
-            return null;
-        }
-
-        return { filePath, width: metadata.width, height: metadata.height };
-    };
-
-    // Helper function to get public URL of uploaded image
-    const getPublicUrl = (filePath) => {
-        const { data, error } = supabase.storage.from('voksen-annoncer').getPublicUrl(filePath);
-        if (error) {
-            console.error('Error getting public URL:', error);
-            return null;
-        }
-        return data.publicUrl;
-    };
-
-    // Upload files and get their URLs along with dimensions
-    const imageDetails = [];
-    for (let i = 0; i < images.length; i++) {
-        console.log(`Uploading image ${i}`);
-        const uploadResult = await handleImageUpload(images[i]);
-        if (uploadResult?.error) {
-            return { error: uploadResult.error };
-        }
-
-        if (uploadResult) {
-            const publicUrl = getPublicUrl(uploadResult.filePath);
-            if (publicUrl) {
-                imageDetails.push({
-                    image_url: publicUrl,
-                    width: uploadResult.width,
-                    height: uploadResult.height
-                });
-            } else {
-                return { error: 'Failed to get public URL for uploaded image.' };
-            }
-        } else {
-            return { error: 'Failed to upload image.' };
-        }
-    }
 
     try {
+
+        // Upload files and get their URLs along with dimensions
+        const imageDetails = await Promise.all(
+            images.map(async (image) => {
+                const uploadResult = await handleImageUpload(image);
+                if (uploadResult?.error) {
+                    throw new Error(uploadResult.error);
+                }
+
+                const publicUrl = getPublicUrl(uploadResult.filePath);
+                if (!publicUrl) {
+                    throw new Error('Failed to get public URL for uploaded image.');
+                }
+
+                return {
+                    image_url: publicUrl,
+                    width: uploadResult.width,
+                    height: uploadResult.height,
+                };
+            })
+        );
+
         // Save the ad details to the database
         console.log('Saving to DB');
         const { data: adData, error: adError } = await supabase
@@ -113,12 +125,13 @@ export async function submitPost(prevState, formData) {
             })
             .select();
 
+        const adId = adData[0].uuid;
+
+
         if (adError) {
             console.error('Error creating ad:', adError);
             return { error: adError.message };
         }
-
-        const adId = adData[0].uuid;
 
         // Save the image details in the ad_images table
         console.log('Saving images to DB');
@@ -137,14 +150,17 @@ export async function submitPost(prevState, formData) {
             console.error('Error creating ad:', imageError);
             return { error: imageError.message };
         }
-    } catch (error) {
+
+    }
+    catch (error) {
         console.error('Error submitting post:', error);
         return { error: error.message };
     }
 
-
-
     // Revalidate path and redirect
     revalidatePath('/', 'layout');
-    return redirect('/dashboard');
+    redirect('/dashboard');
+
+
+
 }

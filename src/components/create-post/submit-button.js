@@ -1,19 +1,13 @@
-import { useFormStatus } from 'react-dom';
 import Button from '@/components/button/button';
 import { useTranslations } from 'next-intl';
 
-export function SubmitButton() {
+export function SubmitButton({ isSubmitting, isValid }) {
     const t = useTranslations();
 
-    // const { isSubmitting } = useFormStatus();
 
-    const { pending } = useFormStatus();
-
-    
-    console.log('BUTTON:', pending);
     return <Button type="submit" className="mt-10 w-full justify-center"
-        disabled={pending}>
-        {pending ?
+        disabled={isSubmitting || !isValid}>
+        {isSubmitting ?
             (<><span className="loading loading-dots loading-sm"></span> {t("create-ad.creating-ad")}</>) : (t("create-ad.submit"))
         }
     </Button>

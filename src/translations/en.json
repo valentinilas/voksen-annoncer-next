@@ -146,7 +146,12 @@
         "password-length": "Password must be longer than 6 characters",
         "title-length": "Title must be 160 characters or less",
         "select-category": "Please select a category",
-        "select-subcategory": "Please select a sub-category"
+        "select-subcategory": "Please select a sub-category",
+        "title-required":"Title is required",
+        "description-required":"Description is required",
+        "region-required":"Region is required",
+        "category-required":"Category is required",
+        "subcategory-required":"Sub-category is required"
     },
     "auth": {
         "login": "Log in",

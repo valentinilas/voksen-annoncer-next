@@ -145,7 +145,12 @@
         "password-length": "Adgangskode skal være længere end 6 tegn",
         "title-length": "Titel skal være 160 tegn eller færre",
         "select-category": "Vælg venligst en kategori",
-        "select-subcategory": "Vælg venligst en underkategori"
+        "select-subcategory": "Vælg venligst en underkategori",
+        "title-required": "Titel er påkrævet",
+        "description-required": "Beskrivelse er påkrævet",
+        "region-required": "Region er påkrævet",
+        "category-required": "Kategori er påkrævet",
+        "subcategory-required": "Underkategori er påkrævet"
     },
     "auth": {
         "login": "Log ind",

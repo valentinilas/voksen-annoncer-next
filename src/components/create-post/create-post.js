@@ -2,72 +2,79 @@
 
 
 import { useTranslations } from 'next-intl';
-import { useFormState } from 'react-dom';
 import { SubmitButton } from "./submit-button";
-import { submitPost } from "@/lib/action-submit-post";
+import { submitPost } from '@/lib/action-submit-post';
 import translateArray from '@/utils/translations/translate-array';
 import { useState } from 'react';
 
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup"
+import { createValidationSchema } from './validation-schema';
 
 
 export default function NewPost({ categories, regions }) {
-    const t = useTranslations();
-    const [state, formAction] = useFormState(submitPost, { error: null });
-
-
-
-    const validationSchema = Yup.object({
-        title: Yup.string()
-            .required(t("validation.required"))
-            .max(160, t("validation.title-length")),
-        description: Yup.string()
-            .required(t("validation.required")),
-        images: Yup.mixed()
-            .test('fileSize', t("create-ad.image-size"), (value) => {
-                if (!value || !value.length) return true; // not required
-                return Array.from(value).every(file => file.size <= 2 * 1024 * 1024); // 2MB
-            })
-            .test('fileType', t("create-ad.image-type"), (value) => {
-                if (!value || !value.length) return true; // not required
-                return Array.from(value).every(file => file.type.startsWith('image/'));
-            })
-            .test('fileCount', t("create-ad.image-length"), (value) => {
-                if (!value || !value.length) return true; // not required
-                return value.length <= 12;
-            }),
-        region: Yup.string()
-            .required(t("validation.required")),
-        category: Yup.string()
-            .required(t("validation.required")),
-        subCategory: Yup.string()
-            .required(t("validation.required")),
-    });
-
-    const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-    const formik = useFormik({
-        initialValues: {
-            title: '',
-            description: '',
-            images: null,
-            region: '',
-            category: '',
-            subCategory: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: async (values) => {
-        },
-    });
-
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [serverValidationError, setServerValidationError] = useState({error: null});
+
+
+    // Translations
+    const t = useTranslations();
+
+    const validationSchema = createValidationSchema(t);
+
+    // React Hook Form
+    const {
+        handleSubmit,
+        register,
+        reset,
+        setValue,
+        formState: { errors, isSubmitting, isValid },
+    } = useForm({
+        mode: "onChange",
+        resolver: yupResolver(validationSchema)
+    });
+
+    console.log(errors);
+
+    const onSubmit = handleSubmit(async data => {
+        console.log("data", data);
+
+        const formData = new FormData();
+        // Append text fields
+        formData.append('title', data.title);
+        formData.append('description', data.description);
+        formData.append('region', data.region);
+        formData.append('category', data.category);
+        formData.append('subcategory', data.subcategory);
+
+        // Append files
+        if (data.images) {
+            for (let i = 0; i < data.images.length; i++) {
+                formData.append('images', data.images[i]);
+            }
+        }
+
+        const response = await submitPost(formData);
+
+        if (response?.error) {
+            console.log(response.error);
+            setServerValidationError({error: response.error})
+        } else {
+            reset();
+        }
+    });
+
+
 
 
 
     const handleMainCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
+        setValue('subcategory', ''); // This resets the form value for subcategory
     };
+
+
+    // const selectedCategory = watch("category");
 
 
 
@@ -75,15 +82,17 @@ export default function NewPost({ categories, regions }) {
     const renderSubCategoryOptions = () => {
         const mainCategory = categories.find(cat => cat.category_id === Number(selectedCategory));
         if (mainCategory && mainCategory.ad_sub_categories) {
-            const subCategories = mainCategory.ad_sub_categories || [];
+            const subcategories = mainCategory.ad_sub_categories || [];
 
-            const translatedSubCategories = translateArray(t, 'subcategories', 'sub_category_name', subCategories);
+            const translatedSubCategories = translateArray(t, 'subcategories', 'sub_category_name', subcategories);
             return translatedSubCategories.map(subcategory => (
                 <option key={subcategory.sub_category_id} value={subcategory.sub_category_id}>{subcategory.sub_category_name}</option>
             ));
         }
         return null;
     };
+
+
 
 
     const translatedCategories = categories
@@ -96,8 +105,13 @@ export default function NewPost({ categories, regions }) {
 
         <div className="bg-base-200 p-5  rounded-box shadow-sm">
             <h2 className="text-2xl font-bold mb-4 dark:text-zinc-400">Create Ad</h2>
-            <form action={formAction}>
-                {state.error && <p className="error text-red-500 text-sm">{state.error}</p>}
+            <form
+                onSubmit={onSubmit}
+                encType="multipart/form-data"
+            // action={formAction}
+            >
+                {serverValidationError.error && <p className="error text-red-500 text-sm mt-2">{serverValidationError.error}</p>}
+                {/* {state.error && <p className="error text-red-500 text-sm mt-2">{state.error}</p>} */}
 
                 {/* Title input */}
                 <div className="mb-4">
@@ -109,13 +123,12 @@ export default function NewPost({ categories, regions }) {
                         name="title"
                         type="text"
                         className="input input-bordered w-full"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.title}
+                        {...register("title")}
+
                     />
-                    {formik.touched.title && formik.errors.title ? (
-                        <div className="text-red-500 text-sm">{formik.errors.title}</div>
-                    ) : null}
+                    {errors?.title && <p className="error text-red-500 text-sm mt-2">{errors?.title?.message}</p>}
+
+
                 </div>
 
                 {/* Description input */}
@@ -128,13 +141,9 @@ export default function NewPost({ categories, regions }) {
                         name="description"
                         rows="7"
                         className="textarea textarea-bordered w-full"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.description}
+                        {...register("description")}
                     ></textarea>
-                    {formik.touched.description && formik.errors.description ? (
-                        <div className="text-red-500 text-sm">{formik.errors.description}</div>
-                    ) : null}
+                    {errors?.description && <p className="error text-red-500 text-sm mt-2">{errors?.description?.message}</p>}
                 </div>
 
                 {/* Images input */}
@@ -148,13 +157,9 @@ export default function NewPost({ categories, regions }) {
                         type="file"
                         multiple
                         className="file-input file-input-bordered w-full"
-                        onChange={(event) => {
-                            formik.setFieldValue("images", event.currentTarget.files);
-                        }}
+                        {...register("images")}
                     />
-                    {formik.touched.images && formik.errors.images ? (
-                        <div className="text-red-500 text-sm">{formik.errors.images}</div>
-                    ) : null}
+                    {errors?.images && <p className="error text-red-500 text-sm mt-2">{errors?.images?.message}</p>}
                 </div>
 
                 {/* Region select */}
@@ -166,9 +171,7 @@ export default function NewPost({ categories, regions }) {
                         id="region"
                         name="region"
                         className="select select-bordered w-full"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.region}
+                        {...register("region")}
                     >
                         <option value="">{t("create-ad.select-region")}</option>
                         {regions?.map((region) => (
@@ -177,9 +180,7 @@ export default function NewPost({ categories, regions }) {
                             </option>
                         ))}
                     </select>
-                    {formik.touched.region && formik.errors.region ? (
-                        <div className="text-red-500 text-sm">{formik.errors.region}</div>
-                    ) : null}
+                    {errors?.region && <p className="error text-red-500 text-sm mt-2">{errors?.region?.message}</p>}
                 </div>
 
                 {/* Category select */}
@@ -191,12 +192,12 @@ export default function NewPost({ categories, regions }) {
                         id="category"
                         name="category"
                         className="select select-bordered w-full"
-                        onChange={(e) => {
-                            handleMainCategoryChange(e);
-                            formik.handleChange(e);
-                        }}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.category}
+                        {...register("category",{
+                            onChange:(e)=>{
+                                handleMainCategoryChange(e)
+                            }
+                        })}
+
                     >
                         <option value="">{t("create-ad.select-category")}</option>
                         {translatedCategories?.map((category) => (
@@ -205,37 +206,31 @@ export default function NewPost({ categories, regions }) {
                             </option>
                         ))}
                     </select>
-                    {formik.touched.category && formik.errors.category ? (
-                        <div className="text-red-500 text-sm">{formik.errors.category}</div>
-                    ) : null}
+                    {errors?.category && <p className="error text-red-500 text-sm mt-2">{errors?.category?.message}</p>}
+
                 </div>
 
                 {/* Sub-category select */}
-                {selectedCategory && (
+                {selectedCategory && selectedCategory !== "" && (
                     <div className="mb-4">
-                        <label className="block text-sm font-bold mb-2" htmlFor="subCategory">
+                        <label className="block text-sm font-bold mb-2" htmlFor="subcategory">
                             {t("create-ad.sub-category")}
                         </label>
                         <select
-                            id="subCategory"
-                            name="subCategory"
+                            id="subcategory"
+                            name="subcategory"
                             className="select select-bordered w-full"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.subCategory}
+                            {...register("subcategory")}
                         >
                             <option value="">{t("create-ad.select-subcategory")}</option>
                             {renderSubCategoryOptions()}
                         </select>
-                        {formik.touched.subCategory && formik.errors.subCategory ? (
-                            <div className="text-red-500 text-sm">{formik.errors.subCategory}</div>
-                        ) : null}
+                        {errors?.subcategory && <p className="error text-red-500 text-sm mt-2">{errors?.subcategory?.message}</p>}
                     </div>
                 )}
 
-                <div className="flex items-center justify-between">
-
-                    <SubmitButton />
+                <div className="flex items-center justify-start">
+                    <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
                 </div>
             </form>
         </div>
