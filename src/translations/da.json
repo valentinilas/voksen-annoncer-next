@@ -172,7 +172,9 @@
         "reset-password": "Nulstil adgangskode",
         "set-new-password": "Indstil en ny adgangskode",
         "new-password": "Ny adgangskode",
-        "repeat-password": "Gentag adgangskode"
+        "repeat-password": "Gentag adgangskode",
+        "password-success-change": "Din adgangskode er blevet ændret med succes."
+
 
     },
     "welcome": {

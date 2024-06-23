@@ -173,7 +173,8 @@
         "reset-password": "Reset password",
         "set-new-password": "Set a new password",
         "new-password": "New password",
-        "repeat-password": "Repeat password"
+        "repeat-password": "Repeat password",
+        "password-success-change":"Your password has been successfully changed."
 
     },
     "welcome": {

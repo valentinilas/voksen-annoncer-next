@@ -68,7 +68,7 @@ export default function ResetPasswordConfirm() {
         <h2 className="text-2xl font-bold mb-4">{t("auth.set-new-password")}</h2>
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
-          {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}
+          {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-success-change")}</p>}
 
           <input
             type="hidden"
@@ -91,7 +91,6 @@ export default function ResetPasswordConfirm() {
           </div>
           <div className="mt-4" >
             <label htmlFor="repeatPassword" className="block  text-sm font-bold mb-2">{t("auth.repeat-password")}</label>
-
             <input
               type="password"
               name="repeatPassword"
