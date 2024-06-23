@@ -43,7 +43,6 @@ export default function SignIn() {
     const response = await login(formData);
 
     if (response?.error) {
-      console.log(response.error);
       setServerValidationError({ error: response.error })
     } else {
       reset();
