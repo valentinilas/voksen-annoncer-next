@@ -1,23 +1,18 @@
 'use server';
 
+import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
-import * as Yup from 'yup';
+import { getTranslations } from 'next-intl/server';
+import { createServerValidationSchema } from '@/app/[locale]/sign-up/validation-schema-server';
 
-const signupSchema = Yup.object().shape({
-    username: Yup.string()
-        .matches(/^[a-zA-Z0-9]{3,12}$/, 'Username must be alphanumeric and between 3 to 12 characters')
-        .required('Username is required'),
-    email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
-    password: Yup.string()
-        .min(6, 'Password must be at least 6 characters')
-        .required('Password is required')
-});
 
-export async function signup(prevState, formData) {
+
+
+export async function signup(formData) {
     const supabase = createClient();
+    const t = await getTranslations();
+    const serverValidationSchema = createServerValidationSchema(t);
 
     const data = {
         username: formData.get('username'),
@@ -25,9 +20,17 @@ export async function signup(prevState, formData) {
         password: formData.get('password'),
     };
 
+
+
+    // Validate the data
     try {
-        // Validate form data against signupSchema
-        await signupSchema.validate(data);
+        await serverValidationSchema.validate(data, { abortEarly: false });
+    } catch (validationError) {
+        console.error('Validation error:', validationError.errors);
+        return { error: validationError.errors };
+    }
+
+    try {
 
         // If validation succeeds, proceed with signup
         const { error } = await supabase.auth.signUp({
@@ -41,17 +44,13 @@ export async function signup(prevState, formData) {
         });
 
         if (error) {
-            console.error('Supabase error:', error.message);
-            // redirect(`/error?message=${encodeURIComponent(error.message)}`);
-            return {error: error.message}
+            console.error('Authentication error:', error.message);
+            return { error: [error.message] }
         }
-
+        revalidatePath('/', 'layout')
         redirect('/welcome');
     } catch (error) {
-        if (error instanceof Yup.ValidationError) {
-            return {error: error.message}
-        }
-        // If it's not a validation error, it's likely a redirect
-        throw error;
+        console.error('Authentication error:', error.message);
+        return { error: [error.message] }
     }
 }

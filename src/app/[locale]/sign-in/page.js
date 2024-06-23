@@ -64,6 +64,7 @@ export default function SignIn() {
               type="email"
               id="email"
               name="email"
+              required
               {...register("email")}
 
             />
@@ -82,6 +83,7 @@ export default function SignIn() {
               type="password"
               id="password"
               name="password"
+              required
               {...register("password")}
 
             />

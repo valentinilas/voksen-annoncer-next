@@ -1,57 +1,67 @@
 "use client";
 
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { signup } from '@/lib/action-sign-up';
-import { useFormState } from 'react-dom';
 import { SubmitButton } from './submit-button';
-
+import { useState } from 'react';
+import { createValidationSchema } from './validation-schema';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup"
 
 
 
 
 export default function SignUp() {
-    const [state, formAction] = useFormState(signup, { error: null });
 
+    const [serverValidationError, setServerValidationError] = useState({ error: null });
+
+
+    // Translations
     const t = useTranslations();
 
-    // Define the validation schema
-    const validationSchema = Yup.object({
-        username: Yup.string()
-            .min(3, `${t("validation.username-length")}`)
-            .max(12, `${t("validation.username-length")}`)
-            .matches(/^[a-zA-Z0-9]{3,12}$/, `${t("validation.username-symbols")}`)
-            .required(`${t("validation.required")}`),
+    const validationSchema = createValidationSchema(t);
 
-        email: Yup.string()
-            .email(`${t("validation.email-invalid")}`)
-            .required(`${t("validation.required")}`),
-
-        password: Yup.string()
-            .min(6, `${t("validation.password-length")}`)
-            .required(`${t("validation.password-required")}`)
+    // React Hook Form
+    const {
+        handleSubmit,
+        register,
+        reset,
+        formState: { errors, isSubmitting, isValid },
+    } = useForm({
+        mode: "onChange",
+        resolver: yupResolver(validationSchema)
     });
-    const formik = useFormik({
-        initialValues: {
-            username: '',
-            email: '',
-            password: ''
-        },
-        validationSchema: validationSchema,
-        onSubmit: async (values) => {
+
+
+    const onSubmit = handleSubmit(async data => {
+
+        const formData = new FormData();
+        // Append text fields
+        formData.append('email', data.email);
+        formData.append('password', data.password);
+        formData.append('username', data.username);
+
+
+        const response = await signup(formData);
+
+        if (response?.error) {
+            setServerValidationError({ error: response.error })
+        } else {
+            reset();
         }
     });
 
+
+
+
+
     return (
-
-
         <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
                 <h2 className="text-2xl font-bold mb-10 text-center dark:text-zinc-400">{t("auth.sign-up")}</h2>
-                <form action={formAction}>
-                    {state.error && <p className="error text-red-500 text-sm">{state.error}</p>}
+                <form onSubmit={onSubmit}>
+                {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2">{error}</p>)}</div>}
                     <div className="mt-4">
                         <label htmlFor="username" className="block  text-sm font-bold mb-2">{t("auth.username")}</label>
                         <input
@@ -59,12 +69,10 @@ export default function SignUp() {
                             type="text"
                             id="username"
                             name="username"
-                            {...formik.getFieldProps('username')}
-                            required
+                            {...register("username")}
+                            // required
                         />
-                        {formik.touched.username && formik.errors.username ? (
-                            <div className="text-red-500 text-sm mt-2">{formik.errors.username}</div>
-                        ) : null}
+                       {errors?.username && <p className="error text-red-500 text-sm mt-2">{errors?.username?.message}</p>}
                     </div>
                     <div className="mt-4">
                         <label htmlFor="email" className="block  text-sm font-bold mb-2">{t("auth.email")}</label>
@@ -73,12 +81,10 @@ export default function SignUp() {
                             type="email"
                             id="email"
                             name="email"
-                            {...formik.getFieldProps('email')}
-                            required
+                            {...register("email")}
+                            // required
                         />
-                        {formik.touched.email && formik.errors.email ? (
-                            <div className="text-red-500 text-sm mt-2">{formik.errors.email}</div>
-                        ) : null}
+                       {errors?.email && <p className="error text-red-500 text-sm mt-2">{errors?.email?.message}</p>}
                     </div>
                     <div className="mt-4">
                         <label htmlFor="password" className="block  text-sm font-bold mb-2">{t("auth.password")}</label>
@@ -88,19 +94,14 @@ export default function SignUp() {
                             type="password"
                             id="password"
                             name="password"
-                            {...formik.getFieldProps('password')}
-                            required
+                            {...register("password")}
+                            // required
                         />
-                        {formik.touched.password && formik.errors.password ? (
-                            <div className="text-red-500 text-sm mt-2">{formik.errors.password}</div>
-                        ) : null}
+                       {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
                     </div>
 
-                    {/* <button
-                        type="submit"
-                        disabled={formik.isSubmitting}
-                        className="cursor-pointer rounded-full font-medium	 flex gap-2 justify-items-center items-center transition-colors border-2 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2 text-base bg-cherry-600 border-transparent  text-white hover:bg-cherry-500 w-full text-center justify-center mt-6">{t("auth.sign-up")}</button> */}
-                    <SubmitButton />
+                  
+                    <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
                 </form>
                 <p className="mt-10 text-center text-sm ">
                     <span className="mr-1">{t("auth.yes-account")}</span>
