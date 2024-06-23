@@ -66,7 +66,7 @@ export default function ResetPasswordRequest() {
             type="email"
             name="email"
             placeholder="E-mail"
-            // required
+            required
             className="input input-bordered w-full"
             {...register("email")}
           />

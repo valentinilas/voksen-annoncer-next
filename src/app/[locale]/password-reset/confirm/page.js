@@ -1,40 +1,73 @@
 'use client';
 
-import { useFormState } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
 import { confirmPasswordReset } from '@/lib/action-confirm-password-reset';
 import { SubmitButton } from '../submit-button';
-
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { createValidationSchema } from './validation-schema';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup"
 
-const initialState = { error: null, success: false };
 
 export default function ResetPasswordConfirm() {
-  const t = useTranslations();
 
   const searchParams = useSearchParams();
-  const [state, formAction] = useFormState(confirmPasswordReset, initialState);
 
-  const validationSchema = Yup.object({
-    password: Yup.string().required(`${t("validation.required")}`)
+  const [serverValidationError, setServerValidationError] = useState({ error: null });
+  const [serverSuccess, setServerSuccess] = useState({ success: null });
+
+
+  // Translations
+  const t = useTranslations();
+
+  const validationSchema = createValidationSchema(t);
+
+  // React Hook Form
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(validationSchema)
   });
-  const formik = useFormik({
-    initialValues: {
-      password: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values) => {
+
+
+  const onSubmit = handleSubmit(async data => {
+
+    const formData = new FormData();
+    // Append text fields
+    formData.append('password', data.password);
+    formData.append('code', data.code);
+
+
+    const response = await confirmPasswordReset(formData);
+
+    if (response?.error) {
+      setServerValidationError({ error: response.error })
+      setServerSuccess({ success: null });
+
+    } else {
+      reset();
+    }
+    if (response?.success) {
+      setServerValidationError({ error: null })
+      setServerSuccess({ success: true });
+      reset();
     }
   });
+
 
 
   return (
     <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-2xl font-bold mb-4">{t("auth.set-new-password")}</h2>
-        <form action={formAction}>
+        <form onSubmit={onSubmit} >
+          {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
+          {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}
           <input type="hidden" name="code" value={searchParams.get('code') || ''} />
           <input
             type="password"
@@ -42,15 +75,12 @@ export default function ResetPasswordConfirm() {
             placeholder={t("auth.new-password")}
             required
             className="input input-bordered w-full"
-            {...formik.getFieldProps('password')}
+            {...register("password")}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="text-red-500 text-sm mt-2">{formik.errors.password}</div>
-          ) : null}
-          <SubmitButton />
+          {errors?.password && <p className="error text-red-500 text-sm mt-2">{errors?.password?.message}</p>}
+          <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
         </form>
-        {state.error && <p className="text-red-500 mt-2">{state.error}</p>}
-        {state.success && <p className="text-green-500 mt-2">Password has been reset successfully.</p>}
+
       </div>
     </div>
   );
