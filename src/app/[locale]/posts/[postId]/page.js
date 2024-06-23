@@ -6,20 +6,21 @@ import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 
 import AdDetail from "@/components/ad-page/ad-detail";
 import AdProfile from "@/components/ad-page/ad-profile";
-
+import { fetchUserProfile } from "@/lib/fetchUserProfile";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params, searchParams }, parent) {
 
     try {
-        const {ad} = await fetchPublicSingleAd(params.postId);
+        const { ad } = await fetchPublicSingleAd(params.postId);
 
         return {
             title: ad.title,
             description: ad.description,
             openGraph: {
                 images: [ad.ad_images[0]?.image_url || ''],
-              },
-           
+            },
+
         };
     } catch (error) {
         console.error("Failed to fetch ad data:", error);
@@ -31,14 +32,32 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function AdDetailPage({ params }) {
-
+    const t = await getTranslations();
     const [adData, userData] = await Promise.all([
         fetchPublicSingleAd(params.postId),
         fetchCurrentUser()
     ]);
+    const profile = await fetchUserProfile(userData?.user?.id);
 
     const { ad } = adData;
     const { user } = userData;
+    const { is_admin } = profile?.userProfile || {};
+
+    if (!is_admin && !ad.is_approved) {
+        return <>
+            <section className="ad-detail">
+                <div className="grid grid-cols-12 gap-6">
+                    <div className="bg-base-200 p-20 text-center  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
+                        <p text-center>{t("ads.not-approved")}</p>
+                    </div>
+                    <div className="col-span-12 lg:col-span-4">
+                        <AdProfile profileData={ad.profiles} currentSessionUser={user} />
+                    </div>
+
+                </div>
+            </section>
+        </>
+    }
 
     return <>
         <section className="ad-detail">
