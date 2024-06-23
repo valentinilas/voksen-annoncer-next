@@ -5,8 +5,12 @@ import { useTranslations } from 'next-intl';
 export function SubmitButton() {
     const t = useTranslations();
 
+    // const { isSubmitting } = useFormStatus();
+
     const { pending } = useFormStatus();
 
+    
+    console.log('BUTTON:', pending);
     return <Button type="submit" className="mt-10 w-full justify-center"
         disabled={pending}>
         {pending ?
