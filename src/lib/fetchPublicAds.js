@@ -2,7 +2,6 @@ import { createClient } from "@/utils/supabase/server";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 export const fetchPublicAds = async (category, subcategory,region,search, page, pageSize) => {
   
-  console.log(page);
   const supabase = createClient();
 
   try {
@@ -16,7 +15,7 @@ export const fetchPublicAds = async (category, subcategory,region,search, page, 
         ad_sub_categories (sub_category_id, sub_category_name),
         profiles(username)
       `, { count: 'exact' })
-      // .eq('is_approved', true)
+      .eq('is_approved', true)
       .order('created_at', { ascending: false })
       .range((Number(page) - 1) * pageSize, Number(page) * pageSize - 1);
 
