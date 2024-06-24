@@ -14,6 +14,8 @@ export const createProfileValidationSchema = (t) => {
         birthday: Yup.date()
             .required(t("validation.required")),
         bio: Yup.string()
+            .nullable()
+            .notRequired()
             .max(160, t("validation.bio-length")),
         region_id: Yup.string()
             .required(t('validation.region-required')),

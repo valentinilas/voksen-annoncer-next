@@ -43,7 +43,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
 
 
     const validationSchema = createProfileValidationSchema(t);
-    const { register, handleSubmit, setValue, formState: { errors, isSubmitting, isValid } } = useForm({
+    const { register, handleSubmit, setValue, trigger, formState: { errors, isSubmitting, isValid } } = useForm({
         mode: "onChange",
         resolver: yupResolver(validationSchema)
     });
@@ -125,7 +125,15 @@ export default function ProfileDetail({ profile, regions, genders }) {
         return today.toISOString().split('T')[0];
     };
 
-    const translatedGenders = translateArray(t, 'genders', 'gender_name', genders)
+    const translatedGenders = translateArray(t, 'genders', 'gender_name', genders);
+
+    const handleValidateAllFields = async () => {
+        try {
+            await trigger(); // Trigger validation for all fields
+        } catch (error) {
+            console.error("Validation error:", error);
+        }
+    };
 
     return (
         <div className="h-full ">
@@ -138,11 +146,14 @@ export default function ProfileDetail({ profile, regions, genders }) {
                     <>
                         <Button disabled={isSubmitting || !isValid}
                             variant="primary" onClick={handleSubmit(onSubmit)}>{t("profile.save")}</Button>
-                        <Button variant="secondary" onClick={() => setEditing(false)}>{t("profile.cancel")}</Button>
+                        <Button variant="secondary" onClick={() => { setEditing(false) }}>{t("profile.cancel")}</Button>
                     </>
                 ) : (
                     <>
-                        <Button variant="primary" onClick={() => setEditing(true)}>{t("profile.edit-profile")}</Button>
+                        <Button variant="primary" onClick={() => {
+                            setEditing(true)
+                            handleValidateAllFields();
+                        }}>{t("profile.edit-profile")}</Button>
                         <Button variant="tertiary" onClick={() => showModal()}>{t("profile.delete-account")}</Button>
                     </>
                 )}
@@ -197,7 +208,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
                         name="bio"
                         disabled={!editing}
                         {...register("bio")}
-                        required
+                        
                     />
                     {errors?.bio && <p className="error text-red-500 text-sm mt-2">{errors?.bio?.message}</p>}
                 </div>
