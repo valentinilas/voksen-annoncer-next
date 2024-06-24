@@ -17,19 +17,22 @@ export async function handleAdminDeleteRow(adId) {
             throw new Error('Error fetching ad images: ' + fetchError.message);
         }
 
-        // Prepare an array of file paths to delete
-        const filePaths = adImages.map(image => {
-            const parts = image.image_url.split('/');
-            return 'ad-images/' + parts.pop(); // Assuming 'ad-images/' is the correct prefix
-        });
+        // If there are images, delete them
+        if (adImages && adImages.length > 0) {
+            // Prepare an array of file paths to delete
+            const filePaths = adImages.map(image => {
+                const parts = image.image_url.split('/');
+                return 'ad-images/' + parts.pop(); // Assuming 'ad-images/' is the correct prefix
+            });
 
-        // Delete all images from storage in one request
-        const { error: deleteError } = await supabase.storage
-            .from('voksen-annoncer') // Check if 'voksen-annoncer' is the correct storage bucket
-            .remove(filePaths);
+            // Delete all images from storage in one request
+            const { error: deleteError } = await supabase.storage
+                .from('voksen-annoncer')
+                .remove(filePaths);
 
-        if (deleteError) {
-            throw new Error('Error deleting images: ' + deleteError.message);
+            if (deleteError) {
+                throw new Error('Error deleting images: ' + deleteError.message);
+            }
         }
 
         // Delete the ad record itself
@@ -44,12 +47,11 @@ export async function handleAdminDeleteRow(adId) {
 
         // Success messages and updates
         console.log('Ad and associated images deleted successfully.');
-
+        revalidatePath('/', 'layout');
 
     } catch (error) {
         console.error('Delete operation failed:', error);
         return { error: error.message };
     }
-    // Revalidate the home page after deletion
-    revalidatePath('/', 'layout');
+
 }
