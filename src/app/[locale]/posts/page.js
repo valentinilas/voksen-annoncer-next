@@ -8,7 +8,7 @@ import { getTranslations } from "next-intl/server";
 
 export default async function Ads({ searchParams }) {
     const t = await getTranslations();
-    const pageSize = 2;
+    const pageSize = 10;
     const { category, subcategory, region, search, page = 1 } = searchParams;
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();

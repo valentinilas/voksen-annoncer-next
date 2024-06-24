@@ -1,14 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
 import { CalendarDaysIcon, TagIcon, MapPinIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 
 import { formatDate } from "@/utils/formatter/format-date";
 import Link from "next/link";
 import { useRef } from "react";
 import Label from "../label/label";
-import Button from "../button/button";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 import DefaultImage from "../default-image/default-image";
 import ConfirmationModal from "../confirmation-modal/confirmation-modal";
 import { handleAdminDeleteRow } from "@/lib/handleAdminDeleteRow";
