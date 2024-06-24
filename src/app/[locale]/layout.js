@@ -66,7 +66,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                     </ThemeProvider>
                 </UserProvider>
             </NextIntlClientProvider>
-            <GoogleAnalytics gaId="G-5646RZSCFV" />
+            <GoogleAnalytics gaId="G-JN6QV704E2" />
         </html>
     );
 
