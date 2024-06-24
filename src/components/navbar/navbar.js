@@ -8,7 +8,7 @@
 
 'use client';
 
-import { PlusIcon, UserIcon, Cog6ToothIcon, ArrowLeftStartOnRectangleIcon, ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, UserIcon, Cog6ToothIcon, ArrowLeftStartOnRectangleIcon, ArrowLeftEndOnRectangleIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Button from '../button/button';
 import Label from "../label/label";
@@ -32,16 +32,7 @@ export default function NavBar() {
     const { avatar_url, username, is_admin } = userProfile || {};
 
 
-    // const navigate = useNavigate();
 
-    // const handleLogOut = async () => {
-    //     try {
-    //         await auth_user_log_out();
-    //         navigate('/dashboard');
-    //     } catch (error) {
-    //         setError(error.message);
-    //     }
-    // }
 
     async function handleLogout() {
         try {
@@ -59,7 +50,7 @@ export default function NavBar() {
 
     return (
         <div className="navbar bg-base-200 rounded-box px-5 shadow-sm">
-            <div className="navbar-start">
+            <div className="flex-1">
                 <Link href="/" className="flex gap-4 items-center">
                     <Image className="w-10 md:w-16" src='/logo/va-logo-cherry.svg' alt="Voksen Annoncer" width="64" height="64" />
                     <span className="font-bold text-xl hidden md:block">Voksen Annoncer</span>
@@ -69,9 +60,11 @@ export default function NavBar() {
 
             {!isLoggedIn &&
 
-                <div className="navbar-end ">
-                    <ul className="menu menu-horizontal px-1 gap-2">
-                        <li><Button variant="primary" Icon={ArrowLeftEndOnRectangleIcon} to="/sign-in" className="hidden md:inline-flex">{t('navigation.log-in')}</Button></li>
+                <div className="flex-none">
+                    <ul className="menu menu-horizontal items-center px-1 gap-2">
+                        <li><Button size="m" variant="primary" Icon={UserPlusIcon} to="/sign-up" className="hidden md:inline-flex">{t('navigation.sign-up')}</Button></li>
+                        <li><Button size="m" variant="secondary" Icon={ArrowLeftEndOnRectangleIcon} to="/sign-in" className="hidden md:inline-flex">{t('navigation.log-in')}</Button></li>
+
                         <li>
                             <label htmlFor="my-drawer" aria-label="open sidebar" className="btn btn-circle btn-ghost">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -82,7 +75,7 @@ export default function NavBar() {
                 </div>
             }
             {isLoggedIn &&
-                <div className="navbar-end gap-2">
+                <div className="flex-none gap-2">
 
                     {username && <Link className="link link-hover text-sm font-bold hidden md:block" href="/dashboard">{username}</Link>}
                     <div className="dropdown dropdown-end">
