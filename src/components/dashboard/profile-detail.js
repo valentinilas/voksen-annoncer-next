@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 
 import Button from "../button/button";
 
-// import Avatar from "./profile-avatar";
+import Avatar from "./profile-avatar";
 import ConfirmationModal from "../confirmation-modal/confirmation-modal";
 import translateArray from "@/utils/translations/translate-array";
 import { useTranslations } from "next-intl";
@@ -137,7 +137,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
         <div className="h-full ">
             <ConfirmationModal ref={dialog} onCancel={() => { hideModal() }} onConfirm={() => confirmDelete()} />
 
-            {/* <Avatar /> */}
+            <Avatar profile={profile}/>
 
             <div className="flex gap-2 justify-center my-6">
                 {editing ? (
