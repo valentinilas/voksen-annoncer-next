@@ -1,10 +1,17 @@
 'use server';
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { createProfileServerValidationSchema } from "@/components/dashboard/profile-validation-schema-server";
+import { getTranslations } from "next-intl/server";
 
 export const handleProfileUpdate = async (formData, profileId) => {
+
     const supabase = createClient();
+    const t = await getTranslations();
+    const serverValidationSchema = createProfileServerValidationSchema(t);
+
     const newData = Object.fromEntries(formData.entries())
+    
     if (newData.birthday) {
         // Create a date object
         const date = new Date(newData.birthday);
@@ -13,6 +20,19 @@ export const handleProfileUpdate = async (formData, profileId) => {
         // Convert to ISO string
         newData.birthday = date.toISOString().split('T')[0];
     }
+
+    console.log(newData);
+
+    // Validate the data
+    try {
+       await serverValidationSchema.validate(newData, { abortEarly: false });
+   
+    } catch (validationError) {
+        console.error('Validation error:', validationError.errors);
+        return { error: validationError.errors };
+    }
+
+
 
     try {
         const { data, error } = await supabase

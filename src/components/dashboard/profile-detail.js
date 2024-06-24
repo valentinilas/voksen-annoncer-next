@@ -38,6 +38,8 @@ export default function ProfileDetail({ profile, regions, genders }) {
     const t = useTranslations();
 
     const [editing, setEditing] = useState(false);
+    const [serverValidationError, setServerValidationError] = useState({ error: null });
+
 
     const validationSchema = createProfileValidationSchema(t);
     const { register, handleSubmit, setValue, formState: { errors, isSubmitting, isValid } } = useForm({
@@ -91,9 +93,12 @@ export default function ProfileDetail({ profile, regions, genders }) {
 
         const response = await handleProfileUpdate(formData, profile.id);
 
-        setEditing(false);
         if (response?.error) {
             console.log(response.error);
+            setServerValidationError({ error: response.error })
+        } else {
+            setEditing(false);
+            setServerValidationError({ error: null });
         }
     });
 
@@ -151,6 +156,8 @@ export default function ProfileDetail({ profile, regions, genders }) {
 
 
             <form onSubmit={handleSubmit(onSubmit)}>
+                {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2">{error}</p>)}</div>}
+
                 {/* Username */}
                 <div className="mt-4">
                     <label htmlFor="username" className="block  text-sm font-bold mb-2">{t("profile.username")}</label>
@@ -268,7 +275,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
                             disabled={!editing}
                             {...register("email_visible")}
                         />
-                         {errors?.email_visible && <p className="error text-red-500 text-sm mt-2">{errors?.email_visible?.message}</p>}
+                        {errors?.email_visible && <p className="error text-red-500 text-sm mt-2">{errors?.email_visible?.message}</p>}
                     </label>
                 </div>
 
@@ -329,7 +336,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
                             disabled={!editing}
                             {...register("sms_visible")}
                         />
-                         {errors?.sms_visible && <p className="error text-red-500 text-sm mt-2">{errors?.sms_visible?.message}</p>}
+                        {errors?.sms_visible && <p className="error text-red-500 text-sm mt-2">{errors?.sms_visible?.message}</p>}
                     </label>
                 </div>
 

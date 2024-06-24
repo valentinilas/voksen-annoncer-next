@@ -1,9 +1,10 @@
-// validation-schema.js
+// validation-schema-server.js
 import * as Yup from 'yup';
 
 const phone_pattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
-export const createProfileValidationSchema = (t) => {
+export const createProfileServerValidationSchema = (t) => {
+    console.log('Creating server validation schema');
     return Yup.object({
         username: Yup.string()
             .required(t("validation.username-required"))
@@ -45,8 +46,5 @@ export const createProfileValidationSchema = (t) => {
             .required(t('validation.required')),
         sms_visible: Yup.boolean()
             .required(t('validation.required')),
-
     });
 }
-
-
