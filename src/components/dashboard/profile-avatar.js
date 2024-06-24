@@ -1,12 +1,12 @@
-import { supabase } from "../../lib/supabase";
 import { useState, useRef, useEffect } from "react";
 import { UserIcon } from "@heroicons/react/16/solid";
 
-import { useAuth } from "../../lib/auth-context";
-import { cdnUrl } from "../../util/cdn-url";
+
+import { cdnUrl } from "@/utils/imagekit/cdn-url";
 
 
-export default function Avatar() {
+
+export default function Avatar({profile}) {
     const fileInputRef = useRef(null);
     const { profileData, setProfileData } = useAuth();
     const [formData, setFormData] = useState({});
@@ -14,9 +14,6 @@ export default function Avatar() {
     const [errorMessage, setErrorMessage] = useState('');
 
 
-
-    // Data
-    const { profile, loading: profileLoading, error: profileError } = profileData;
 
 
     useEffect(() => {

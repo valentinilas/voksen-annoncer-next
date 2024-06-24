@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 
 import Button from "../button/button";
 
-import Avatar from "./profile-avatar";
+// import Avatar from "./profile-avatar";
 import ConfirmationModal from "../confirmation-modal/confirmation-modal";
 import translateArray from "@/utils/translations/translate-array";
 import { useTranslations } from "next-intl";
