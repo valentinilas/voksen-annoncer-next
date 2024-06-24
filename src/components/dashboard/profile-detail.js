@@ -39,6 +39,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
 
     const [editing, setEditing] = useState(false);
     const [serverValidationError, setServerValidationError] = useState({ error: null });
+    const [profileUpdateSuccess, setProfileUpdateSuccess] = useState(false);
 
 
     const validationSchema = createProfileValidationSchema(t);
@@ -94,11 +95,15 @@ export default function ProfileDetail({ profile, regions, genders }) {
         const response = await handleProfileUpdate(formData, profile.id);
 
         if (response?.error) {
-            console.log(response.error);
-            setServerValidationError({ error: response.error })
+            setServerValidationError({ error: response.error });
         } else {
             setEditing(false);
             setServerValidationError({ error: null });
+            setProfileUpdateSuccess(true);
+
+            setTimeout(() => {
+                setProfileUpdateSuccess(false); // Hide the success message after 2 seconds
+            }, 3000);
         }
     });
 
@@ -120,24 +125,13 @@ export default function ProfileDetail({ profile, regions, genders }) {
         return today.toISOString().split('T')[0];
     };
 
-
-
-
-
-
-
     const translatedGenders = translateArray(t, 'genders', 'gender_name', genders)
-
-
-
-
-
 
     return (
         <div className="h-full ">
             <ConfirmationModal ref={dialog} onCancel={() => { hideModal() }} onConfirm={() => confirmDelete()} />
 
-            <Avatar profile={profile}/>
+            <Avatar profile={profile} />
 
             <div className="flex gap-2 justify-center my-6">
                 {editing ? (
@@ -157,7 +151,11 @@ export default function ProfileDetail({ profile, regions, genders }) {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2">{error}</p>)}</div>}
-
+                {profileUpdateSuccess && <div className="toast toast-start">
+                    <div className="alert alert-success">
+                        <span>Profile updated.</span>
+                    </div>
+                </div>}
                 {/* Username */}
                 <div className="mt-4">
                     <label htmlFor="username" className="block  text-sm font-bold mb-2">{t("profile.username")}</label>

@@ -11,7 +11,7 @@ export const handleProfileUpdate = async (formData, profileId) => {
     const serverValidationSchema = createProfileServerValidationSchema(t);
 
     const newData = Object.fromEntries(formData.entries())
-    
+
     if (newData.birthday) {
         // Create a date object
         const date = new Date(newData.birthday);
@@ -25,8 +25,8 @@ export const handleProfileUpdate = async (formData, profileId) => {
 
     // Validate the data
     try {
-       await serverValidationSchema.validate(newData, { abortEarly: false });
-   
+        await serverValidationSchema.validate(newData, { abortEarly: false });
+
     } catch (validationError) {
         console.error('Validation error:', validationError.errors);
         return { error: validationError.errors };
@@ -46,11 +46,12 @@ export const handleProfileUpdate = async (formData, profileId) => {
         }
 
         console.log('Profile Updated', newData);
+        revalidatePath('/', 'layout');
+
+        return { success: true };
 
     } catch (error) {
         console.error("Error updating profile:", error);
-        return { data: [], error: error.message };
+        return { error: error.message };
     }
-    // Revalidate the home page after deletion
-    revalidatePath('/', 'layout');
 };
