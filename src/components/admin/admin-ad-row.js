@@ -47,7 +47,7 @@ const AdRow = ({ ad, index }) => {
             <td>{ad.uuid}</td>
             <td>{ad.profiles?.username}</td>
             <td>{truncateText(ad.title, 20)}</td>
-            <td><Link className="btn btn-neutral" href={`/posts/${ad.uuid}`}>See Ad</Link></td>
+            <td><Link className="btn btn-neutral" href={`/posts/${ad.slug}`}>See Ad</Link></td>
             <td>
                 <input
                     type="checkbox"

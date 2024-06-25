@@ -6,6 +6,15 @@ import { redirect } from 'next/navigation'
 import { createServerValidationSchema } from '@/components/create-post/validation-schema-server';
 import { getTranslations } from 'next-intl/server';
 
+import slugify from 'slugify';
+
+
+function generateSlug(title) {
+    const timestamp = new Date().getTime(); // Current timestamp in milliseconds
+    const sluggedTitle = slugify(title, { lower: true, strict: true });
+    return `${sluggedTitle}-${timestamp}`;
+}
+
 // Maximum number of images allowed
 const MAX_IMAGES = 12;
 // Maximum file size allowed (2 MB in bytes)
@@ -112,6 +121,8 @@ export async function submitPost(formData) {
             })
         );
 
+        const slug = generateSlug(title);
+
         // Save the ad details to the database
         console.log('Saving to DB');
         const { data: adData, error: adError } = await supabase
@@ -121,7 +132,8 @@ export async function submitPost(formData) {
                 description: description,
                 region_id: region,
                 category_id: category,
-                sub_category_id: subcategory
+                sub_category_id: subcategory,
+                slug: slug
             })
             .select();
 

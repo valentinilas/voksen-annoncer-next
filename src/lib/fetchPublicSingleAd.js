@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 
-export const fetchPublicSingleAd = async (uuid) => {
+export const fetchPublicSingleAd = async (slug) => {
 
     const supabase = createClient();
 
@@ -22,7 +22,7 @@ export const fetchPublicSingleAd = async (uuid) => {
                     sub_category_name
                 )
                 `)
-            .eq('uuid', uuid)
+            .eq('slug', slug)
             .maybeSingle();
 
         if (error) {

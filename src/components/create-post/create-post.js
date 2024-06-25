@@ -14,7 +14,7 @@ import { createValidationSchema } from './validation-schema';
 
 export default function NewPost({ categories, regions }) {
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [serverValidationError, setServerValidationError] = useState({error: null});
+    const [serverValidationError, setServerValidationError] = useState({ error: null });
 
 
     // Translations
@@ -58,11 +58,13 @@ export default function NewPost({ categories, regions }) {
 
         if (response?.error) {
             console.log(response.error);
-            setServerValidationError({error: response.error})
+            setServerValidationError({ error: response.error })
         } else {
             reset();
         }
     });
+
+
 
 
 
@@ -192,8 +194,8 @@ export default function NewPost({ categories, regions }) {
                         id="category"
                         name="category"
                         className="select select-bordered w-full"
-                        {...register("category",{
-                            onChange:(e)=>{
+                        {...register("category", {
+                            onChange: (e) => {
                                 handleMainCategoryChange(e)
                             }
                         })}

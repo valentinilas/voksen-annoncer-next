@@ -38,7 +38,7 @@ export default function Post({ ad }) {
     }
 
 
-    const { uuid, title, description, ad_images, created_at, is_approved, ad_categories, ad_sub_categories, regions } = ad;
+    const { slug, uuid, title, description, ad_images, created_at, is_approved, ad_categories, ad_sub_categories, regions } = ad;
 
     return (
         <>
@@ -63,13 +63,13 @@ export default function Post({ ad }) {
 
 
 
-                        <Link className="block" href={`/posts/${uuid}`}><h4 className="font-bold text-lg mb-4 truncate">{title}</h4></Link>
-                        <Link className="block" href={`/posts/${uuid}`}> <p className="text-ellipsis overflow-hidden">{truncateText(description, 300)}</p></Link>
+                        <Link className="block" href={`/posts/${slug}`}><h4 className="font-bold text-lg mb-4 truncate">{title}</h4></Link>
+                        <Link className="block" href={`/posts/${slug}`}> <p className="text-ellipsis overflow-hidden">{truncateText(description, 300)}</p></Link>
 
                     </div>
                     <div className="col-span-1 md:col-span-4">
 
-                        <Link className="block" href={`/posts/${uuid}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" /> : <DefaultImage />}</Link>
+                        <Link className="block" href={`/posts/${slug}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" /> : <DefaultImage />}</Link>
                     </div>
 
                 </div>

@@ -12,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params, searchParams }, parent) {
 
     try {
-        const { ad } = await fetchPublicSingleAd(params.postId);
+        const { ad } = await fetchPublicSingleAd(params.slug);
 
         return {
             title: ad.title + ' | Voksen Annoncer',
@@ -34,7 +34,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function AdDetailPage({ params }) {
     const t = await getTranslations();
     const [adData, userData] = await Promise.all([
-        fetchPublicSingleAd(params.postId),
+        fetchPublicSingleAd(params.slug),
         fetchCurrentUser()
     ]);
     const profile = await fetchUserProfile(userData?.user?.id);
