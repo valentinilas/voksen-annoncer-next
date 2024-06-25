@@ -44,7 +44,7 @@ export default function AdListingResult({ data }) {
                         <Label Icon={TagIcon}>{t(`categories.${ad_categories?.category_name}`)}</Label>
                         <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
                     </div>
-                    <Button Icon={ChevronRightIcon} iconDirection="right" className="self-start hidden md:inline-flex" to={`/posts/${uuid}`}>{t("ads.Details")}</Button>
+                    <Button Icon={ChevronRightIcon} iconDirection="right" className="self-start hidden md:inline-flex" to={`/posts/${slug}`}>{t("ads.Details")}</Button>
                 </div>
             </div>
 
