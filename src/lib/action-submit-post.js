@@ -12,7 +12,7 @@ import slugify from 'slugify';
 function generateSlug(title) {
     const timestamp = new Date().getTime(); // Current timestamp in milliseconds
     const sluggedTitle = slugify(title, { lower: true, strict: true });
-    return `${sluggedTitle}-${timestamp}`;
+    return `${timestamp}-${sluggedTitle}`;
 }
 
 // Maximum number of images allowed
