@@ -104,7 +104,8 @@
         "pending-approval": "Afventer godkendelse",
         "edit": "Rediger",
         "delete": "Slet",
-        "create-ad": "Opret annonce"
+        "create-ad": "Opret annonce",
+        "No-results": "Ingen resultater fundet."
     },
     "profile": {
         "no-profile": "Ingen profil tilgængelig.",

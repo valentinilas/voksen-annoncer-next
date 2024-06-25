@@ -31,9 +31,11 @@ export default async function Ads({ searchParams }) {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}
 
+        {!ads.length && <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm"><p className="text-center">No results found</p></div>}
+
         {/* Pagination Controls */}
 
-        <div className="flex justify-center">
+        {totalPages > 1 && (<div className="flex justify-center">
             <div className="join mx-auto mt-2">
                 <Link
                     className={`join-item btn ${page <= 1 ? 'btn-disabled' : ''}`}
@@ -52,7 +54,7 @@ export default async function Ads({ searchParams }) {
                 </Link>
             </div>
         </div>
-
+        )}
     </>
 }
 

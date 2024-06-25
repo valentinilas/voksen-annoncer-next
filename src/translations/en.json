@@ -104,7 +104,8 @@
         "pending-approval": "Pending Approval",
         "edit": "Edit",
         "delete": "Delete",
-        "create-ad": "Create ad"
+        "create-ad": "Create ad",
+        "no-results":"No results found."
     },
     "profile": {
         "no-profile": "No profile available.",
