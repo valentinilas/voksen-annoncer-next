@@ -45,7 +45,7 @@ export default async function AdDetailPage({ params }) {
 
     if (!is_admin && !ad.is_approved) {
         return <>
-            <section className="ad-detail">
+            <section>
                 <div className="grid grid-cols-12 gap-6">
                     <div className="bg-base-200 p-20 text-center  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
                         <p text-center>{t("ads.not-approved")}</p>
@@ -60,7 +60,7 @@ export default async function AdDetailPage({ params }) {
     }
 
     return <>
-        <section className="ad-detail">
+        <section>
             <div className="grid grid-cols-12 gap-6">
                 <div className="bg-base-200 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
                     <AdDetail data={ad} />
