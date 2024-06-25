@@ -10,7 +10,7 @@ export async function fetchDashboardAds() {
     const currentUser = await fetchCurrentUser();
 
     const profileId = currentUser?.user?.id;
-    console.log(profileId);
+    // console.log(profileId);
 
     if (!profileId) {
         return { ads: [], error: "Profile not available" }

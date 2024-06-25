@@ -27,11 +27,12 @@ import { createProfileValidationSchema } from "./profile-validation-schema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
-export default function ProfileDetail({ profile, regions, genders }) {
+export default function ProfileDetail({ currentUser, profile, regions, genders }) {
 
     // console.log(profile);
     // console.log(genders);
     // console.log(regions);
+
 
     // const profileId = p
 
@@ -74,8 +75,14 @@ export default function ProfileDetail({ profile, regions, genders }) {
         dialog.current.close();
     }
 
-    function confirmDelete() {
-        handleDeleteAccount();
+    async function confirmDelete() {
+        try{
+            await handleDeleteProfile();
+        } catch(error){
+            console.log(error);
+        }
+        
+
         dialog.current.close();
 
     }
@@ -108,16 +115,7 @@ export default function ProfileDetail({ profile, regions, genders }) {
     });
 
 
-    const handleDeleteAccount = async () => {
-        // await handleDeleteProfile(currentUser);
-        // // import handleDeleteProfile account
-        // try {
-        //     await auth_user_delete_account();
-        //     alert('Account deleted successfully.');
-        // } catch (error) {
-        //     alert(`Failed to delete account: ${error.message}`);
-        // }
-    };
+
 
     const getMaxDate = () => {
         const today = new Date();

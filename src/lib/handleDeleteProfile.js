@@ -5,20 +5,26 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { handleLogout } from "./handle-log-out";
 
+import { fetchCurrentUser } from "./fetchCurrentUser";
 
-export const handleDeleteProfile = async ({currentUser}) => {
+export const handleDeleteProfile = async () => {
     const supabase = createClient();
 
-
     try {
+        const { user } = await fetchCurrentUser();
+        console.log(user);
+        if (!user) {
+            throw new Error('No current user');
 
-        const userId = currentUser.user.id;
+        }
+
+        const userId = user.id;
 
         // Fetch the user's ad images
         const { data: adImages, error: adImagesError } = await supabase
             .from('ad_images')
             .select('image_url')
-            .eq('user_id', userId); 
+            .eq('user_id', userId);
 
         if (adImagesError) {
             throw new Error('Error fetching ad images: ' + adImagesError.message);
@@ -40,7 +46,6 @@ export const handleDeleteProfile = async ({currentUser}) => {
                 throw new Error('Error deleting ad images: ' + deleteAdImagesError.message);
             }
         }
-
 
         // Fetch the user's profile to get the avatar URL
         const { data: profile, error: profileError } = await supabase
@@ -73,23 +78,19 @@ export const handleDeleteProfile = async ({currentUser}) => {
             throw error;
         }
 
-        // Sign the user out to ensure the session is cleared
-        // const { error: signOutError } = await supabase.auth.signOut();
+        console.log('Account deletion successfull!');
 
-        // if (signOutError) {
-        //     throw new Error('Error signing out: ' + signOutError.message);
-        // }
+        await supabase.auth.signOut();
+        revalidatePath('/');
 
-        // // Clear local session and profile data
-        // setSession(null);
-        // setProfileData({ profile: null, loading: false, error: null });
 
-        handleLogout();
 
-    } catch (error) {
+
+    }
+    catch (error) {
         console.error('Error deleting account:', error.message);
         throw new Error(error.message);
     }
-    revalidatePath('/');
-    redirect
+
+    redirect('/sign-in');
 };
