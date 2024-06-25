@@ -36,7 +36,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                 <UserProvider value={userContextValue}>
                     <ThemeProvider>
                         <head>
-                            <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" />
+                            {/* <meta name="google-site-verification" content="D9Ahahi8ocLrnA0WeR3prEKDRIUURcQFVQ0a4lL0p58" /> */}
                         </head>
                         <body className="bg-base-300 min-h-screen">
                             <div className="drawer drawer-end">
