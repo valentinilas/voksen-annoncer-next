@@ -7,6 +7,17 @@ import { fetchUserProfile } from "@/lib/fetchUserProfile";
 import { fetchRegions } from "@/lib/fetchRegions";
 import { fetchGenders } from "@/lib/fetchGenders";
 
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params, searchParams }, parent) {
+    const t = await getTranslations();
+
+    return {
+        title: `${t("navigation.profile")} | ${t("navigation.site-name")}`,
+    };
+
+}
+
 export default async function Dashboard() {
 
     const userData = await fetchCurrentUser();

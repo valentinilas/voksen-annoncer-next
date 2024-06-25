@@ -1,5 +1,17 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params, searchParams }, parent) {
+    const t = await getTranslations();
+
+    return {
+        title: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+    };
+
+}
+
 export default function Support() {
     const t = useTranslations();
 

@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "title": "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
+        "description": "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!"
+    },
     "navigation": {
         "menu": "Menu",
         "admin": "Admin",
@@ -10,7 +14,8 @@
         "log-in": "Log in",
         "log-out": "Log out",
         "sign-up": "Sign up",
-        "create-ad": "Create ad"
+        "create-ad": "Create ad",
+        "site-name": "Voksen Annoncer"
     },
     "pagination": {
         "Page": "Page",
@@ -105,7 +110,7 @@
         "edit": "Edit",
         "delete": "Delete",
         "create-ad": "Create ad",
-        "no-results":"No results found."
+        "no-results": "No results found."
     },
     "profile": {
         "no-profile": "No profile available.",
@@ -175,8 +180,7 @@
         "set-new-password": "Set a new password",
         "new-password": "New password",
         "repeat-password": "Repeat password",
-        "password-success-change":"Your password has been successfully changed."
-
+        "password-success-change": "Your password has been successfully changed."
     },
     "welcome": {
         "headline": "Thank you for signing up!",
