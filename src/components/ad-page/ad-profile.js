@@ -10,8 +10,7 @@ export default function AdProfile({ profileData, currentSessionUser }) {
 
     const { avatar_url, username, bio, birthday, regions, genders, contact_email, contact_phone, contact_sms, email_visible, phone_visible, sms_visible } = profileData;
 
-    const age = birthday ? calculateAge(new Date(birthday).getFullYear()) : '-';
-
+    const age = birthday ? calculateAge(new Date(birthday).getFullYear()) : null;
 
 
     return <>
@@ -29,18 +28,19 @@ export default function AdProfile({ profileData, currentSessionUser }) {
 
         )}
 
-        <p className="mb-2 bg-base-200 p-4 rounded-box">
+        {bio && bio!=="null" && <p className="mb-2 bg-base-200 p-4 rounded-box">
             <Label type="profile" Icon={ChatBubbleBottomCenterTextIcon}>
                 <span className="font-bold mb-1">{t("profile.bio")}</span>
             </Label>
             <span className="">{bio}</span>
-        </p>
-        <p className="mb-2 bg-base-200 p-4 rounded-box">
+        </p>}
+        {age && <p className="mb-2 bg-base-200 p-4 rounded-box">
             <Label type="profile" Icon={SparklesIcon}>
                 <span className="font-bold mb-1">{t("profile.age")}</span>
             </Label>
             <span className="">{age}</span>
         </p>
+        }
         <p className="mb-2 bg-base-200 p-4 rounded-box">
             <Label type="profile" Icon={UserCircleIcon}>
                 <span className="font-bold mb-1">{t("profile.gender")}</span>
