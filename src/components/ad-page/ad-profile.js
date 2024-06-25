@@ -4,7 +4,6 @@ import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import { useTranslations } from "next-intl";
 import { calculateAge } from "@/utils/calculate-age/calculate-age";
 
-
 export default function AdProfile({ profileData, currentSessionUser }) {
     const t = useTranslations();
     const isLoggedIn = currentSessionUser !== null;
@@ -46,7 +45,8 @@ export default function AdProfile({ profileData, currentSessionUser }) {
             <Label type="profile" Icon={UserCircleIcon}>
                 <span className="font-bold mb-1">{t("profile.gender")}</span>
             </Label>
-            <span className="">{genders?.gender_name}</span>
+            {/* <span className="">{genders?.gender_name}</span> */}
+            <span className="">{t(`genders.${genders?.gender_name}`)}</span>
         </p>
         <p className="mb-2 bg-base-200 p-4 rounded-box">
             <Label type="profile" Icon={MapPinIcon}>
