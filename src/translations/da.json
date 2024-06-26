@@ -15,7 +15,7 @@
         "log-out": "Log ud",
         "sign-up": "Tilmeld",
         "create-ad": "Opret annonce",
-        "site-name": "Voksen Annoncer"
+        "site-name": "Voksenannoncer"
     },
     "pagination": {
         "Page": "Side",
@@ -215,10 +215,10 @@
         "rights": "Alle rettigheder forbeholdes."
     },
     "about": {
-        "welcome": "Velkommen til Voksen Annoncer",
+        "welcome": "Velkommen til Voksenannoncer",
         "tagline": "Din førende destination for voksen-tema forbindelser",
-        "intro": "Hos Voksen Annoncer tilbyder vi en sikker og imødekommende platform for voksne til at oprette annoncer og forbinde med ligesindede. Uanset om du ønsker at møde nye mennesker, finde en særlig forbindelse eller udforske dine ønsker, er Voksen Annoncer her for at hjælpe.",
-        "whyChoose": "Hvorfor vælge Voksen Annoncer?",
+        "intro": "Hos Voksenannoncer tilbyder vi en sikker og imødekommende platform for voksne til at oprette annoncer og forbinde med ligesindede. Uanset om du ønsker at møde nye mennesker, finde en særlig forbindelse eller udforske dine ønsker, er Voksenannoncer her for at hjælpe.",
+        "whyChoose": "Hvorfor vælge Voksenannoncer?",
         "safeAndSecure": "Sikker og tryg",
         "safeAndSecureDesc": "Din privatliv og sikkerhed er vores højeste prioriteter. Vi anvender avancerede sikkerhedsforanstaltninger for at sikre, at dine personlige oplysninger er beskyttede.",
         "connectWith": "Forbind med ligesindede",
@@ -226,24 +226,24 @@
         "easyToUse": "Brugervenlig",
         "easyToUseDesc": "Det er nemt og intuitivt at oprette annoncer og forbinde med andre. Vores brugervenlige interface gør det let at navigere og finde det, du leder efter.",
         "discreetConfidential": "Diskret og fortroligt",
-        "discreetConfidentialDesc": "Vi forstår vigtigheden af diskretion. Dine aktiviteter på Voksen Annoncer er fortrolige, hvilket giver dig ro i sindet, mens du udforsker.",
+        "discreetConfidentialDesc": "Vi forstår vigtigheden af diskretion. Dine aktiviteter på Voksenannoncer er fortrolige, hvilket giver dig ro i sindet, mens du udforsker.",
         "getStarted": "Kom i gang",
         "createAd": "Opret din annonce",
         "createAdDesc": "Del, hvad du leder efter, og tiltræk ligesindede.",
         "browseConnect": "Gennemse og forbinde",
         "browseConnectDesc": "Udforsk annoncer fra andre og kontakt dem, der fanger din interesse.",
         "enjoyExperience": "Nyd oplevelsen",
-        "enjoyExperienceDesc": "Opbyg forbindelser, udforsk dine ønsker og nyd Voksen Annoncer community.",
-        "joinToday": "Bliv medlem af Voksen Annoncer i dag og begynd at forbinde med mennesker, der deler dine passioner og interesser.",
-        "whereConnectionsBegin": "Voksen Annoncer - Hvor forbindelser begynder."
+        "enjoyExperienceDesc": "Opbyg forbindelser, udforsk dine ønsker og nyd Voksenannoncer community.",
+        "joinToday": "Bliv medlem af Voksenannoncer i dag og begynd at forbinde med mennesker, der deler dine passioner og interesser.",
+        "whereConnectionsBegin": "Voksenannoncer - Hvor forbindelser begynder."
     },
     "cookiePolicy": {
         "effectiveDate": "Effektiv dato: 20/06/2024",
-        "introduction": "Velkommen til Voksen Annoncer. Denne Cookiepolitik forklarer, hvad cookies er, hvordan vi bruger dem på vores hjemmeside, og dine valgmuligheder vedrørende cookies.",
+        "introduction": "Velkommen til Voksenannoncer. Denne Cookiepolitik forklarer, hvad cookies er, hvordan vi bruger dem på vores hjemmeside, og dine valgmuligheder vedrørende cookies.",
         "whatAreCookies": "Hvad er cookies?",
         "whatAreCookiesDesc": "Cookies er små tekstfiler, der placeres på din enhed af de hjemmesider, du besøger. De bruges bredt til at få hjemmesider til at fungere eller fungere mere effektivt samt til at give information til hjemmesideejere.",
         "howWeUseCookies": "Hvordan vi bruger cookies",
-        "howWeUseCookiesDesc": "Voksen Annoncer bruger cookies af forskellige årsager, herunder:",
+        "howWeUseCookiesDesc": "Voksenannoncer bruger cookies af forskellige årsager, herunder:",
         "essentialCookies": "Nødvendige cookies",
         "essentialCookiesDesc": "Disse cookies er nødvendige for, at hjemmesiden kan fungere korrekt. De gør det muligt for dig at navigere på vores side og bruge dens funktioner.",
         "performanceCookies": "Performance- og analysecookies",
@@ -253,7 +253,7 @@
         "advertisingCookies": "Reklame- og målrettede cookies",
         "advertisingCookiesDesc": "Disse cookies bruges til at levere reklamer, der er mere relevante for dig og dine interesser. De hjælper også med at måle effektiviteten af reklamekampagner.",
         "cookiesWeUse": "Cookies, vi bruger",
-        "cookiesWeUseDesc": "Her er en liste over typer af cookies, vi bruger på Voksen Annoncer:",
+        "cookiesWeUseDesc": "Her er en liste over typer af cookies, vi bruger på Voksenannoncer:",
         "sessionCookies": "Sessionscookies",
         "sessionCookiesDesc": "Midlertidige cookies, der forbliver i din browsers cookie-fil, indtil du forlader hjemmesiden.",
         "persistentCookies": "Vedvarende cookies",
@@ -276,7 +276,7 @@
         "emailAddress": "support@voksen-annoncer.com",
         "cookiePolicy": {
             "title": "Cookie- og privatlivspolitik",
-            "description": "Voksen Annoncer bruger cookies til at huske dine indstillinger og statistik. Disse oplysninger deles med tredjeparter. Læs vores fulde cookie- og privatlivspolitik her.",
+            "description": "Voksenannoncer bruger cookies til at huske dine indstillinger og statistik. Disse oplysninger deles med tredjeparter. Læs vores fulde cookie- og privatlivspolitik her.",
             "linkText": "Læs vores fulde cookie- og privatlivspolitik her",
             "policyLink": "/cookie-policy"
         }

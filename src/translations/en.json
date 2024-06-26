@@ -1,7 +1,7 @@
 {
     "meta": {
         "title": "Gratis Voksenannoncer | Nå ud til dit voksne publikum",
-        "description": "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!"
+        "description": "På Voksenannoncer kan du oprette gratis annoncer til din klinik, massagevirksomhed, find sugardating, escort"
     },
     "navigation": {
         "menu": "Menu",
@@ -15,7 +15,7 @@
         "log-out": "Log out",
         "sign-up": "Sign up",
         "create-ad": "Create ad",
-        "site-name": "Voksen Annoncer"
+        "site-name": "Voksenannoncer"
     },
     "pagination": {
         "Page": "Page",
@@ -213,10 +213,10 @@
         "rights": "All rights reserved."
     },
     "about": {
-        "welcome": "Welcome to Voksen Annoncer",
+        "welcome": "Welcome to Voksenannoncer",
         "tagline": "Your Premier Destination for Adult-Themed Connections",
-        "intro": "At Voksen Annoncer, we provide a safe and welcoming platform for adults to create ads and connect with like-minded individuals. Whether you’re looking to meet new people, find a special connection, or explore your desires, Voksen Annoncer is here to help.",
-        "whyChoose": "Why Choose Voksen Annoncer?",
+        "intro": "At Voksenannoncer, we provide a safe and welcoming platform for adults to create ads and connect with like-minded individuals. Whether you’re looking to meet new people, find a special connection, or explore your desires, Voksenannoncer is here to help.",
+        "whyChoose": "Why Choose Voksenannoncer?",
         "safeAndSecure": "Safe and Secure",
         "safeAndSecureDesc": "Your privacy and safety are our top priorities. We employ advanced security measures to ensure your personal information is protected.",
         "connectWith": "Connect with Like-Minded Individuals",
@@ -224,24 +224,24 @@
         "easyToUse": "Easy to Use",
         "easyToUseDesc": "Creating ads and connecting with others is simple and intuitive. Our user-friendly interface makes it easy to navigate and find what you’re looking for.",
         "discreetConfidential": "Discreet and Confidential",
-        "discreetConfidentialDesc": "We understand the importance of discretion. Your activities on Voksen Annoncer are confidential, giving you peace of mind while you explore.",
+        "discreetConfidentialDesc": "We understand the importance of discretion. Your activities on Voksenannoncer are confidential, giving you peace of mind while you explore.",
         "getStarted": "Get Started",
         "createAd": "Create Your Ad",
         "createAdDesc": "Share what you;re looking for and attract like-minded individuals.",
         "browseConnect": "Browse and Connect",
         "browseConnectDesc": "Explore ads from others and reach out to those who catch your interest.",
         "enjoyExperience": "Enjoy the Experience",
-        "enjoyExperienceDesc": "Build connections, explore your desires, and enjoy the Voksen Annoncer community.",
-        "joinToday": "Join Voksen Annoncer today and start connecting with people who share your passions and interests.",
-        "whereConnectionsBegin": "Voksen Annoncer - Where Connections Begin."
+        "enjoyExperienceDesc": "Build connections, explore your desires, and enjoy the Voksenannoncer community.",
+        "joinToday": "Join Voksenannoncer today and start connecting with people who share your passions and interests.",
+        "whereConnectionsBegin": "Voksenannoncer - Where Connections Begin."
     },
     "cookiePolicy": {
         "effectiveDate": "Effective Date: 20/06/2024",
-        "introduction": "Welcome to Voksen Annoncer. This Cookie Policy explains what cookies are, how we use them on our website, and your choices regarding cookies.",
+        "introduction": "Welcome to Voksenannoncer. This Cookie Policy explains what cookies are, how we use them on our website, and your choices regarding cookies.",
         "whatAreCookies": "What Are Cookies?",
         "whatAreCookiesDesc": "Cookies are small text files that are placed on your device by websites that you visit. They are widely used to make websites work, or work more efficiently, as well as to provide information to the site owners.",
         "howWeUseCookies": "How We Use Cookies",
-        "howWeUseCookiesDesc": "Voksen Annoncer uses cookies for a variety of reasons, including:",
+        "howWeUseCookiesDesc": "Voksenannoncer uses cookies for a variety of reasons, including:",
         "essentialCookies": "Essential Cookies",
         "essentialCookiesDesc": "These cookies are necessary for the website to function properly. They enable you to navigate our site and use its features.",
         "performanceCookies": "Performance and Analytics Cookies",
@@ -251,7 +251,7 @@
         "advertisingCookies": "Advertising and Targeting Cookies",
         "advertisingCookiesDesc": "These cookies are used to deliver advertisements more relevant to you and your interests. They also help measure the effectiveness of advertising campaigns.",
         "cookiesWeUse": "Cookies We Use",
-        "cookiesWeUseDesc": "Here is a list of the types of cookies we use on Voksen Annoncer:",
+        "cookiesWeUseDesc": "Here is a list of the types of cookies we use on Voksenannoncer:",
         "sessionCookies": "Session Cookies",
         "sessionCookiesDesc": "Temporary cookies that remain in your browser's cookie file until you leave the site.",
         "persistentCookies": "Persistent Cookies",
@@ -274,7 +274,7 @@
         "emailAddress": "support@voksen-annoncer.com",
         "cookiePolicy": {
             "title": "Cookie and Privacy Policy",
-            "description": "Voksen Annoncer uses cookies to remember your settings and statistics. This information is shared with third parties. Read our full cookie and privacy policy here.",
+            "description": "Voksenannoncer uses cookies to remember your settings and statistics. This information is shared with third parties. Read our full cookie and privacy policy here.",
             "linkText": "Read our full cookie and privacy policy here",
             "policyLink": "/cookie-policy"
         }

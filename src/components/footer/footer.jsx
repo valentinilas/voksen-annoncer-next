@@ -34,8 +34,8 @@ export default function Footer() {
 
         <footer className="footer bg-base-200 text-base-content p-10 rounded-box">
             <aside >
-                <Image className="w-10 md:w-16 mb-4" src='/logo/va-logo-cherry.svg' alt="Voksen Annoncer" width="64" height="64" />
-                <p className="text-center">&copy; {year} Voksen Annoncer.</p>
+                <Image className="w-10 md:w-16 mb-4" src='/logo/va-logo-cherry.svg' alt="Voksenannoncer" width="64" height="64" />
+                <p className="text-center">&copy; {year} Voksenannoncer.</p>
             </aside>
             <nav>
                 {/* <h6 className="footer-title">Account</h6> */}

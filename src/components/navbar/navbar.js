@@ -52,8 +52,8 @@ export default function NavBar() {
         <div className="navbar bg-base-200 rounded-box px-5 shadow-sm">
             <div className="flex-1">
                 <Link href="/" className="flex gap-4 items-center">
-                    <Image className="w-10 md:w-16" src='/logo/va-logo-cherry.svg' alt="Voksen Annoncer" width="64" height="64" />
-                    <span className="font-bold text-xl hidden md:block">Voksen Annoncer</span>
+                    <Image className="w-10 md:w-16" src='/logo/va-logo-cherry.svg' alt="Voksenannoncer" width="64" height="64" />
+                    <span className="font-bold text-xl hidden md:block">Voksenannoncer</span>
                 </Link>
             </div>
 
