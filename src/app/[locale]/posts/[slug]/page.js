@@ -15,7 +15,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
         const { ad } = await fetchPublicSingleAd(params.slug);
 
         return {
-            title: ad.title + ' | Voksen Annoncer',
+            title: ad.title + ' | Voksenannoncer',
             description: ad.description,
             openGraph: {
                 images: [ad.ad_images[0]?.image_url || ''],
