@@ -41,6 +41,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                         <head>
                             <meta name="google-site-verification" content="mtGW7fC42DdH1-8kn32_KZXqTTb3WWugcpAq5ZV3mZE" />
                             <Script
+                                id="cookieyes"
                                 src={`https://cdn-cookieyes.com/client_data/64376506a85904a59f66f025/script.js`}
                                 strategy="beforeInteractive"
                             >
