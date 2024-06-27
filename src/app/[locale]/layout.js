@@ -12,7 +12,10 @@ import { DrawerMenu } from "@/components/drawer-menu/drawer-menu";
 
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
+
+
 
 
 export const metadata = {
@@ -36,7 +39,13 @@ export default async function RootLayout({ children, params: { locale } }) {
                 <UserProvider value={userContextValue}>
                     <ThemeProvider>
                         <head>
-                        <meta name="google-site-verification" content="mtGW7fC42DdH1-8kn32_KZXqTTb3WWugcpAq5ZV3mZE" />                        </head>
+                            <meta name="google-site-verification" content="mtGW7fC42DdH1-8kn32_KZXqTTb3WWugcpAq5ZV3mZE" />
+                            <Script
+                                src={`https://cdn-cookieyes.com/client_data/64376506a85904a59f66f025/script.js`}
+                                strategy="beforeInteractive"
+                            >
+                            </Script>
+                        </head>
                         <body className="bg-base-300 min-h-screen">
                             <div className="drawer drawer-end">
 
