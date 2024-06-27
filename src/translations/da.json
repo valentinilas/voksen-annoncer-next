@@ -1,5 +1,5 @@
 {
-    "meta":{
+    "meta": {
         "title": "Gratis Voksenannoncer | Nå ud til dit voksne publikum",
         "description": "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!"
     },
@@ -181,8 +181,6 @@
         "new-password": "Ny adgangskode",
         "repeat-password": "Gentag adgangskode",
         "password-success-change": "Din adgangskode er blevet ændret med succes."
-
-
     },
     "welcome": {
         "headline": "Tak for din tilmelding!",
@@ -280,5 +278,9 @@
             "linkText": "Læs vores fulde cookie- og privatlivspolitik her",
             "policyLink": "/cookie-policy"
         }
+    },
+    "intro-banner": {
+        "headline": "Velkommen! Vi er glade for at have dig her.",
+        "body": "Vores side er ny, så indholdet vokser stadig. Uanset om du tilbyder tantramassage, eskorteservices, voksenkurser eller leder efter deltagere til din næste swingerfest, kan du promovere dine tjenester her. Det er nemt og helt gratis. Vær tryg, vi gennemgår alle annoncer for at sikre overholdelse og for at undgå ulovligt indhold."
     }
 }

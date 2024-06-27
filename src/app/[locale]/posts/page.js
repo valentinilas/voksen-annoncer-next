@@ -5,6 +5,7 @@ import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import IntroBanner from "@/components/intro-banner/intro-banner";
 
 export default async function Ads({ searchParams }) {
     const t = await getTranslations();
@@ -26,6 +27,8 @@ export default async function Ads({ searchParams }) {
     };
 
     return <>
+
+        <IntroBanner />
         <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
