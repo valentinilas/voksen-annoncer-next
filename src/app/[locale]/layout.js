@@ -46,6 +46,8 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 strategy="beforeInteractive"
                             >
                             </Script>
+                            <GoogleAnalytics gaId="G-JN6QV704E2" />
+
                         </head>
                         <body className="bg-base-300 min-h-screen">
                             <div className="drawer drawer-end">
@@ -75,7 +77,6 @@ export default async function RootLayout({ children, params: { locale } }) {
                     </ThemeProvider>
                 </UserProvider>
             </NextIntlClientProvider>
-            <GoogleAnalytics gaId="G-JN6QV704E2" />
         </html>
     );
 
