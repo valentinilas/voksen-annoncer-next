@@ -12,7 +12,9 @@ import { DrawerMenu } from "@/components/drawer-menu/drawer-menu";
 
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
-import { GoogleAnalytics } from '@next/third-parties/google';
+// import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import Script from 'next/script';
 
 
@@ -46,7 +48,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 strategy="beforeInteractive"
                             >
                             </Script>
-                            <GoogleAnalytics gaId="G-JN6QV704E2" />
+                            <GoogleTagManager gaId="GTM-K9P4CJ8N" />
 
                         </head>
                         <body className="bg-base-300 min-h-screen">
