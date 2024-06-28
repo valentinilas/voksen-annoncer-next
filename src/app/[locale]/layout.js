@@ -48,7 +48,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 strategy="beforeInteractive"
                             >
                             </Script>
-                            <GoogleTagManager gaId="GTM-K9P4CJ8N" />
+                            <GoogleTagManager gtmId="GTM-K9P4CJ8N" />
 
                         </head>
                         <body className="bg-base-300 min-h-screen">
