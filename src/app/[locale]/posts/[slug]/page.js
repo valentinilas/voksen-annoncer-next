@@ -9,6 +9,8 @@ import AdProfile from "@/components/ad-page/ad-profile";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
 import { getTranslations } from "next-intl/server";
 
+import ViewIncrementer from "@/components/view-incrementer/view-incrementer";
+
 export async function generateMetadata({ params, searchParams }, parent) {
 
     try {
@@ -32,6 +34,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function AdDetailPage({ params }) {
+
+
     const t = await getTranslations();
     const [adData, userData] = await Promise.all([
         fetchPublicSingleAd(params.slug),
@@ -43,8 +47,11 @@ export default async function AdDetailPage({ params }) {
     const { user } = userData;
     const { is_admin } = profile?.userProfile || {};
 
+
+
     if (!is_admin && !ad.is_approved) {
         return <>
+
             <section>
                 <div className="grid grid-cols-12 gap-6">
                     <div className="bg-base-200 p-20 text-center  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
@@ -61,9 +68,11 @@ export default async function AdDetailPage({ params }) {
 
     return <>
         <section>
+
+            <ViewIncrementer slug={params.slug} />
             <div className="grid grid-cols-12 gap-6">
                 <div className="bg-base-200 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
-                    <AdDetail data={ad} />
+                    <AdDetail data={ad} slug={params.slug} />                  
                 </div>
                 <div className="col-span-12 lg:col-span-4">
                     <AdProfile profileData={ad.profiles} currentSessionUser={user} />

@@ -110,7 +110,8 @@
         "edit": "Edit",
         "delete": "Delete",
         "create-ad": "Create ad",
-        "no-results": "No results found."
+        "no-results": "No results found.",
+        "views":"Views"
     },
     "profile": {
         "no-profile": "No profile available.",

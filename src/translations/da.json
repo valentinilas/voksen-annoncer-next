@@ -110,7 +110,8 @@
         "edit": "Rediger",
         "delete": "Slet",
         "create-ad": "Opret annonce",
-        "No-results": "Ingen resultater fundet."
+        "No-results": "Ingen resultater fundet.",
+        "views":"Visninger"
     },
     "profile": {
         "no-profile": "Ingen profil tilgængelig.",

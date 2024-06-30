@@ -3,8 +3,14 @@ import Label from "../label/label";
 import { formatDate } from "@/utils/formatter/format-date";
 import { CalendarDaysIcon, TagIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SimpleGallery from "./ad-gallery";
+import PostAnalytics from "./ad-analytics";
 
-export default function AdDetail({ data }) {
+
+
+export default function AdDetail({ data, slug }) {
+
+
+
     const { title, description, created_at, regions, ad_categories, ad_sub_categories, ad_images } = data;
     const t = useTranslations();
 
@@ -18,9 +24,12 @@ export default function AdDetail({ data }) {
         }
     })
 
+
+
     return (
         <>
             <div className="result-tex">
+
                 <h3 className="font-bold text-2xl mb-4">{title}</h3>
                 <div><pre className="font-sans whitespace-pre-wrap">{description}</pre></div>
             </div>
@@ -37,7 +46,9 @@ export default function AdDetail({ data }) {
                 <Label Icon={MapPinIcon}>{regions?.region_name}</Label>
                 <Label Icon={TagIcon}>{t(`categories.${ad_categories?.category_name}`)}</Label>
                 <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
-
+            </div>
+            <div className="border-t pt-5 mt-5 border-base-300  flex flex-wrap gap-2 ">
+                {t("ads.views")}: <PostAnalytics slug={slug} />
             </div>
 
             {/* <Spotlight /> */}
