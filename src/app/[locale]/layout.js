@@ -76,7 +76,6 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 </div>
 
                             </div>
-                            <FacebookPixel />
                         </body>
                       
                     </ThemeProvider>
