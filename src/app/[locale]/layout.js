@@ -14,6 +14,7 @@ import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
 // import { GoogleAnalytics } from '@next/third-parties/google';
 import { GoogleTagManager } from '@next/third-parties/google'
+import FacebookPixel from "@/components/facebook-pixel/facebook-pixel";
 
 import Script from 'next/script';
 
@@ -49,6 +50,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                             >
                             </Script>
                             <GoogleTagManager gtmId="GTM-K9P4CJ8N" />
+                           
 
                         </head>
                         <body className="bg-base-300 min-h-screen">
@@ -74,8 +76,9 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 </div>
 
                             </div>
-
+                            <FacebookPixel />
                         </body>
+                      
                     </ThemeProvider>
                 </UserProvider>
             </NextIntlClientProvider>
