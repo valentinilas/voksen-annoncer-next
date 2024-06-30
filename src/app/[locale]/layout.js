@@ -14,7 +14,6 @@ import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
 // import { GoogleAnalytics } from '@next/third-parties/google';
 import { GoogleTagManager } from '@next/third-parties/google'
-import FacebookPixel from "@/components/facebook-pixel/facebook-pixel";
 
 import Script from 'next/script';
 
