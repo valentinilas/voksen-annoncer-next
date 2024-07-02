@@ -1,21 +1,19 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
-import { fetchCategories } from "@/lib/fetchCategories";
-import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
-import Filters from "@/components/filters/filters";
+// import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import IntroBanner from "@/components/intro-banner/intro-banner";
-import SeoSiteDescriptor from "@/components/seo-site-descriptor/seoSiteDescriptor";
 
 
-export default async function Ads({ searchParams }) {
+export default async function SearchPage({ params, searchParams }) {
+
+    const searchTerm = params.query;
     const t = await getTranslations();
     const pageSize = 10;
-    const { category, subcategory, region, search, page = 1 } = searchParams;
-    const { categories } = await fetchCategories();
-    const { regions } = await fetchRegions();
-    const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
+    const { page = 1 } = searchParams;
+    const { ads, total } = await fetchPublicAds(null, null, null, searchTerm, page, pageSize);
+
+
 
 
     const totalPages = Math.ceil(total / pageSize);
@@ -29,7 +27,7 @@ export default async function Ads({ searchParams }) {
     return <>
 
         {/* <IntroBanner /> */}
-        <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
+        {/* <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} /> */}
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}
@@ -58,7 +56,7 @@ export default async function Ads({ searchParams }) {
             </div>
         </div>
         )}
-        <SeoSiteDescriptor/>
+    
     </>
 }
 
