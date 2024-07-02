@@ -11,7 +11,7 @@ export const fetchPublicAds = async (category, subcategory, region, search, page
         *,
         regions (region_name),
         ad_images (uuid, image_url, image_width, image_height),
-        ad_categories (category_id, category_name),
+        ad_categories (category_id, category_name, slug),
         ad_sub_categories (sub_category_id, sub_category_name),
         profiles(username)
       `, { count: 'exact' })

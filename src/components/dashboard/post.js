@@ -78,7 +78,7 @@ export default function Post({ ad }) {
                 <div className="border-t pt-5 mt-5 border-base-300  flex  flex-wrap gap-2">
                     <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
                     <Label Icon={MapPinIcon}>{regions?.region_name}</Label>
-                    <Label Icon={TagIcon}>{t(`categories.${ad_categories?.category_name}`)}</Label>
+                    <Label Icon={TagIcon}><Link className="hover:text-accent"  href={`/category/${ad_categories?.slug}`}> {t(`categories.${ad_categories?.category_name}`)}</Link></Label>
                     <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
 
 

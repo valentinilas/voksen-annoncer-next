@@ -15,7 +15,8 @@ export const fetchPublicSingleAd = async (slug) => {
                 ad_images(uuid, image_url, image_width, image_height),  
                 ad_categories (
                     category_id,
-                    category_name
+                    category_name,
+                    slug
                 ),
                 ad_sub_categories (
                     sub_category_id,
