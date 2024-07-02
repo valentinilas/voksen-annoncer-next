@@ -22,9 +22,6 @@ export default async function Sitemap() {
 
     return [
         {
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts`
-        },
-        {
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`
         },
         {

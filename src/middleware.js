@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 // Create the next-intl middleware
 const intlMiddleware = createMiddleware({
   locales: ['da', 'en'],
-  localeDetection: false,
+  localeDetection: true,
   defaultLocale: 'da'
 });
 
