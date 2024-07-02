@@ -1,12 +1,24 @@
 import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
+import { fetchCategories } from "@/lib/fetchCategories";
+import slugify from "slugify";
 
 export default async function Sitemap() {
     const { ads } = await fetchAllPublicAds();
+    const { categories } = await fetchCategories();
+    // Ads
     const adEntries = ads.map(({ slug, created_at }) => ({
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`,
         lastModified: new Date(created_at),
         changeFrenquency: 'never'
     }));
+
+    // Categories 
+    const categoryEntries = categories.map(({ category_name }) => ({
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/category/${slugify(category_name, { lower: true, strict: true })}`,
+        changeFrenquency: 'never'
+    }))
+
+
 
     return [
         {
@@ -36,6 +48,7 @@ export default async function Sitemap() {
         {
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/sign-in`
         },
-        ...adEntries
+        ...adEntries,
+        ...categoryEntries
     ]
 }

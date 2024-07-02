@@ -29,6 +29,7 @@
         "Prefer not to say": "Foretrækker ikke at sige"
     },
     "categories": {
+        "category-title": "{term} | Voksenannoncer",
         "All categories": "Alle kategorier",
         "Personal Ads": "Personlige annoncer",
         "Friendship & Networking": "Venskab & Netværk",

@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
-export const fetchPublicAds = async (category, subcategory,region,search, page, pageSize) => {
-  
+export const fetchPublicAds = async (category, subcategory, region, search, page, pageSize) => {
+
   const supabase = createClient();
 
   try {
@@ -19,6 +19,9 @@ export const fetchPublicAds = async (category, subcategory,region,search, page, 
       .order('created_at', { ascending: false })
       .range((Number(page) - 1) * pageSize, Number(page) * pageSize - 1);
 
+    query = query.limit(100); // Example limit
+
+
 
 
     if (category && category !== 'all') {
@@ -32,7 +35,9 @@ export const fetchPublicAds = async (category, subcategory,region,search, page, 
     }
 
     if (search) {
-      query = query.ilike('title', `%${search}%`);
+      const sanitizedSearch = search.replace(/[^\w\s]/gi, '');
+
+      query = query.ilike('title', `%${sanitizedSearch}%`);
     }
 
     const { data: ads, error, count } = await query;

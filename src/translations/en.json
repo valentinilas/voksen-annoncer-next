@@ -29,6 +29,7 @@
         "Prefer not to say": "Prefer not to say"
     },
     "categories": {
+        "category-title":"{term} | Voksenannoncer",
         "All categories": "All categories",
         "Personal Ads": "Personal Ads",
         "Friendship & Networking": "Friendship & Networking",
@@ -293,7 +294,7 @@
         "p6": "If you have suggestions to improve our site, feel free to write to our support team. We respond to all inquiries within 24 hours on weekdays. Please note that our support staff is not available on weekends, so your patience is appreciated during that time.",
         "p7": "We hope you have a great experience with Voksenannoncer, a site for sex ads, escort services, massage, and erotic content."
     },
-    "search-results":{
-        "result-title":"Search results for {term} | Voksenannoncer"
+    "search-results": {
+        "result-title": "Search results for {term} | Voksenannoncer"
     }
 }
