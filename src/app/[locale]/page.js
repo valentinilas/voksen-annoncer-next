@@ -6,6 +6,7 @@ import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import IntroBanner from "@/components/intro-banner/intro-banner";
+import SeoSiteDescriptor from "@/components/seo-site-descriptor/seoSiteDescriptor";
 
 
 export default async function Ads({ searchParams }) {
@@ -59,6 +60,7 @@ export default async function Ads({ searchParams }) {
             </div>
         </div>
         )}
+        <SeoSiteDescriptor/>
     </>
 }
 
