@@ -5,6 +5,16 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 
+export async function generateMetadata({ params, searchParams }, parent) {
+    const t = await getTranslations();
+
+    return {
+        title: `${t("search-results.result-title", { term: params.query })}`,
+
+    };
+
+}
+
 export default async function SearchPage({ params, searchParams }) {
 
     const searchTerm = params.query;
@@ -56,7 +66,7 @@ export default async function SearchPage({ params, searchParams }) {
             </div>
         </div>
         )}
-    
+
     </>
 }
 

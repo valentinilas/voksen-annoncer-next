@@ -292,5 +292,8 @@
         "p5": "Voksenannoncer forbeholder sig retten til at slette enhver annonce, der promoverer ulovlige aktiviteter eller indeholder ærekrænkende indhold. Vi samarbejder tæt med politiet i alle sager, der involverer ulovligheder som salg af medicin eller stødende indhold rettet mod enkeltpersoner.",
         "p6": "Hvis du har forslag til, hvordan vi kan forbedre vores side, er du velkommen til at skrive til vores supportteam. Vi besvarer alle henvendelser inden for 24 timer på hverdage. Bemærk venligst, at vores supportpersonale ikke er tilgængeligt i weekenden, så vi beder om din tålmodighed i denne periode.",
         "p7": "Vi håber, du får en fantastisk oplevelse med Voksenannoncer, en side for sexannoncer, escorttjenester, massage og erotisk indhold."
+    },
+    "search-results": {
+        "result-title": "Søgeresultater for {term} | Voksenannoncer"
     }
 }

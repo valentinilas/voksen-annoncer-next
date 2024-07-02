@@ -292,5 +292,8 @@
         "p5": "Voksenannoncer reserves the right to delete any advertisements that promote illegal activities or contain defamatory content. We work closely with the police on any cases involving illegal activities such as the sale of medicine or offensive content towards individuals.",
         "p6": "If you have suggestions to improve our site, feel free to write to our support team. We respond to all inquiries within 24 hours on weekdays. Please note that our support staff is not available on weekends, so your patience is appreciated during that time.",
         "p7": "We hope you have a great experience with Voksenannoncer, a site for sex ads, escort services, massage, and erotic content."
+    },
+    "search-results":{
+        "result-title":"Search results for {term} | Voksenannoncer"
     }
 }
