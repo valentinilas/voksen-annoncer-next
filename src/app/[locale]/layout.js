@@ -21,7 +21,7 @@ import Script from 'next/script';
 
 
 export const metadata = {
-    title: "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
+    title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
     description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
 };
 
