@@ -30,7 +30,7 @@ export default async function Ads({ searchParams }) {
 
     return <>
 
-        <IntroBanner />
+        {/* <IntroBanner /> */}
         <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
