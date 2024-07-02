@@ -38,6 +38,8 @@ export default async function SearchPage({ params, searchParams }) {
 
         {/* <IntroBanner /> */}
         {/* <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} /> */}
+        <h1 className="text-3xl mb-5">{t("search-results.result-headline", { term: searchTerm })}</h1>
+
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}

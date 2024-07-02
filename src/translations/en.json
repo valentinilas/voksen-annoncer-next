@@ -295,6 +295,7 @@
         "p7": "We hope you have a great experience with Voksenannoncer, a site for sex ads, escort services, massage, and erotic content."
     },
     "search-results": {
-        "result-title": "Search results for {term} | Voksenannoncer"
+        "result-title": "Search results for {term} | Voksenannoncer",
+        "result-headline": "Search results for \"{term}\""
     }
 }
