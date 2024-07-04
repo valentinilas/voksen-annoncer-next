@@ -7,7 +7,8 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import IntroBanner from "@/components/intro-banner/intro-banner";
 import SeoSiteDescriptor from "@/components/seo-site-descriptor/seoSiteDescriptor";
-
+import Button from "@/components/button/button";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default async function Ads({ searchParams }) {
     const t = await getTranslations();
@@ -29,6 +30,7 @@ export default async function Ads({ searchParams }) {
     return <>
 
         {/* <IntroBanner /> */}
+        <Button Icon={PlusIcon} to="/new-post" className="mb-5 inline-flex">{t('ads.create-ad')}</Button>
         <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
