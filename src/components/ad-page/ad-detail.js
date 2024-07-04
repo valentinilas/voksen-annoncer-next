@@ -43,14 +43,16 @@ export default function AdDetail({ data, slug }) {
             /> : null}
 
             <div className="border-t pt-5 mt-5 border-base-300  flex flex-wrap gap-2 ">
+                {t("ads.views")}: <PostAnalytics slug={slug} />
+            </div>
+
+            <div className="border-t pt-5 mt-5 border-base-300  flex flex-wrap gap-2 ">
                 <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
                 <Label Icon={MapPinIcon}>{regions?.region_name}</Label>
                 <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_categories?.slug}`}>{t(`categories.${ad_categories?.category_name}`)}xx</Link></Label>
                 <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
             </div>
-            <div className="border-t pt-5 mt-5 border-base-300  flex flex-wrap gap-2 ">
-                {t("ads.views")}: <PostAnalytics slug={slug} />
-            </div>
+
 
             {/* <Spotlight /> */}
         </>
