@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 // Create the next-intl middleware
 const intlMiddleware = createMiddleware({
   locales: ['da', 'en'],
-  localeDetection: true,
+  localeDetection: false,
   defaultLocale: 'da'
 });
 
@@ -31,8 +31,8 @@ export const config = {
   matcher: [
     '/',
     '/(de|en)/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     // '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
 
   ],
 };
