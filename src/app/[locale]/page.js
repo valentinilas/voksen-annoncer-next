@@ -30,7 +30,7 @@ export default async function Ads({ searchParams }) {
     return <>
 
         {/* <IntroBanner /> */}
-        <div className="flex justify-between items-center mb-5">
+        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             <h1 className="text-2xl">{t("navigation.ads")} ({ads.length})</h1>
             <Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button>
         </div>

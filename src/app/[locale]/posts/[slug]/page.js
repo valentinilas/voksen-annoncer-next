@@ -46,7 +46,7 @@ export default async function AdDetailPage({ params }) {
         fetchPublicSingleAd(params.slug),
         fetchCurrentUser()
     ]);
-    const {userProfile: profile} = await fetchUserProfile(userData?.user?.id);
+    const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
 
     const { ad } = adData;
     const { user } = userData;
@@ -79,7 +79,7 @@ export default async function AdDetailPage({ params }) {
 
             <ViewIncrementer slug={params.slug} />
             <div className="grid grid-cols-12 gap-6">
-                <div className="bg-base-200 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
+                <div className="bg-base-100 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
                     <AdDetail data={ad} slug={params.slug} />
                 </div>
                 <div className="col-span-12 lg:col-span-4">
