@@ -9,15 +9,11 @@ import { useTranslations } from 'next-intl';
 export default function CommentList({ initialComments, ad, adId, user }) {
   const t = useTranslations("comments");
 
+
+  const { id: currentUserId } = user;
   const [comments, setComments] = useState(initialComments)
   const [replyContents, setReplyContents] = useState({})
   const [serverValidationError, setServerValidationError] = useState({ error: null });
-
-  if (!user) {
-    return <p>{t("not-logged-in")}</p>;
-  }
-  const { id: currentUserId } = user;
-
 
 
   const isAdmin = user?.is_admin
@@ -31,6 +27,8 @@ export default function CommentList({ initialComments, ad, adId, user }) {
 
     return () => clearInterval(intervalId)
   }, [adId])
+
+
 
   const handleReplyChange = (commentId, content) => {
     setReplyContents(prev => ({ ...prev, [commentId]: content }))
@@ -117,6 +115,10 @@ export default function CommentList({ initialComments, ad, adId, user }) {
   const visibleTopLevelComments = comments.filter(comment =>
     comment.parent_comment_id === null && canViewComment(comment)
   );
+
+  if (!user) {
+    return <p>{t("not-logged-in")}</p>;
+  }
 
   return (
     <div>
