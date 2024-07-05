@@ -30,8 +30,13 @@ export default async function Ads({ searchParams }) {
     return <>
 
         {/* <IntroBanner /> */}
-        <Button Icon={PlusIcon} to="/new-post" className="mb-5 inline-flex">{t('ads.create-ad')}</Button>
+        <div className="flex justify-between items-center mb-5">
+            <h1 className="text-2xl">{t("navigation.ads")} ({ads.length})</h1>
+            <Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button>
+        </div>
+
         <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
+
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}
@@ -60,7 +65,7 @@ export default async function Ads({ searchParams }) {
             </div>
         </div>
         )}
-        <SeoSiteDescriptor/>
+        <SeoSiteDescriptor />
     </>
 }
 

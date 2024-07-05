@@ -44,7 +44,7 @@ export default function Post({ ad }) {
         <>
             <ConfirmationModal ref={dialog} onCancel={() => { hideModal() }} onConfirm={() => confirmDelete(uuid)} />
 
-            <li key={uuid} className="bg-base-200 p-5 my-2 rounded-box ">
+            <li key={uuid} className="bg-base-100 p-5 my-2 rounded-box ">
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 ">
 

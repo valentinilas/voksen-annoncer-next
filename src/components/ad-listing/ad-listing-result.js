@@ -23,7 +23,7 @@ export default function AdListingResult({ data }) {
     }
 
     return (<div>
-        <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm">
+        <div className="bg-base-100 p-5 my-2 rounded-box shadow-sm">
             {/* Card main content */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                 <div className="result-image col-span-1 md:col-span-3">
