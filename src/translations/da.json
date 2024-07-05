@@ -296,6 +296,15 @@
     },
     "search-results": {
         "result-title": "Søgeresultater for {term} | Voksenannoncer",
-         "result-headline": "Søgeresultater for \"{term}\""
+        "result-headline": "Søgeresultater for \"{term}\""
+    },
+    "comments": {
+        "not-logged-in": "Du skal være logget ind for at tilføje kommentarer.",
+        "reply": "Svar",
+        "submit-reply": "Indsend svar",
+        "submit":"Indsend",
+        "write-comment": "Skriv din kommentar...",
+        "From": "Fra",
+        "Messages": "Beskeder"
     }
 }

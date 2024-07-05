@@ -29,7 +29,7 @@
         "Prefer not to say": "Prefer not to say"
     },
     "categories": {
-        "category-title":"{term} | Voksenannoncer",
+        "category-title": "{term} | Voksenannoncer",
         "All categories": "All categories",
         "Personal Ads": "Personal Ads",
         "Friendship & Networking": "Friendship & Networking",
@@ -297,5 +297,14 @@
     "search-results": {
         "result-title": "Search results for {term} | Voksenannoncer",
         "result-headline": "Search results for \"{term}\""
+    },
+    "comments": {
+        "not-logged-in": "You need to be logged in to add comments.",
+        "reply":"Reply",
+        "submit-reply":"Submit reply",
+        "submit":"Submit",
+        "write-comment":"Write your comment...",
+        "From":"From",
+        "Messages":"Messages"
     }
 }
