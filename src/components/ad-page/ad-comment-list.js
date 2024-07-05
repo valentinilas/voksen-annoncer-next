@@ -9,13 +9,15 @@ import { useTranslations } from 'next-intl';
 export default function CommentList({ initialComments, ad, adId, user }) {
   const t = useTranslations("comments");
 
+  const [comments, setComments] = useState(initialComments)
+  const [replyContents, setReplyContents] = useState({})
+  const [serverValidationError, setServerValidationError] = useState({ error: null });
+
   if (!user) {
     return <p>{t("not-logged-in")}</p>;
   }
   const { id: currentUserId } = user;
-  const [comments, setComments] = useState(initialComments)
-  const [replyContents, setReplyContents] = useState({})
-  const [serverValidationError, setServerValidationError] = useState({ error: null });
+
 
 
   const isAdmin = user?.is_admin
