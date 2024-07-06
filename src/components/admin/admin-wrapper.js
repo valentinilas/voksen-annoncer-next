@@ -39,7 +39,7 @@ export function AdminWrapper({ children }) {
     }, [router]);
 
     if (isLoading) {
-        return <div className="bg-base-200 p-10 my-2 rounded-box shadow-sm text-center"><span className="loading loading-spinner loading-sm"></span></div>;
+        return <div className="bg-base-100 p-10 my-2 rounded-box shadow-sm text-center"><span className="loading loading-spinner loading-sm"></span></div>;
     }
 
     if (!isAdmin) {
