@@ -1,4 +1,6 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
+import { fetchCategories } from "@/lib/fetchCategories";
+import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
@@ -7,23 +9,33 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
+    const { regions } = await fetchRegions();
+    console.log(regions);
+    const searchRegion = regions.find((region) => region.slug === params.query);
 
     return {
-        title: `${t("search-results.result-title", { term: decodeURIComponent(params.query) })}`,
-
+        title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name)})}`,
     };
 
 }
 
-export default async function SearchPage({ params, searchParams }) {
+export default async function RegionPage({ params, searchParams }) {
 
-    const searchTerm = params.query;
+    const { regions } = await fetchRegions();
+
+    const searchRegion = regions.find((region) => region.slug === params.query);
+
+
     const t = await getTranslations();
+    if (!searchRegion) {
+        return <>
+            <p className="text-center">{t("ads.no-results")}</p>
+        </>
+    }
+
     const pageSize = 10;
     const { page = 1 } = searchParams;
-    const { ads, total } = await fetchPublicAds(null, null, null, searchTerm, page, pageSize);
-
-
+    const { ads, total } = await fetchPublicAds(null, null, searchRegion?.id, null, page, pageSize);
 
 
     const totalPages = Math.ceil(total / pageSize);
@@ -38,7 +50,7 @@ export default async function SearchPage({ params, searchParams }) {
 
         {/* <IntroBanner /> */}
         {/* <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} /> */}
-        <h1 className="text-3xl mb-5">{t("search-results.result-headline", { term: decodeURIComponent(searchTerm) })}</h1>
+        <h1 className="text-3xl mb-5">{t("location-results.location-headline", { term: decodeURIComponent(searchRegion?.region_name) })}</h1>
 
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />

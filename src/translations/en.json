@@ -286,6 +286,23 @@
         "body": "Our site is new, so content is still growing. Whether you're offering tantric massages, escorting services, adult-themed courses, or looking for participants for your next swinger party, you can promote your services here. It's easy and completely free. Rest assured, we review all ads to ensure compliance and to keep out any illegal content."
     },
     "seo-descriptor": {
+        "linkUrls": {
+            "sex": "/search/sex",
+            "escort": "/search/escort",
+            "massage": "/search/massage",
+            "dating": "/search/dating",
+            "swinger": "/search/swinger",
+            "gangbangs": "/search/gangbangs",
+            "erotic": "/search/erotic",
+            "Copenhagen": "/location/hovedstaden",
+            "Odense": "/location/syddanmark",
+            "Aalborg": "/location/nordjylland",
+            "Esbjerg": "/location/syddanmark",
+            "Horsens": "/location/midtjylland",
+            "Randers": "/location/midtjylland",
+            "Herning": "/location/midtjylland",
+            "Vejle": "/location/syddanmark"
+        },
         "p1": "Welcome to Voksenannoncer, Denmark's premier independent advertisement site for <searchLink>escort</searchLink> services, <searchLink>massage</searchLink>, and erotic material sales. Posting ads on Voksenannoncer is completely free, and everyone can advertise services related to <searchLink>escort</searchLink>, <searchLink>massage</searchLink>, <searchLink>sex</searchLink>, or <searchLink>erotic</searchLink> content. Whether you have ads about <searchLink>gangbangs</searchLink>, <searchLink>swinger</searchLink> clubs, sex novels, <searchLink>sex</searchLink> <searchLink>dating</searchLink> sites, or other erotic content, you are welcome here. Our primary niche includes amateur advertisers, both girls and boys, but we also cater to massage clinics and agencies. If you have specific requirements for escort girls or men, you can browse through search ads tailored to your needs. At Voksenannoncer, we do not judge but provide a platform for everyone to share their services.",
         "p2": "We aim to offer an easy and quick overview of <searchLink>sex</searchLink>, <searchLink>escort</searchLink>, and <searchLink>massage</searchLink> options in your local area. Whether you're from <searchLink>Copenhagen</searchLink>, <searchLink>Odense</searchLink>, <searchLink>Aalborg</searchLink>, <searchLink>Esbjerg</searchLink>, <searchLink>Horsens</searchLink>, <searchLink>Randers</searchLink>, <searchLink>Herning</searchLink>, or <searchLink>Vejle</searchLink>, you can find local escort girls and massage clinics on Voksenannoncer. You'll also find plenty of inspiration for your sex life here.",
         "p3": "Voksenannoncer is the go-to advertising platform for a vast majority of independent escort girls and men, as well as for escort services and massage clinics. We also feature ads from erotic concept creators and dating sites, along with sellers of sex toys. Advertising on our platform is free—just create an account, wait for approval, and you're ready to go.",
@@ -298,13 +315,17 @@
         "result-title": "Search results for {term} | Voksenannoncer",
         "result-headline": "Search results for \"{term}\""
     },
+    "location-results": {
+        "location-title": "Location - {term} | Voksenannoncer",
+        "location-headline": "Location - \"{term}\""
+    },
     "comments": {
         "not-logged-in": "You need to be logged in to add comments.",
-        "reply":"Reply",
-        "submit-reply":"Submit reply",
-        "submit":"Submit",
-        "write-comment":"Write your comment...",
-        "From":"From",
-        "Messages":"Messages"
+        "reply": "Reply",
+        "submit-reply": "Submit reply",
+        "submit": "Submit",
+        "write-comment": "Write your comment...",
+        "From": "From",
+        "Messages": "Messages"
     }
 }

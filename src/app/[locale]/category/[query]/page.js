@@ -11,7 +11,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     const { categories } = await fetchCategories();
     const searchCategory = categories.find((category) => category.slug === params.query);
     return {
-        title: `${t("categories.category-title", { term: t(`categories.${searchCategory?.category_name}`) })}`,
+        title: `${t("categories.category-title", { term: t(`categories.${decodeURIComponent(searchCategory?.category_name)}`) })}`,
 
     };
 
@@ -49,7 +49,7 @@ export default async function CategoryPage({ params, searchParams }) {
 
         {/* <IntroBanner /> */}
         {/* <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} /> */}
-        <h1 className="text-3xl mb-5">{t(`categories.${searchCategory?.category_name}`)}</h1>
+        <h1 className="text-3xl mb-5">{t(`categories.${decodeURIComponent(searchCategory?.category_name)}`)}</h1>
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}

@@ -21,7 +21,7 @@ export async function fetchDashboardAds() {
         const { data: ads, error } = await supabase
             .from('ads')
             .select(`*, 
-                    regions (region_name),
+                    regions (*),
                     ad_images (uuid, image_url, image_width, image_height),
                     ad_categories (
                         category_id,

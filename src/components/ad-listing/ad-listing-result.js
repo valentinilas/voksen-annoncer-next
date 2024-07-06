@@ -13,7 +13,7 @@ export default function AdListingResult({ data }) {
 
     const {slug = "", uuid = "", title = "", created_at = null, description = "", ad_images = [], regions = [], ad_categories = [], ad_sub_categories = [] } = data;
 
-
+    console.log(regions)
 
     function truncateText(text, maxLength) {
         if (text.length <= maxLength) {
@@ -40,7 +40,7 @@ export default function AdListingResult({ data }) {
                 <div className="border-t border-base-300 flex justify-between mt-5 pt-5">
                     <div className="flex gap-2 items-center flex-wrap">
                         <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
-                        <Label Icon={MapPinIcon}>{regions?.region_name}</Label>
+                        <Label Icon={MapPinIcon}><Link className="link link-hover" href={`/location/${regions?.slug}`}>{regions?.region_name}</Link></Label>
                         <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_categories?.slug}`}>{t(`categories.${ad_categories?.category_name}`)}</Link></Label>
                         <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
                     </div>

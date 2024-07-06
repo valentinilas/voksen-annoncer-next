@@ -9,7 +9,7 @@ export const fetchAllPublicAds = async () => {
       .from('ads')
       .select(`
         *,
-        regions (region_name),
+        regions (*),
         ad_images (uuid, image_url, image_width, image_height),
         ad_categories (category_id, category_name),
         ad_sub_categories (sub_category_id, sub_category_name),

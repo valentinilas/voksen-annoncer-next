@@ -9,9 +9,9 @@ export const fetchPublicSingleAd = async (slug) => {
         const { data: ad, error } = await supabase
             .from('ads')
             .select(`*, 
-                regions (region_name), 
+                regions (*), 
                 profiles(*, genders (gender_name), 
-                regions (region_name)), 
+                regions (*)), 
                 ad_images(uuid, image_url, image_width, image_height),  
                 ad_categories (
                     category_id,
