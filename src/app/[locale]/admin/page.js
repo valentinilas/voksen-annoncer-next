@@ -22,7 +22,7 @@ export default async function AdminPage() {
     return (
         <>
             <AdminWrapper>
-                <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm">
+                <div className="bg-base-100 p-5 my-2 rounded-box shadow-sm">
                     <AdTable ads={ads} />
                 </div>
             </AdminWrapper>
