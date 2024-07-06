@@ -17,7 +17,7 @@ export default function Support() {
 
     return (
         <section className="support">
-            <div className="bg-base-200 p-20 rounded-box shadow-sm">
+            <div className="bg-base-100 p-20 rounded-box shadow-sm">
                 <h1 className="text-4xl mb-5">{t('support.title')}</h1>
                 <p className="mb-3">{t('support.contactEmail')} <a className="link" href={`mailto:${t('support.emailAddress')}`}>{t('support.emailAddress')}</a></p>
 

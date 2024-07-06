@@ -117,7 +117,7 @@ export default function Filters({ categories, regions }) {
 
 
   return (
-    <section className="bg-base-200 p-5  rounded-box shadow-sm">
+    <section className="bg-base-100 p-5  rounded-box shadow-sm">
       <div className="flex flex-col md:flex-row gap-4 items-start justify-start">
         <div className="filter-group rounded-md w-full">
 

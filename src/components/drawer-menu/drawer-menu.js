@@ -7,6 +7,7 @@ import { PlusIcon, UserIcon, Cog6ToothIcon, ArrowLeftStartOnRectangleIcon } from
 import { handleLogout } from "@/lib/handle-log-out";
 import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from "@/lib/themeContextProvider";
+import { setCookie } from 'cookies-next';
 
 
 
@@ -26,6 +27,8 @@ export function DrawerMenu() {
     const pathname = usePathname();
 
     const handleLanguageChange = (locale) => {
+
+
         const currentPathname = pathname;
 
         // Remove the current locale from the pathname if it exists
@@ -34,11 +37,12 @@ export function DrawerMenu() {
         // Construct the new path with the selected locale
         const newPath = `/${locale}${pathnameWithoutLocale}`;
 
-        router.push(newPath);
+        // router.push(newPath);
+        router.push(newPath, undefined, { locale });
     };
 
 
-    return <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+    return <ul className="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
         <li className="w-full p-4 border-b border-b-base-300 font-bold mb-4">{t("navigation.menu")}</li>
         {/* Logged in */}
         {isLoggedIn &&

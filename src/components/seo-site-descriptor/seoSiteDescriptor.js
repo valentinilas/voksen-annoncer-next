@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SeoSiteDescriptor() {
     const t = useTranslations("seo-descriptor");
-    return <div className="bg-base-200 p-10 mb-5 mt-10 rounded-box shadow-xl">
+    return <div className="bg-base-100 p-10 mb-5 mt-10 rounded-box shadow-xl">
         <p className="mb-4">{t.rich("p1", {
                 searchLink: (chunks) => (<Link className="link" href={`/search/${chunks}`}>{chunks}</Link>
                 )

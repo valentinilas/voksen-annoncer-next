@@ -82,7 +82,7 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     const isLastInThread = subComments.length === 0;
 
     return (
-      <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-200 p-5 rounded-box shadow-sm mb-5" : ''}>
+      <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-100 p-5 rounded-box shadow-sm mb-5" : ''}>
         <div className="flex items-center space-x-3 mb-5">
           <img src={avatar_url} alt={username} className="w-10 h-10 rounded-full" />
           <div>

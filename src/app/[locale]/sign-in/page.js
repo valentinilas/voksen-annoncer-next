@@ -49,7 +49,7 @@ export default function SignIn() {
 
 
   return (
-    <div className="mx-auto bg-base-200  p-5 rounded-box  sm:max-w-sm">
+    <div className="mx-auto bg-base-100  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="text-2xl font-bold mb-10 text-center">{t("auth.login")}</h2>
         <form onSubmit={onSubmit} >

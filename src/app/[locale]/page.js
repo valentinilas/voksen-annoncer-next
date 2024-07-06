@@ -41,7 +41,7 @@ export default async function Ads({ searchParams }) {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}
 
-        {!ads.length && <div className="bg-base-200 p-5 my-2 rounded-box shadow-sm"><p className="text-center">{t('ads.no-results')}</p></div>}
+        {!ads.length && <div className="bg-base-100 p-5 my-2 rounded-box shadow-sm"><p className="text-center">{t('ads.no-results')}</p></div>}
 
         {/* Pagination Controls */}
 
