@@ -10,14 +10,12 @@ export default function CommentList({ initialComments, ad, adId, user }) {
   const t = useTranslations("comments");
 
 
-  const { id: currentUserId } = user;
   const [comments, setComments] = useState(initialComments)
   const [replyContents, setReplyContents] = useState({})
   const [serverValidationError, setServerValidationError] = useState({ error: null });
 
 
-  const isAdmin = user?.is_admin
-  const isAdOwner = ad.user_id === currentUserId;
+
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -27,6 +25,14 @@ export default function CommentList({ initialComments, ad, adId, user }) {
 
     return () => clearInterval(intervalId)
   }, [adId])
+
+  if (!user) {
+    return <p>{t("not-logged-in")}</p>;
+  }
+
+  const { id: currentUserId } = user;
+  const isAdmin = user?.is_admin
+  const isAdOwner = ad.user_id === currentUserId;
 
 
 
@@ -116,9 +122,7 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     comment.parent_comment_id === null && canViewComment(comment)
   );
 
-  if (!user) {
-    return <p>{t("not-logged-in")}</p>;
-  }
+
 
   return (
     <div>
