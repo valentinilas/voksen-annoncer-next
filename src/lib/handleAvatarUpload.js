@@ -33,7 +33,7 @@ export const handleAvatarUpload = async (formData) => {
 
 
     const getPublicUrl = async (filePath) => {
-        console.log('HANDLE GET PUBLIC URL');
+        // console.log('HANDLE GET PUBLIC URL');
         const { data, error } = supabase.storage.from('voksen-annoncer').getPublicUrl(filePath);
         if (error) {
             console.error('Error getting public URL:', error);
@@ -43,7 +43,7 @@ export const handleAvatarUpload = async (formData) => {
     };
 
     const handleImageUpload = async (file) => {
-        console.log('HANDLE IMAGE UPLOAD');
+        // console.log('HANDLE IMAGE UPLOAD');
         const fileExt = file.name.split('.').pop();
         const fileName = `${Date.now()}.${fileExt}`;
         const filePath = `profile-images/${fileName}`;

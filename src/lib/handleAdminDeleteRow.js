@@ -46,7 +46,7 @@ export async function handleAdminDeleteRow(adId) {
         }
 
         // Success messages and updates
-        console.log('Ad and associated images deleted successfully.');
+        // console.log('Ad and associated images deleted successfully.');
         revalidatePath('/', 'layout');
 
     } catch (error) {

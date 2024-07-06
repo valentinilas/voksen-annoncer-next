@@ -13,7 +13,6 @@ export default function AdListingResult({ data }) {
 
     const {slug = "", uuid = "", title = "", created_at = null, description = "", ad_images = [], regions = [], ad_categories = [], ad_sub_categories = [] } = data;
 
-    console.log(regions)
 
     function truncateText(text, maxLength) {
         if (text.length <= maxLength) {

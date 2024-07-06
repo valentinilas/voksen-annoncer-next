@@ -12,7 +12,7 @@ export const handleDeleteProfile = async () => {
 
     try {
         const { user } = await fetchCurrentUser();
-        console.log(user);
+        // console.log(user);
         if (!user) {
             throw new Error('No current user');
 
@@ -78,7 +78,7 @@ export const handleDeleteProfile = async () => {
             throw error;
         }
 
-        console.log('Account deletion successfull!');
+        // console.log('Account deletion successfull!');
 
         await supabase.auth.signOut();
         revalidatePath('/');

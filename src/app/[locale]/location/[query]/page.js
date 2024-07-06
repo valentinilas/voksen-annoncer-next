@@ -10,7 +10,6 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
     const { regions } = await fetchRegions();
-    console.log(regions);
     const searchRegion = regions.find((region) => region.slug === params.query);
 
     return {

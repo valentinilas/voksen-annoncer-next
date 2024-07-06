@@ -124,7 +124,7 @@ export async function submitPost(formData) {
         const slug = generateSlug(title);
 
         // Save the ad details to the database
-        console.log('Saving to DB');
+        // console.log('Saving to DB');
         const { data: adData, error: adError } = await supabase
             .from('ads')
             .insert({

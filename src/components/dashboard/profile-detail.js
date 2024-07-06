@@ -54,7 +54,6 @@ export default function ProfileDetail({ currentUser, profile, regions, genders }
     useEffect(() => {
         if (profile) {
             fieldsToLoad.forEach(key => {
-                console.log(key);
                 if (profile[key] !== undefined) {
                     setValue(key, profile[key]);
                 }
@@ -90,7 +89,6 @@ export default function ProfileDetail({ currentUser, profile, regions, genders }
 
 
     const onSubmit = handleSubmit(async data => {
-        console.log("data", data);
 
         const formData = new FormData();
 

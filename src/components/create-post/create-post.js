@@ -34,10 +34,8 @@ export default function NewPost({ categories, regions }) {
         resolver: yupResolver(validationSchema)
     });
 
-    console.log(errors);
 
     const onSubmit = handleSubmit(async data => {
-        console.log("data", data);
 
         const formData = new FormData();
         // Append text fields
@@ -57,7 +55,6 @@ export default function NewPost({ categories, regions }) {
         const response = await submitPost(formData);
 
         if (response?.error) {
-            console.log(response.error);
             setServerValidationError({ error: response.error })
         } else {
             reset();

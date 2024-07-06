@@ -21,7 +21,7 @@ export const handleProfileUpdate = async (formData, profileId) => {
         newData.birthday = date.toISOString().split('T')[0];
     }
 
-    console.log(newData);
+    // console.log(newData);
 
     // Validate the data
     try {
@@ -45,7 +45,7 @@ export const handleProfileUpdate = async (formData, profileId) => {
             throw error;
         }
 
-        console.log('Profile Updated', newData);
+        // console.log('Profile Updated', newData);
         revalidatePath('/', 'layout');
 
         return { success: true };

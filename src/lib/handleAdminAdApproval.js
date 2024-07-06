@@ -16,7 +16,7 @@ export async function handleAdminAdApproval(ad) {
             throw new Error('Error toggling ad approval status: ' + error.message);
         }
 
-        console.log(`Ad ${ad.uuid} approval status changed to ${newStatus}`);
+        // console.log(`Ad ${ad.uuid} approval status changed to ${newStatus}`);
 
     } catch (error) {
         console.error(error); // Log the error for debugging
