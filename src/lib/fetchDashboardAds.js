@@ -30,7 +30,8 @@ export async function fetchDashboardAds() {
                     ),
                     ad_sub_categories (
                         sub_category_id,
-                        sub_category_name
+                        sub_category_name,
+                        slug
                     )
                     ad_images (uuid, image_url, image_width, image_height)`)
             .eq('user_id', profileId)

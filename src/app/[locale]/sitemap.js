@@ -11,6 +11,7 @@ export default async function Sitemap() {
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
 
+
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
@@ -30,6 +31,14 @@ export default async function Sitemap() {
         createLocalizedEntries(`/category/${slug}`, {
             changeFrenquency: 'never'
         })
+    );
+    // Subcategories
+    const subCategoryEntries = categories.flatMap(category =>
+        category.ad_sub_categories.flatMap(({ slug }) =>
+            createLocalizedEntries(`/category/${slug}`, {
+                changeFrenquency: 'never'
+            })
+        )
     );
 
     // Regions
@@ -63,6 +72,7 @@ export default async function Sitemap() {
         ...staticEntries,
         ...adEntries,
         ...categoryEntries,
+        ...subCategoryEntries,
         ...regionEntries
     ]
 }

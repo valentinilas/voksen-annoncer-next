@@ -1,5 +1,6 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
+import { fetchSubCategories } from "@/lib/fetchSubCategories";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
@@ -9,9 +10,17 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
     const { categories } = await fetchCategories();
+    const { subCategories } = await fetchSubCategories();
+
     const searchCategory = categories.find((category) => category.slug === params.query);
+    const searchSubCategory = subCategories.find((subCategory) => subCategory.slug === params.query);
+
+    const categoryName = searchCategory ? searchCategory.category_name : searchSubCategory ? searchSubCategory.sub_category_name : null;
+
+    const translationKey = searchCategory ? `categories.${decodeURIComponent(searchCategory.category_name)}` : `subcategories.${decodeURIComponent(searchSubCategory.sub_category_name)}`;
+
     return {
-        title: `${t("categories.category-title", { term: t(`categories.${decodeURIComponent(searchCategory?.category_name)}`) })}`,
+        title: `${t("categories.category-title", { term: t(translationKey) })}`,
 
     };
 
@@ -20,13 +29,15 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function CategoryPage({ params, searchParams }) {
 
     const { categories } = await fetchCategories();
+    const { subCategories } = await fetchSubCategories();
 
 
     const searchCategory = categories.find((category) => category.slug === params.query);
+    const searchSubCategory = subCategories.find((subCategory) => subCategory.slug === params.query);
 
 
     const t = await getTranslations();
-    if (!searchCategory) {
+    if (!searchCategory && !searchSubCategory) {
         return <>
             <p className="text-center">{t("ads.no-results")}</p>
         </>
@@ -34,7 +45,9 @@ export default async function CategoryPage({ params, searchParams }) {
 
     const pageSize = 10;
     const { page = 1 } = searchParams;
-    const { ads, total } = await fetchPublicAds(searchCategory?.category_id, null, null, null, page, pageSize);
+    const categoryId = searchCategory?.category_id || null;
+    const subCategoryId = searchSubCategory?.sub_category_id || null;
+    const { ads, total } = await fetchPublicAds(categoryId, subCategoryId, null, null, page, pageSize);
 
 
     const totalPages = Math.ceil(total / pageSize);
@@ -45,11 +58,16 @@ export default async function CategoryPage({ params, searchParams }) {
         return `?${params.toString()}`;
     };
 
+    const translationKey = searchCategory ? `categories.${decodeURIComponent(searchCategory.category_name)}` : `subcategories.${decodeURIComponent(searchSubCategory.sub_category_name)}`;
+
+
     return <>
 
         {/* <IntroBanner /> */}
         {/* <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} /> */}
-        <h1 className="text-3xl mb-5">{t(`categories.${decodeURIComponent(searchCategory?.category_name)}`)}</h1>
+        {/* <h1 className="text-3xl mb-5">{t(`categories.${decodeURIComponent(searchCategory?.category_name)}`)}</h1> */}
+        <h1 className="text-3xl mb-5">{t(translationKey)}</h1>
+
         {ads.map(ad => {
             return <AdListingResult key={ad.uuid} data={ad} />
         })}

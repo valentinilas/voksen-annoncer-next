@@ -23,7 +23,8 @@ export const fetchAdminAdList =  async () => {
                     ),
                     ad_sub_categories (
                         sub_category_id,
-                        sub_category_name
+                        sub_category_name,
+                        slug
                     )    
                 `)
             .order('created_at', { ascending: false });

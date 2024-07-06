@@ -41,7 +41,7 @@ export default function AdListingResult({ data }) {
                         <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
                         <Label Icon={MapPinIcon}><Link className="link link-hover" href={`/location/${regions?.slug}`}>{regions?.region_name}</Link></Label>
                         <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_categories?.slug}`}>{t(`categories.${ad_categories?.category_name}`)}</Link></Label>
-                        <Label Icon={TagIcon}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Label>
+                        <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_sub_categories?.slug}`}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Link></Label>
                     </div>
                     <Button Icon={ChevronRightIcon} iconDirection="right" className="self-start hidden md:inline-flex" to={`/posts/${slug}`}>{t("ads.Details")}</Button>
                 </div>

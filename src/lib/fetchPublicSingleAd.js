@@ -20,7 +20,8 @@ export const fetchPublicSingleAd = async (slug) => {
                 ),
                 ad_sub_categories (
                     sub_category_id,
-                    sub_category_name
+                    sub_category_name,
+                    slug
                 )
                 `)
             .eq('slug', slug)

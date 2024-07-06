@@ -12,7 +12,7 @@ export const fetchPublicAds = async (category, subcategory, region, search, page
         regions (*),
         ad_images (uuid, image_url, image_width, image_height),
         ad_categories (category_id, category_name, slug),
-        ad_sub_categories (sub_category_id, sub_category_name),
+        ad_sub_categories (sub_category_id, sub_category_name, slug),
         profiles(username)
       `, { count: 'exact' })
       .eq('is_approved', true)
