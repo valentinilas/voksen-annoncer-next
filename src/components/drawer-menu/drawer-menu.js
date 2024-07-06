@@ -39,6 +39,7 @@ export function DrawerMenu() {
 
         // router.push(newPath);
         router.push(newPath, undefined, { locale });
+        router.refresh(); // clear caching to make sure the locale cookie is set correctly
     };
 
 
