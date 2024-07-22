@@ -69,7 +69,7 @@ export default function Post({ ad }) {
                     </div>
                     <div className="col-span-1 md:col-span-4">
 
-                        <Link className="block" href={`/posts/${slug}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" /> : <DefaultImage />}</Link>
+                        <Link className="block" href={`/posts/${slug}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt="" /> : <DefaultImage />}</Link>
                     </div>
 
                 </div>
