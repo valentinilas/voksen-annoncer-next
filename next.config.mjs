@@ -13,6 +13,14 @@ const nextConfig = {
             },
         ]
     },
+    images: {
+        remotePatterns: [{
+            protocol: 'https',
+            hostname: 'ik.imagekit.io',
+            port: '',
+            pathname: '/wo0srdcz6/**',
+          }],
+      },
 };
 
 export default withNextIntl(nextConfig);

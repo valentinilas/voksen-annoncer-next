@@ -4,6 +4,7 @@ import Label from "@/components/label/label";
 import { formatDate } from "@/utils/formatter/format-date";
 import { CalendarDaysIcon, TagIcon, MapPinIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 import DefaultImage from "@/components/default-image/default-image";
 
@@ -21,12 +22,13 @@ export default function AdListingResult({ data }) {
         return text.substring(0, maxLength) + '...';
     }
 
+
     return (<div>
         <div className="bg-base-100 p-5 my-2 rounded-box shadow-sm">
             {/* Card main content */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                 <div className="result-image col-span-1 md:col-span-3">
-                    <Link href={`/posts/${slug}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt="" /> : <DefaultImage />}</Link>
+                    <Link href={`/posts/${slug}`}>{ad_images.length > 0 ? <Image src={ad_images[0].image_url} width={300} height={300}  className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt="" /> : <DefaultImage />}</Link>
                 </div>
                 <div className="result-text col-span-1 md:col-span-9  flex flex-col justify-start items-start gap-2">
                     <Link href={`/posts/${slug}`}><h3 className=" text-2xl mb-4">{title}</h3></Link>
