@@ -50,20 +50,20 @@ export default function Button({ children, type, className, to, href, variant = 
 
     switch (variant) {
         case 'primary':
-            variantClasses = ' bg-cherry-600 border-transparent  text-white hover:bg-cherry-800';
+            variantClasses = ' bg-cherry-700 border-transparent  text-white hover:bg-cherry-800';
             iconClasses += ' text-white';
             break;
         case 'secondary':
-            variantClasses = ' group  bg-transparent border-solid border-2 border-cherry-600 text-cherry-600 hover:bg-cherry-600 hover:text-white';
-            iconClasses += ' text-cherry-600 group-hover:text-white';
+            variantClasses = ' group  bg-transparent border-solid border-2 border-cherry-700 text-cherry-700 hover:bg-cherry-700 hover:text-white';
+            iconClasses += ' text-cherry-700 group-hover:text-white';
             break;
         case 'tertiary':
-            variantClasses = ' bg-transparent border-transparent text-cherry-600 hover:bg-cherry-900/10 ';
-            iconClasses += ' text-cherry-600';
+            variantClasses = ' bg-transparent border-transparent text-cherry-700 hover:bg-cherry-900/10 ';
+            iconClasses += ' text-cherry-700';
             break;
         case 'text':
-            variantClasses = ' bg-transparent border-transparent text-cherry-600 hover:text-cherry-600';
-            iconClasses += ' text-cherry-600';
+            variantClasses = ' bg-transparent border-transparent text-cherry-700 hover:text-cherry-700';
+            iconClasses += ' text-cherry-700';
             break;
 
     }
