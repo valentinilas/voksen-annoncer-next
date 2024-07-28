@@ -118,10 +118,12 @@ export default function Filters({ categories, regions }) {
 
   return (
     <section className="bg-base-100 p-5  rounded-box shadow-sm">
-      <div className="flex flex-col md:flex-row gap-4 items-start justify-start">
+      <div className="flex flex-col  gap-4 items-start justify-start">
         <div className="filter-group rounded-md w-full">
-
+          <label for="search" className="font-bold mb-2 block">{t("filters.Search")}</label>
           <input
+            id="search"
+            name="search"
             className="input input-bordered w-full "
             type="text"
             value={searchTerm}
@@ -132,7 +134,10 @@ export default function Filters({ categories, regions }) {
         </div>
         <div className="filter-group w-full">
           <>
+            <label for="location" className="font-bold mb-2 block">{t("filters.Location")}</label>
             <select
+              id="location"
+              name="location"
               className="select select-bordered w-full"
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}>
@@ -145,7 +150,10 @@ export default function Filters({ categories, regions }) {
         </div>
         <div className="filter-group w-full">
           <>
+            <label for="category" className="font-bold mb-2 block">{t("filters.Category")}</label>
             <select
+              name="category"
+              id="category"
               className="select select-bordered w-full"
               value={selectedCategory}
               onChange={handleMainCategoryChange}>
@@ -160,7 +168,10 @@ export default function Filters({ categories, regions }) {
 
         <div className="filter-group w-full">
           <>
+            <label for="subcategory" className="font-bold mb-2 block">{t("filters.Sub-category")}</label>
             <select
+              name="subcategory"
+              id="subcategory"
               className="select select-bordered w-full "
               value={selectedSubCategory}
               onChange={handleSubCategoryChange}>

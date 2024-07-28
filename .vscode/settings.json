@@ -1,5 +1,6 @@
 {
     "i18n-ally.localesPaths": [
         "../../../../../../Users/omikron/Desktop/App/voksen-annoncer-next/src/translations"
-    ]
+    ],
+    "i18n-ally.keystyle": "nested"
 }

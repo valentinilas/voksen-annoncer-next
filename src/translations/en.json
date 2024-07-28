@@ -99,6 +99,9 @@
     "filters": {
         "Search": "Search",
         "Filter": "Filter",
+        "Location": "Location",
+        "Category": "Category",
+        "Sub-category": "Sub-category",
         "All locations": "All locations"
     },
     "ads": {

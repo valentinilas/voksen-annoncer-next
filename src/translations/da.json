@@ -98,7 +98,10 @@
     },
     "filters": {
         "Search": "Søg",
-        "Filter": "Filtrér",
+        "Filter": "Filter",
+        "Location": "Sted",
+        "Category": "Kategori",
+        "Sub-category": "Underkategori",
         "All locations": "Alle steder"
     },
     "ads": {

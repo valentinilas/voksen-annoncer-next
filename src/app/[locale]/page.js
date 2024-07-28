@@ -35,13 +35,23 @@ export default async function Ads({ searchParams }) {
             <Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button>
         </div>
 
-        <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
+        <div className="grid grid-cols-12 gap-5">
+            <div className="col-span-12 md:col-span-3">
+                <Filters key={JSON.stringify(searchParams)} categories={categories} regions={regions} />
+            </div>
+            <div className="col-span-12 md:col-span-9">
+                {ads.map(ad => {
+                    return <AdListingResult key={ad.uuid} data={ad} />
+                })}
+                 {!ads.length && <div className="bg-base-100 p-5  rounded-box shadow-sm h-full"><p className="text-center">{t('ads.no-results')}</p></div>}
+            </div>
 
-        {ads.map(ad => {
-            return <AdListingResult key={ad.uuid} data={ad} />
-        })}
+        </div>
 
-        {!ads.length && <div className="bg-base-100 p-5 my-2 rounded-box shadow-sm"><p className="text-center">{t('ads.no-results')}</p></div>}
+
+
+
+       
 
         {/* Pagination Controls */}
 
