@@ -62,8 +62,8 @@ export function DrawerMenu() {
         <li><Link href="/about">{t("navigation.about")}</Link></li>
         <li><Link href="/cookie-policy">{t("navigation.cookie-policy")}</Link></li>
         <li className="border-b border-b-base-300 my-4"> </li>
-        <li><button onClick={() => handleLanguageChange('da')}><Image className="size-5" src="/flags/denmark.svg" alt="Dansk" width="20" height="20" />Dansk</button></li>
-        <li><button onClick={() => handleLanguageChange('en')}><Image className="size-5" src="/flags/great-britain.svg" alt="English" width="20" height="20" />English</button></li>
+        <li><button onClick={() => handleLanguageChange('da')}><Image className="size-5" src="/flags/denmark.svg" alt="Danish flag" width="20" height="20" />Dansk</button></li>
+        <li><button onClick={() => handleLanguageChange('en')}><Image className="size-5" src="/flags/great-britain.svg" alt="English flag" width="20" height="20" />English</button></li>
 
 
         {/* not logged in */}
