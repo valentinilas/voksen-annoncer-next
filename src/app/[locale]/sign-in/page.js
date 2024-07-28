@@ -51,7 +51,7 @@ export default function SignIn() {
   return (
     <div className="mx-auto bg-base-100  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="text-2xl font-bold mb-10 text-center">{t("auth.login")}</h2>
+        <h1 className="text-2xl font-bold mb-10 text-center">{t("auth.login")}</h1>
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2">{error}</p>)}</div>}
 

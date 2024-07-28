@@ -69,7 +69,7 @@ export default async function RootLayout({ children, params: { locale } }) {
                                     </div>
                                 </div>
                                 <div className="drawer-side">
-                                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                                    <label htmlFor="my-drawer" aria-label="close sidebar" role="button" tabindex="0" className="drawer-overlay"></label>
                                     <DrawerMenu />
 
                                 </div>

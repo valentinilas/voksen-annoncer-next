@@ -58,7 +58,7 @@ export default function ResetPasswordRequest() {
   return (
     <div className="mx-auto bg-base-100  p-5 rounded-box  sm:max-w-sm">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="text-2xl font-bold mb-10 text-center">{t("auth.reset-password")}</h2>
+        <h1 className="text-2xl font-bold mb-10 text-center">{t("auth.reset-password")}</h1>
         <form onSubmit={onSubmit} >
           {serverValidationError.error && <div>{serverValidationError.error.map((error, index) => <p key={index} className="error text-red-500 text-sm mt-2 mb-2">{error}</p>)}</div>}
           {serverSuccess.success && <p className="text-green-500 text-sm mt-2 mb-2">{t("auth.password-reset-sent")}</p>}

@@ -103,7 +103,7 @@ export default function NewPost({ categories, regions }) {
     return (
 
         <div className="bg-base-100 p-5  rounded-box shadow-sm">
-            <h2 className="text-2xl font-bold mb-4 ">{t("navigation.create-ad")}</h2>
+            <h1 className="text-2xl font-bold mb-4 ">{t("navigation.create-ad")}</h1>
             <form
                 onSubmit={onSubmit}
                 encType="multipart/form-data"
