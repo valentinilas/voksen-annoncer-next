@@ -31,7 +31,7 @@ export default function AdListingResult({ data }) {
                     <Link href={`/posts/${slug}`}>{ad_images.length > 0 ? <Image src={ad_images[0].image_url} width={300} height={300}  className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt={title} /> : <DefaultImage />}</Link>
                 </div>
                 <div className="result-text col-span-1 md:col-span-9  flex flex-col justify-start items-start gap-2">
-                    <Link href={`/posts/${slug}`}><h3 className=" text-2xl mb-4">{title}</h3></Link>
+                    <Link href={`/posts/${slug}`}><h2 className=" text-2xl mb-4">{title}</h2></Link>
                     <Link href={`/posts/${slug}`}><div>{truncateText(description, 350)}</div></Link>
                 </div>
 

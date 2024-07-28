@@ -31,7 +31,7 @@ export default function AdDetail({ data, slug }) {
         <>
             <div className="result-tex">
 
-                <h3 className="font-bold text-2xl mb-4">{title}</h3>
+                <h1 className="font-bold text-2xl mb-4">{title}</h1>
                 <div><pre className="font-sans whitespace-pre-wrap">{description}</pre></div>
             </div>
 
