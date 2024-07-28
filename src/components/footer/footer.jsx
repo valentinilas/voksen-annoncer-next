@@ -51,8 +51,8 @@ export default function Footer() {
             </nav>
             <nav>
                 {/* <h6 className="footer-title">Language</h6> */}
-                <button className="link link-hover inline-flex gap-2" onClick={() => handleLanguageChange('da')}><Image className="size-5" src="/flags/denmark.svg" alt="Dansk" width="20" height="20" />Dansk</button>
-                <button className="link link-hover inline-flex gap-2" onClick={() => handleLanguageChange('en')}><Image className="size-5" src="/flags/great-britain.svg" alt="English" width="20" height="20" />English</button>
+                <button className="link link-hover inline-flex gap-2" onClick={() => handleLanguageChange('da')}><Image className="size-5" src="/flags/denmark.svg" alt="Danish flag" width="20" height="20" />Dansk</button>
+                <button className="link link-hover inline-flex gap-2" onClick={() => handleLanguageChange('en')}><Image className="size-5" src="/flags/great-britain.svg" alt="English flag" width="20" height="20" />English</button>
             </nav>
         </footer>
     );
