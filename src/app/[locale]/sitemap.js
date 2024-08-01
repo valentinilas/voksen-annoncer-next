@@ -59,7 +59,7 @@ export default async function Sitemap() {
 
     // Articles
     const articleEntries = articles.flatMap(({ slug, created_at }) =>
-        createDanishEntries(`/${slug}`, {
+        createDanishEntries(`/articles/${slug}`, {
             lastModified: new Date(created_at),
             changeFrenquency: 'never'
         })
