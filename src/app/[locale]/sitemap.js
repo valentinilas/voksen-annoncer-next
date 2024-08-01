@@ -20,6 +20,13 @@ export default async function Sitemap() {
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
             ...options
         }));
+        const createDanishEntries = (path, options = {}) =>
+            locales
+                .filter(locale => locale === 'da') // Filter to only include Danish locale
+                .map(locale => ({
+                    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
+                    ...options
+                }));
 
     // Ads
     const adEntries = ads.flatMap(({ slug, created_at }) =>
@@ -53,7 +60,7 @@ export default async function Sitemap() {
 
     // Articles
     const articleEntries = articles.flatMap(({ slug, created_at }) =>
-        createLocalizedEntries(`/${slug}`, {
+        createDanishEntries(`/${slug}`, {
             lastModified: new Date(created_at),
             changeFrenquency: 'never'
         })

@@ -11,7 +11,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     try {
         const { article } = await fetchSingleArticle(params.slug);
-        console.log(article)
         return {
             title: article.title + ' | Voksenannoncer',
             description: article.summary,
