@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import DefaultImage from "../default-image/default-image";
 import ConfirmationModal from "../confirmation-modal/confirmation-modal";
 import { handleAdminDeleteRow } from "@/lib/handleAdminDeleteRow";
+import Image from "next/image";
 
 export default function Post({ ad }) {
     const t = useTranslations();
@@ -69,7 +70,7 @@ export default function Post({ ad }) {
                     </div>
                     <div className="col-span-1 md:col-span-4">
 
-                        <Link className="block" href={`/posts/${slug}`}>{ad_images.length > 0 ? <img src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt={title} /> : <DefaultImage />}</Link>
+                        <Link className="block" href={`/posts/${slug}`}>{ad_images.length > 0 ? <Image src={ad_images[0].image_url} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt={title} width={300} height={300} /> : <DefaultImage />}</Link>
                     </div>
 
                 </div>

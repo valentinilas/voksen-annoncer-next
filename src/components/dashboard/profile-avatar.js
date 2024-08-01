@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createAvatarValidationSchema } from "./avatar-client-validation-schema";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Avatar({ profile }) {
     const fileInputRef = useRef(null);
@@ -71,11 +72,13 @@ export default function Avatar({ profile }) {
 
             <div className="text-center mb-5">
                 {profile?.avatar_url ? (
-                    <img
-                        onClick={handleProfileImageClick}
-                        className="rounded-full border-4 border-cherry-600 size-32 mx-auto mb-2 hover:border-white transition-colors cursor-pointer"
-                        src={cdnUrl(profile?.avatar_url, 300, 300)}
-                        alt={`Avatar ${profile?.username}`}
+        
+                    <Image 
+                    onClick={handleProfileImageClick}
+                     className="rounded-full border-4 border-cherry-600 size-32 mx-auto mb-2 hover:border-white transition-colors cursor-pointer"
+                     src={cdnUrl(profile?.avatar_url, 300, 300)}
+                     alt={`Avatar ${profile?.username}`}
+                    width={128} height={128} 
                     />
                 ) : (
                     <div

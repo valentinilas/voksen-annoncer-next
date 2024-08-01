@@ -5,6 +5,8 @@ import { fetchComments, addComment } from '@/lib/comments';
 import { formatCommentDate } from '@/utils/formatter/format-comment-date';
 import CommentForm from './ad-comment-form';
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
+
 
 export default function CommentList({ initialComments, ad, adId, user }) {
   const t = useTranslations("comments");
@@ -84,7 +86,8 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     return (
       <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-100 p-5 rounded-box shadow-sm mb-5" : ''}>
         <div className="flex items-center space-x-3 mb-5">
-          <img src={avatar_url} alt={username} className="w-10 h-10 rounded-full" />
+          <Image src={avatar_url} alt={username} width={40} height={40} className="w-10 h-10 rounded-full" />
+
           <div>
             <p className="font-bold">{username}</p>
             <p>{comment.content}</p>

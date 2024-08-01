@@ -83,11 +83,8 @@ export default function NavBar() {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
 
                             {avatar_url ? (
-                                <img
-                                    className="rounded-full  w-8 h-8"
-                                    src={cdnUrl(avatar_url, 300, 300)}
-                                    alt={`Avatar ${username ?? username}`}
-                                />
+                    
+                                <Image  src={cdnUrl(avatar_url, 300, 300)}  alt={`Avatar ${username ?? username}`} width={32} height={32} className="rounded-full  w-8 h-8"/>
                             ) : (
                                 <UserIcon className="size-5" />
                             )}

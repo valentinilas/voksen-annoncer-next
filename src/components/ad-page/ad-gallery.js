@@ -5,6 +5,7 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
 
 import {MagnifyingGlassPlusIcon} from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 export default function SimpleGallery(props) {
     useEffect(() => {
@@ -34,7 +35,7 @@ export default function SimpleGallery(props) {
                     rel="noreferrer"
                 >
                     <MagnifyingGlassPlusIcon className="opacity-0 group-hover:opacity-100 size-8 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
-                    <img className="rounded-2xl  w-full object-cover aspect-square border-solid border-2 border-transparent group-hover:border-cherry-600 transition-colors" src={image.thumbnailURL} alt="" />
+                    <Image className="rounded-2xl  w-full object-cover aspect-square border-solid border-2 border-transparent group-hover:border-cherry-600 transition-colors" src={image.thumbnailURL} alt="" width={300} height={300} />
                 </a>
             ))}
         </div>

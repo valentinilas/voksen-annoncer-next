@@ -3,6 +3,7 @@ import { UserIcon, ChatBubbleLeftRightIcon, EnvelopeIcon, DevicePhoneMobileIcon,
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import { useTranslations } from "next-intl";
 import { calculateAge } from "@/utils/calculate-age/calculate-age";
+import Image from "next/image";
 
 export default function AdProfile({ profileData, currentSessionUser }) {
     const t = useTranslations();
@@ -16,10 +17,12 @@ export default function AdProfile({ profileData, currentSessionUser }) {
     return <>
         {avatar_url && (
             <div className="text-center mb-6">
-                <img
+                <Image
                     className="rounded-full border-4 border-neutral-content size-32 mx-auto mb-2"
                     src={cdnUrl(avatar_url, 300, 300)}
                     alt={`Avatar ${username}`}
+                    width={128}
+                    height={128}
                 />
                 <Label type="profile" className="justify-center" Icon={UserIcon}>
                     <span className="font-bold text-lg mb-1">{username}</span>
