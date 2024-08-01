@@ -15,7 +15,8 @@
         "log-out": "Log out",
         "sign-up": "Sign up",
         "create-ad": "Create ad",
-        "site-name": "Voksenannoncer"
+        "site-name": "Voksenannoncer",
+        "articles":"Articles"
     },
     "pagination": {
         "Page": "Page",

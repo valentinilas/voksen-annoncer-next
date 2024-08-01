@@ -39,12 +39,15 @@ export default function Footer() {
             </aside>
             <nav>
                 {/* <h6 className="footer-title">Account</h6> */}
+          
                 <Link className="link link-hover" href="/sign-in">{t("navigation.log-in")}</Link>
                 <Link className="link link-hover" href="/sign-up">{t("navigation.sign-up")}</Link>
 
             </nav>
             <nav>
                 {/* <h6 className="footer-title">Company</h6> */}
+                <Link className="link link-hover" href="/">{t("navigation.ads")}</Link>
+                <Link className="link link-hover" href="/articles">{t("navigation.articles")}</Link>
                 <Link href="/about">{t("navigation.about")}</Link>
                 <Link href="/support">{t("navigation.support")}</Link>
                 <Link href="/cookie-policy">{t("navigation.cookie-policy")}</Link>
