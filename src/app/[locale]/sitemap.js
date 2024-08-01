@@ -1,6 +1,7 @@
 import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
 import { fetchRegions } from "@/lib/fetchRegions";
+import { fetchAllArticles } from "@/lib/fetchAllArticles";
 
 const locales = ['en', 'da'];
 
@@ -10,6 +11,8 @@ export default async function Sitemap() {
     const { ads } = await fetchAllPublicAds();
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
+    const { articles } = await fetchAllArticles();
+    console.log(articles);
 
 
     const createLocalizedEntries = (path, options = {}) =>
@@ -48,6 +51,14 @@ export default async function Sitemap() {
         })
     );
 
+    // Articles
+    const articleEntries = articles.flatMap(({ slug, created_at }) =>
+        createLocalizedEntries(`/${slug}`, {
+            lastModified: new Date(created_at),
+            changeFrenquency: 'never'
+        })
+    );
+
     // Static pages
     const staticPages = [
         '/about',
@@ -73,6 +84,7 @@ export default async function Sitemap() {
         ...adEntries,
         ...categoryEntries,
         ...subCategoryEntries,
-        ...regionEntries
+        ...regionEntries,
+        ...articleEntries
     ]
 }
