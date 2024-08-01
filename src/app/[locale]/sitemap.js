@@ -12,7 +12,6 @@ export default async function Sitemap() {
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
-    console.log(articles);
 
 
     const createLocalizedEntries = (path, options = {}) =>
