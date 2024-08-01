@@ -120,7 +120,7 @@ export default function Filters({ categories, regions }) {
     <section className="bg-base-100 p-5  rounded-box shadow-sm">
       <div className="flex flex-col  gap-4 items-start justify-start">
         <div className="filter-group rounded-md w-full">
-          <label for="search" className="font-bold mb-2 block">{t("filters.Search")}</label>
+          <label htmlFor="search" className="font-bold mb-2 block">{t("filters.Search")}</label>
           <input
             id="search"
             name="search"
@@ -134,7 +134,7 @@ export default function Filters({ categories, regions }) {
         </div>
         <div className="filter-group w-full">
           <>
-            <label for="location" className="font-bold mb-2 block">{t("filters.Location")}</label>
+            <label htmlFor="location" className="font-bold mb-2 block">{t("filters.Location")}</label>
             <select
               id="location"
               name="location"
@@ -150,7 +150,7 @@ export default function Filters({ categories, regions }) {
         </div>
         <div className="filter-group w-full">
           <>
-            <label for="category" className="font-bold mb-2 block">{t("filters.Category")}</label>
+            <label htmlFor="category" className="font-bold mb-2 block">{t("filters.Category")}</label>
             <select
               name="category"
               id="category"
@@ -168,7 +168,7 @@ export default function Filters({ categories, regions }) {
 
         <div className="filter-group w-full">
           <>
-            <label for="subcategory" className="font-bold mb-2 block">{t("filters.Sub-category")}</label>
+            <label htmlFor="subcategory" className="font-bold mb-2 block">{t("filters.Sub-category")}</label>
             <select
               name="subcategory"
               id="subcategory"
