@@ -71,7 +71,7 @@ export default async function Article({ params }) {
           
                <Image
                    src={summary_image}
-                   alt=""
+                   alt={title}
                    width={summary_image_width}
                    height={summary_image_height}
                    // layout="responsive"
