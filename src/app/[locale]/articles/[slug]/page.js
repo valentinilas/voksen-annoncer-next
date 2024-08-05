@@ -34,6 +34,7 @@ const components = {
     p: ({node, ...props}) => <p className="my-2" {...props} />,
     ul: ({node, ...props}) => <ul className="list-disc list-inside my-2 pl-8" {...props} />,
     ol: ({node, ...props}) => <ol className="list-decimal list-outside my-2 pl-8" {...props} />,
+    li: ({node, ...props}) => <li className="my-1" {...props} />,
   };
 
 
