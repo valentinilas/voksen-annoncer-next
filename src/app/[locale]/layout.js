@@ -1,7 +1,7 @@
 
 import "./globals.css";
 
-import { GoogleAnalytics } from "@/components/GoogleAnalytics/GoogleAnalytics";
+import { GoogleAnalyticsTrack } from "@/components/GoogleAnalytics/GoogleAnalytics";
 
 import { NextIntlClientProvider } from 'next-intl';
 import { UserProvider } from "@/lib/userContextProvider";
@@ -15,7 +15,7 @@ import { DrawerMenu } from "@/components/drawer-menu/drawer-menu";
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
 // import { GoogleAnalytics } from '@next/third-parties/google';
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import Script from 'next/script';
 
@@ -50,12 +50,14 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 strategy="beforeInteractive"
                             >
                             </Script>
-                            <GoogleTagManager gtmId="GTM-K9P4CJ8N" />
-                           
+                            {/* <GoogleTagManager gtmId="GTM-K9P4CJ8N" /> */}
+                            <GoogleAnalytics gaId="G-JN6QV704E2" />
 
                         </head>
                         <body className="bg-base-300 min-h-screen">
-                        <GoogleAnalytics />
+                        <GoogleAnalyticsTrack />
+                        
+
                             <div className="drawer drawer-end">
 
                                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export function GoogleAnalytics() {
+export function GoogleAnalyticsTrack() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
