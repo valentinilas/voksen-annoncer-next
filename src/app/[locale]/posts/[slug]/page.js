@@ -47,14 +47,12 @@ export default async function AdDetailPage({ params }) {
         fetchCurrentUser()
     ]);
     const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
-
     const { ad } = adData;
     const { user } = userData;
-    const { is_admin } = profile?.userProfile || {};
+    const { is_admin } = profile || {};
     const { uuid } = ad;
-
     const { data: comments } = await fetchComments(uuid);
-
+    console.log(is_admin);
 
 
     if (!is_admin && !ad.is_approved) {
