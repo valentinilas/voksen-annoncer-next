@@ -1,6 +1,8 @@
 
 import "./globals.css";
 
+import { GoogleAnalytics } from "@/components/GoogleAnalytics/GoogleAnalytics";
+
 import { NextIntlClientProvider } from 'next-intl';
 import { UserProvider } from "@/lib/userContextProvider";
 import { ThemeProvider } from "@/lib/themeContextProvider";
@@ -53,6 +55,7 @@ export default async function RootLayout({ children, params: { locale } }) {
 
                         </head>
                         <body className="bg-base-300 min-h-screen">
+                        <GoogleAnalytics />
                             <div className="drawer drawer-end">
 
                                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
