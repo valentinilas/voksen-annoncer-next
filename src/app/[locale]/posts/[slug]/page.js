@@ -17,13 +17,20 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 
 
 export async function generateMetadata({ params, searchParams }, parent) {
-
+    console.log('params', params);
     try {
         const { ad } = await fetchPublicSingleAd(params.slug);
 
         return {
             title: ad.title + ' | Voksenannoncer',
-            description: ad.description,
+            description: ad.description.slice(0, 150),
+            alternates: {
+                canonical: `https://voksen-annoncer.com/${params.locale}/posts/${params.slug}`,
+                languages: {
+                    'en': `https://voksen-annoncer.com/en/posts/${params.slug}`,
+                    'da': `https://voksen-annoncer.com/da/posts/${params.slug}`
+                },
+            },
             openGraph: {
                 images: [ad.ad_images[0]?.image_url || ''],
             },

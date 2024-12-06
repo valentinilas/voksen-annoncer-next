@@ -17,6 +17,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
             openGraph: {
                 images: [article.summary_image || ''],
             },
+            alternates: {
+                canonical: `https://voksen-annoncer.com/${params.locale}/articles/${params.slug}`,
+                languages: {
+                    'en': `https://voksen-annoncer.com/en/articles/${params.slug}`,
+                    'da': `https://voksen-annoncer.com/da/articles/${params.slug}`
+                },
+            },
 
         };
     } catch (error) {
