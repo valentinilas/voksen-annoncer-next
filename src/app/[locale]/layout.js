@@ -28,8 +28,8 @@ export const metadata = {
     alternates: {
         canonical: 'https://voksen-annoncer.com',
         languages: {
-          'en': '/en',
-          'da': '/da',
+          'en': 'https://voksen-annoncer.com/en',
+          'da': 'https://voksen-annoncer.com/da',
         },
       },
 };
