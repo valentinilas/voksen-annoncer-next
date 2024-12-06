@@ -29,7 +29,7 @@ export default function SeoSiteDescriptor() {
         })}</p>
         <p className="mb-4">
             {t.rich("p4", {
-                emailLink: (chunks) => (<a className="link" href="mailto:support@voksen-annoncer.com">{chunks}</a>
+                emailLink: (chunks) => (<a className="link" href="mailto:voksenannoncer@gmail.com">{chunks}</a>
                 )
             })}
         </p>
