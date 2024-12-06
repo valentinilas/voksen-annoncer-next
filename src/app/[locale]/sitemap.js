@@ -29,7 +29,7 @@ export default async function Sitemap() {
 
     // Ads
     const adEntries = ads.flatMap(({ slug, created_at }) =>
-        createLocalizedEntries(`/${slug}`, {
+        createLocalizedEntries(`/posts/${slug}`, {
             lastModified: new Date(created_at),
             changeFrenquency: 'never'
         })
