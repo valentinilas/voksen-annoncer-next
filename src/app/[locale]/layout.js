@@ -19,6 +19,11 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 import Script from 'next/script';
 
+// Vercel
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
+
 
 
 
@@ -59,7 +64,8 @@ export default async function RootLayout({ children, params: { locale } }) {
                             </Script>
                             {/* <GoogleTagManager gtmId="GTM-K9P4CJ8N" /> */}
                             <GoogleAnalytics gaId="G-JN6QV704E2" />
-
+                            <Analytics/>
+                            <SpeedInsights/>
                         </head>
                         <body className="bg-base-300 min-h-screen">
                         <GoogleAnalyticsTrack />
