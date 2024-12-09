@@ -10,7 +10,7 @@ import { createServerValidationSchema } from '@/app/[locale]/sign-up/validation-
 
 
 export async function signup(formData) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
 

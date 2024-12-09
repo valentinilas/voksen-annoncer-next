@@ -7,10 +7,11 @@ import ReactMarkdown from 'react-markdown';
 import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata({params}) {
+    const {slug, locale} = await params;
 
     try {
-        const { article } = await fetchSingleArticle(params.slug);
+        const { article } = await fetchSingleArticle(slug);
         return {
             title: article.title + ' | Voksenannoncer',
             description: article.summary,
@@ -18,10 +19,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
                 images: [article.summary_image || ''],
             },
             alternates: {
-                canonical: `https://voksen-annoncer.com/${params.locale}/articles/${params.slug}`,
+                canonical: `https://voksen-annoncer.com/${locale}/articles/${slug}`,
                 languages: {
-                    'en': `https://voksen-annoncer.com/en/articles/${params.slug}`,
-                    'da': `https://voksen-annoncer.com/da/articles/${params.slug}`
+                    'en': `https://voksen-annoncer.com/en/articles/${slug}`,
+                    'da': `https://voksen-annoncer.com/da/articles/${slug}`
                 },
             },
 
@@ -45,11 +46,12 @@ const components = {
   };
 
 
-export default async function Article({ params }) {
+export default async function Article({params}) {
+    const {slug} = await params;
 
 
     const [articleData] = await Promise.all([
-        fetchSingleArticle(params.slug),
+        fetchSingleArticle(slug),
     ]);
 
     const { article } = articleData;
@@ -92,6 +94,4 @@ export default async function Article({ params }) {
 
         </article>
     </>
-
-
 }

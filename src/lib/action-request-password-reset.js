@@ -5,7 +5,7 @@ import { createServerValidationSchema } from '@/app/[locale]/password-reset/vali
 import { getTranslations } from 'next-intl/server';
 
 export async function requestPasswordReset(formData) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
 

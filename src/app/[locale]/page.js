@@ -3,14 +3,17 @@ import { fetchCategories } from "@/lib/fetchCategories";
 import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
-import Link from "next/link";
+
+import {Link} from '@/i18n/routing';
+
 import { getTranslations } from "next-intl/server";
 import IntroBanner from "@/components/intro-banner/intro-banner";
 import SeoSiteDescriptor from "@/components/seo-site-descriptor/seoSiteDescriptor";
 import Button from "@/components/button/button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-export default async function Ads({ searchParams }) {
+export default async function Ads(props) {
+    const searchParams = await props.searchParams;
     const t = await getTranslations();
     const pageSize = 10;
     const { category, subcategory, region, search, page = 1 } = searchParams;

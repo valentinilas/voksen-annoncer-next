@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import { fetchCurrentUser } from "./fetchCurrentUser";
 
 export async function fetchDashboardAds() {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const currentUser = await fetchCurrentUser();
 

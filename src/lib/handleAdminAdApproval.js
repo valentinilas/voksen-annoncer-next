@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from 'next/cache';
 
 export async function handleAdminAdApproval(ad) {
-    const supabase = createClient();
+    const supabase = await createClient();
     try {
         const newStatus = !ad.is_approved;
         const { error } = await supabase

@@ -3,7 +3,7 @@ import { cdnUrl } from "@/utils/imagekit/cdn-url";
 
 export const fetchPublicSingleAd = async (slug) => {
 
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         const { data: ad, error } = await supabase

@@ -3,37 +3,36 @@ import createMiddleware from 'next-intl/middleware';
 import { updateSession } from '@/utils/supabase/middleware';
 import { NextResponse } from 'next/server';
 
-// Create the next-intl middleware
+// Define routing configuration for next-intl
 const intlMiddleware = createMiddleware({
   locales: ['da', 'en'],
   localeDetection: true,
   defaultLocale: 'da',
-  LocalePrefix: 'always'
+  LocalePrefix: 'always',
 });
 
+// The combined middleware function
 export async function middleware(request) {
-  // First, run the internationalization middleware
+  // Run the internationalization middleware
   const intlResponse = intlMiddleware(request);
 
-  // If intlMiddleware returns a response, we need to check if it's a redirect or other early return
+  // Check if intlMiddleware resulted in a response (e.g., a redirect)
   if (intlResponse) {
     return intlResponse;
   }
 
-  // Then, run the session update middleware
+  // Run custom session update logic
   const sessionResponse = await updateSession(request);
 
-  // Return the response from session middleware
+  // If sessionResponse exists, return it; otherwise, proceed to the next middleware or route handler
   return sessionResponse || NextResponse.next();
 }
 
-// Define a combined matcher
+// Configuration for the matcher
 export const config = {
   matcher: [
-    '/',
-    '/(da|en)/:path*',
+    '/', 
+    '/(da|en)/:path*', 
     '/((?!_next/static|_next/image|favicon.ico|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-    // '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-
   ],
 };

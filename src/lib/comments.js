@@ -4,7 +4,7 @@ import { createServerValidationSchema } from "@/components/ad-page/ad-comment-va
 import { getTranslations } from 'next-intl/server';
 
 export const fetchComments = async (post_id) => {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         const { data, error } = await supabase
@@ -29,7 +29,7 @@ export const fetchComments = async (post_id) => {
 
 
 export async function addComment(post_id, content, parent_comment_id = null) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const t = await getTranslations();
     const validationSchema = createServerValidationSchema(t);
 

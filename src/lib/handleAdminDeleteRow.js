@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from 'next/cache';
 
 export async function handleAdminDeleteRow(adId) {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         // Fetch ad images to be deleted

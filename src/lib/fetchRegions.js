@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 
 export const fetchRegions = async () => {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         let { data, error } = await supabase

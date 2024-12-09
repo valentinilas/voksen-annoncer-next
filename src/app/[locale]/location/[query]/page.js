@@ -7,7 +7,8 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata(props, parent) {
+    const params = await props.params;
     const t = await getTranslations();
     const { regions } = await fetchRegions();
     const searchRegion = regions.find((region) => region.slug === params.query);
@@ -15,10 +16,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name)})}`,
     };
-
 }
 
-export default async function RegionPage({ params, searchParams }) {
+export default async function RegionPage(props) {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
 
     const { regions } = await fetchRegions();
 

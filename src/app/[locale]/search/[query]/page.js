@@ -5,17 +5,19 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata(props, parent) {
+    const params = await props.params;
     const t = await getTranslations();
 
     return {
         title: `${t("search-results.result-title", { term: decodeURIComponent(params.query) })}`,
 
     };
-
 }
 
-export default async function SearchPage({ params, searchParams }) {
+export default async function SearchPage(props) {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
 
     const searchTerm = params.query;
     const t = await getTranslations();
