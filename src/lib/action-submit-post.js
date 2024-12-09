@@ -23,7 +23,7 @@ const MAX_FILE_SIZE = 2 * 1024 * 1024;
 const supabase = createClient();
 
 // Helper function to handle image upload
-const handleImageUpload = async (file) => {
+const handleImageUpload = async (file, supabase) => {
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const filePath = `ad-images/${fileName}`;
@@ -55,7 +55,7 @@ const handleImageUpload = async (file) => {
 };
 
 // Helper function to get public URL of uploaded image
-const getPublicUrl = (filePath) => {
+const getPublicUrl = (filePath, supabase) => {
     const { data, error } = supabase.storage.from('voksen-annoncer').getPublicUrl(filePath);
     if (error) {
         console.error('Error getting public URL:', error);
@@ -65,6 +65,7 @@ const getPublicUrl = (filePath) => {
 };
 
 export async function submitPost(formData) {
+    const supabase = await createClient(); // Create the client in the request context
 
 
     // Extract form data
@@ -103,12 +104,12 @@ export async function submitPost(formData) {
         // Upload files and get their URLs along with dimensions
         const imageDetails = await Promise.all(
             images.map(async (image) => {
-                const uploadResult = await handleImageUpload(image);
+                const uploadResult = await handleImageUpload(image, supabase);
                 if (uploadResult?.error) {
                     throw new Error(uploadResult.error);
                 }
 
-                const publicUrl = getPublicUrl(uploadResult.filePath);
+                const publicUrl = getPublicUrl(uploadResult.filePath, supabase);
                 if (!publicUrl) {
                     throw new Error('Failed to get public URL for uploaded image.');
                 }
