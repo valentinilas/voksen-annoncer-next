@@ -7,9 +7,19 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     return {
         title: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+        alternates: {
+            canonical: `https://voksen-annoncer.com/da/about`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/about`,
+                'da': `https://voksen-annoncer.com/da/about`
+            },
+        },
+
     };
 
 }
+
+
 export default function About() {
     const t = useTranslations();
 

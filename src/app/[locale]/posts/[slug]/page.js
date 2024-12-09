@@ -17,7 +17,7 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    console.log('params', params);
+
     try {
         const { ad } = await fetchPublicSingleAd(params.slug);
 
