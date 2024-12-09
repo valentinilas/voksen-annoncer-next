@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/client";
 
 export async function incrementPageViews(page_slug) {
-    const supabase = createClient();
+    const supabase = await createClient();
 
 
     try {

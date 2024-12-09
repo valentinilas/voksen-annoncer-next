@@ -6,7 +6,7 @@ import { getTranslations } from "next-intl/server";
 
 export const handleProfileUpdate = async (formData, profileId) => {
 
-    const supabase = createClient();
+    const supabase = await createClient();
     const t = await getTranslations();
     const serverValidationSchema = createProfileServerValidationSchema(t);
 

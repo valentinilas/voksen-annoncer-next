@@ -6,7 +6,7 @@ import { createAvatarServerValidationSchema } from "@/components/dashboard/avata
 import { getTranslations } from "next-intl/server";
 
 export const handleAvatarUpload = async (formData) => {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const file = formData.get('image');
     const profileId = formData.get('profileId');

@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 
 
 export const fetchPostAnalytics = async (page_slug) => {
-    const supabase = createClient();
+    const supabase = await createClient();
     try {
         const { data, error } = await supabase
             .from('ad_analytics')

@@ -7,7 +7,8 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata(props, parent) {
+    const params = await props.params;
     const t = await getTranslations();
     const { categories } = await fetchCategories();
     const { subCategories } = await fetchSubCategories();
@@ -23,10 +24,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
         title: `${t("categories.category-title", { term: t(translationKey) })}`,
 
     };
-
 }
 
-export default async function CategoryPage({ params, searchParams }) {
+export default async function CategoryPage(props) {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
 
     const { categories } = await fetchCategories();
     const { subCategories } = await fetchSubCategories();

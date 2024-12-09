@@ -1,6 +1,7 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-
+ 
 const withNextIntl = createNextIntlPlugin();
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,8 +20,17 @@ const nextConfig = {
             hostname: 'ik.imagekit.io',
             port: '',
             pathname: '/wo0srdcz6/**',
-          }],
+          },
+          {
+            protocol: 'https',
+            hostname: 'ndinpokdjajhdzzpbzic.supabase.co',
+            port: '',
+            pathname: '/storage/**',
+          },],
       },
 };
 
 export default withNextIntl(nextConfig);
+
+
+

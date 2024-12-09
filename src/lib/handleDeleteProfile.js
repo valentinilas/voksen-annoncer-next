@@ -8,7 +8,7 @@ import { handleLogout } from "./handle-log-out";
 import { fetchCurrentUser } from "./fetchCurrentUser";
 
 export const handleDeleteProfile = async () => {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         const { user } = await fetchCurrentUser();

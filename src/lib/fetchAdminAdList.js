@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 
 
 export const fetchAdminAdList =  async () => {
-    const supabase = createClient();
+    const supabase = await createClient();
 
 
     try {

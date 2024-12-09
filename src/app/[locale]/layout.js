@@ -4,9 +4,12 @@ import "./globals.css";
 import { GoogleAnalyticsTrack } from "@/components/GoogleAnalytics/GoogleAnalytics";
 
 import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+
 import { UserProvider } from "@/lib/userContextProvider";
 import { ThemeProvider } from "@/lib/themeContextProvider";
-import { getMessages } from 'next-intl/server';
 
 import Footer from "@/components/footer/footer";
 import NavBar from "@/components/navbar/navbar";
@@ -33,13 +36,30 @@ export const metadata = {
     alternates: {
         canonical: 'https://voksen-annoncer.com',
         languages: {
-          'en': 'https://voksen-annoncer.com/en',
-          'da': 'https://voksen-annoncer.com/da',
+            'en': 'https://voksen-annoncer.com/en',
+            'da': 'https://voksen-annoncer.com/da',
         },
-      },
+    },
 };
 
-export default async function RootLayout({ children, params: { locale } }) {
+export default async function RootLayout(props) {
+    const params = await props.params;
+
+    const {
+        locale
+    } = params;
+
+    const {
+        children
+    } = props;
+
+    // Ensure that the incoming `locale` is valid
+    if (!routing.locales.includes(locale)) {
+        notFound();
+    }
+
+    // Providing all messages to the client
+    // side is the easiest way to get started
     const messages = await getMessages();
 
     const { user } = await fetchCurrentUser();
@@ -51,7 +71,6 @@ export default async function RootLayout({ children, params: { locale } }) {
 
     return (
         <html lang={locale}>
-            <NextIntlClientProvider messages={messages}>
                 <UserProvider value={userContextValue}>
                     <ThemeProvider>
                         <head>
@@ -64,12 +83,14 @@ export default async function RootLayout({ children, params: { locale } }) {
                             </Script>
                             {/* <GoogleTagManager gtmId="GTM-K9P4CJ8N" /> */}
                             <GoogleAnalytics gaId="G-JN6QV704E2" />
-                            <Analytics/>
-                            <SpeedInsights/>
+                            <Analytics />
+                            <SpeedInsights />
                         </head>
                         <body className="bg-base-300 min-h-screen">
-                        <GoogleAnalyticsTrack />
-                        
+                        <NextIntlClientProvider messages={messages}>
+
+                            <GoogleAnalyticsTrack />
+
 
                             <div className="drawer drawer-end">
 
@@ -93,14 +114,14 @@ export default async function RootLayout({ children, params: { locale } }) {
                                 </div>
 
                             </div>
+                            </NextIntlClientProvider>
+
                         </body>
-                      
+
                     </ThemeProvider>
                 </UserProvider>
-            </NextIntlClientProvider>
         </html>
     );
-
 }
 
 

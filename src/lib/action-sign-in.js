@@ -7,7 +7,7 @@ import { createServerValidationSchema } from '@/app/[locale]/sign-in/validation-
 import { getTranslations } from 'next-intl/server';
 
 export async function login(formData) {
-    const supabase = createClient()
+    const supabase = await createClient()
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
 

@@ -2,7 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 export const fetchPublicAds = async (category, subcategory, region, search, page, pageSize) => {
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   try {
     let query = supabase

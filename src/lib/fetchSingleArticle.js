@@ -2,7 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 
 export const fetchSingleArticle = async (slug) => {
 
-    const supabase = createClient();
+    const supabase = await createClient();
 
     try {
         const { data: article, error } = await supabase

@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 
 export const fetchUserProfile = async (profileId) => {
-    const supabase = createClient();
+    const supabase = await createClient();
     try {
         const { data: userProfile, error } = await supabase
             .from('profiles')

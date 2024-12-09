@@ -16,19 +16,21 @@ import { fetchComments } from "@/lib/comments";
 import CommentList from "@/components/ad-page/ad-comment-list";
 
 
-export async function generateMetadata({ params, searchParams }, parent) {
+export async function generateMetadata({ params }) {
+    
+    const { slug, locale } = await  params
 
     try {
-        const { ad } = await fetchPublicSingleAd(params.slug);
+        const { ad } = await fetchPublicSingleAd(slug);
 
         return {
             title: ad.title + ' | Voksenannoncer',
             description: ad.description.slice(0, 150),
             alternates: {
-                canonical: `https://voksen-annoncer.com/${params.locale}/posts/${params.slug}`,
+                canonical: `https://voksen-annoncer.com/${locale}/posts/${slug}`,
                 languages: {
-                    'en': `https://voksen-annoncer.com/en/posts/${params.slug}`,
-                    'da': `https://voksen-annoncer.com/da/posts/${params.slug}`
+                    'en': `https://voksen-annoncer.com/en/posts/${slug}`,
+                    'da': `https://voksen-annoncer.com/da/posts/${slug}`
                 },
             },
             openGraph: {
@@ -45,12 +47,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
     }
 }
 
-export default async function AdDetailPage({ params }) {
+export default async function AdDetailPage({params}) {
+    const { slug } = await params;
 
 
     const t = await getTranslations();
     const [adData, userData] = await Promise.all([
-        fetchPublicSingleAd(params.slug),
+        fetchPublicSingleAd(slug),
         fetchCurrentUser()
     ]);
     const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
@@ -82,10 +85,10 @@ export default async function AdDetailPage({ params }) {
     return <>
         <section>
 
-            <ViewIncrementer slug={params.slug} />
+            <ViewIncrementer slug={slug} />
             <div className="grid grid-cols-12 gap-6">
                 <div className="bg-base-100 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
-                    <AdDetail data={ad} slug={params.slug} />
+                    <AdDetail data={ad} slug={slug} />
                 </div>
                 <div className="col-span-12 lg:col-span-4">
                     <AdProfile profileData={ad.profiles} currentSessionUser={user} />
@@ -96,6 +99,4 @@ export default async function AdDetailPage({ params }) {
             </div>
         </section>
     </>
-
-
 }
