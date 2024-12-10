@@ -24,7 +24,7 @@
 
 export const fetchAllArticles = async () => {
   try {
-    const res = await fetch('https://voksen-annoncer.com/api/posts');
+    const res = await fetch('https://cms.voksen-annoncer.com/api/posts');
     if (!res.ok) {
       throw new Error(`Failed to fetch articles: ${res.statusText}`);
     }

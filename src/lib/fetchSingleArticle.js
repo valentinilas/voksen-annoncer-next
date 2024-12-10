@@ -1,6 +1,6 @@
 export const fetchSingleArticle = async (slug) => {
     try {
-      const res = await fetch(`https://voksen-annoncer.com/api/posts?slug=${slug}`);
+      const res = await fetch(`https://cms.voksen-annoncer.com/api/posts?slug=${slug}`);
       
       // Check if the response is ok (status code 200)
       if (!res.ok) {
