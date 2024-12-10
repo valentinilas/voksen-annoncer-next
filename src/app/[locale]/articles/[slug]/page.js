@@ -76,7 +76,7 @@ export default async function Article({params}) {
                <p>{Summary}</p>
           
                <Image
-                   src={Image.url}
+                   src={`https://cms.voksen-annoncer.com${Image.url}`}
                    alt={Title}
                    width={Image.width}
                    height={Image.height}
