@@ -13,10 +13,10 @@ export async function generateMetadata({params}) {
     try {
         const { article } = await fetchSingleArticle(slug);
         return {
-            title: article.title + ' | Voksenannoncer',
-            description: article.summary,
+            title: article.Title + ' | Voksenannoncer',
+            description: article.Summary,
             openGraph: {
-                images: [article.summary_image || ''],
+                images: [article.Image.url || ''],
             },
             alternates: {
                 canonical: `https://voksen-annoncer.com/${locale}/articles/${slug}`,
@@ -47,16 +47,13 @@ const components = {
 
 
 export default async function Article({params}) {
-    const {slug} = await params;
+    const {Slug} = await params;
 
 
-    const [articleData] = await Promise.all([
-        fetchSingleArticle(slug),
-    ]);
 
-    const { article } = articleData;
-    const {username} = article.profiles;
+    const {article} = await fetchSingleArticle(Slug);
 
+    console.log( article);
 
     if(!article){
         return <>
@@ -70,25 +67,24 @@ export default async function Article({params}) {
         </>
     }
 
-    const { id, title, body, created_at, author, summary, summary_image, summary_image_width, summary_image_height } = article;
-
+    const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image } = article;
 
     return <>
         <article>
                 <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
-                <h1 className="text-4xl mb-5 ">{title}</h1>
-               <p>{summary}</p>
+                <h1 className="text-4xl mb-5 ">{Title}</h1>
+               <p>{Summary}</p>
           
                <Image
-                   src={summary_image}
-                   alt={title}
-                   width={summary_image_width}
-                   height={summary_image_height}
-                   // layout="responsive"
+                   src={Image.url}
+                   alt={Title}
+                   width={Image.width}
+                   height={Image.height}
+                   layout="responsive"
                    className="rounded-lg mx-auto size-full my-10"
                />
-               <ReactMarkdown className="prose prose-lg" components={components}>{body}</ReactMarkdown>
-               <p className="pt-10">{username} | {formatDate(created_at)} </p>
+               <ReactMarkdown className="prose prose-lg" components={components}>{BodyText}</ReactMarkdown>
+               <p className="pt-10">{Author} | {formatDate(createdAt)} </p>
                 </div>
                
 

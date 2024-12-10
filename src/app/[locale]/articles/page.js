@@ -32,19 +32,17 @@ export default async function Article({ params }) {
         </>
     }
 
-
-
     return <>
         <h1 class="text-2xl mb-5">Artikler</h1>
        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {articles.map(article=>{
-            return <Link  href={`/articles/${article.slug}`} key={article.id} className="article-card">
+            return <Link  href={`/articles/${article.Slug}`} key={article.id} className="article-card">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat rounded-box mb-5">
-                <Image src={article.summary_image} alt={article.title} width={600} height={600} />
+                <Image src={article.Image.url} alt={article.Title} width={article.Image.width} height={article.Image.height} />
                 <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-cherry-200 bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-20"></div></div>
-            <h2 className="text-lg font-bold">{article.title}</h2>
-            <p>{formatDate(article.created_at)}</p>
+            <h2 className="text-lg font-bold">{article.Title}</h2>
+            <p>{formatDate(article.createdAt)}</p>
           </Link>
    
         })}
