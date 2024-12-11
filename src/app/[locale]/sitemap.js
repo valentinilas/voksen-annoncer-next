@@ -13,7 +13,6 @@ export default async function Sitemap() {
     const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
 
-
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
@@ -58,9 +57,9 @@ export default async function Sitemap() {
     );
 
     // Articles
-    const articleEntries = articles.flatMap(({ slug, created_at }) =>
-        createDanishEntries(`/articles/${slug}`, {
-            lastModified: new Date(created_at),
+    const articleEntries = articles.flatMap(({ Slug, createdAt }) =>
+        createDanishEntries(`/articles/${Slug}`, {
+            lastModified: new Date(createdAt),
             changeFrenquency: 'never'
         })
     );
