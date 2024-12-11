@@ -9,7 +9,7 @@ export default function ErrorPage() {
   return (
     <div text-center>
      
-      <div role="alert" class="alert alert-error">
+      <div role="alert" className="alert alert-error">
       <ExclamationCircleIcon className="size-6 " />
         <span>Sorry, something went wrong: {message}</span>
       </div>

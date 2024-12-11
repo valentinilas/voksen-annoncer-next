@@ -26,6 +26,12 @@ const nextConfig = {
             hostname: 'ndinpokdjajhdzzpbzic.supabase.co',
             port: '',
             pathname: '/storage/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'cms.voksen-annoncer.com', 
+            port: '',
+            pathname: '/api/media/**',  // Assuming your images are in the '/media' path or adjust it as needed
           },],
       },
 };

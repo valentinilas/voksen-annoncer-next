@@ -7,6 +7,8 @@ import ReactMarkdown from 'react-markdown';
 import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
 
+import { cdnUrl } from "@/utils/imagekit/cdn-url";
+
 export async function generateMetadata({params}) {
     const {slug, locale} = await params;
 
@@ -67,7 +69,8 @@ export default async function Article({params}) {
         </>
     }
 
-    const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image } = article;
+    const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image:articleImage } = article;
+    console.log(articleImage);
 
     return <>
         <article>
@@ -76,10 +79,10 @@ export default async function Article({params}) {
                <p>{Summary}</p>
           
                <Image
-                   src={`https://cms.voksen-annoncer.com${Image.url}`}
-                   alt={Title}
-                   width={Image.width}
-                   height={Image.height}
+                   src={cdnUrl(`https://cms.voksen-annoncer.com${articleImage?.url}`,800,800)}
+                   alt={articleImage.alt}
+                   width={articleImage.width}
+                   height={articleImage.height}
                    layout="responsive"
                    className="rounded-lg mx-auto size-full my-10"
                />
