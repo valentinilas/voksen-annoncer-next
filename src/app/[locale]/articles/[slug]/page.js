@@ -6,11 +6,12 @@ import { fetchSingleArticle } from "@/lib/fetchSingleArticle";
 import ReactMarkdown from 'react-markdown';
 import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
+import DefaultImage from "@/components/default-image/default-image";
 
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 
-export async function generateMetadata({params}) {
-    const {slug, locale} = await params;
+export async function generateMetadata({ params }) {
+    const { slug, locale } = await params;
 
     try {
         const { article } = await fetchSingleArticle(slug);
@@ -18,7 +19,7 @@ export async function generateMetadata({params}) {
             title: article.Title + ' | Voksenannoncer',
             description: article.Summary,
             openGraph: {
-                images: [article.Image.url || ''],
+                images: [article.Image?.url || ''],
             },
             alternates: {
                 canonical: `https://voksen-annoncer.com/${locale}/articles/${slug}`,
@@ -39,25 +40,26 @@ export async function generateMetadata({params}) {
 }
 
 const components = {
-    h1: ({node, ...props}) => <h1 className="text-3xl font-bold my-4" {...props} />,
-    h2: ({node, ...props}) => <h2 className="text-2xl font-semibold my-3" {...props} />,
-    p: ({node, ...props}) => <p className="my-2" {...props} />,
-    ul: ({node, ...props}) => <ul className="list-disc list-inside my-2 pl-8" {...props} />,
-    ol: ({node, ...props}) => <ol className="list-decimal list-outside my-2 pl-8" {...props} />,
-    li: ({node, ...props}) => <li className="my-1" {...props} />,
-  };
+    h1: ({ node, ...props }) => <h1 className="text-3xl font-bold my-4" {...props} />,
+    h2: ({ node, ...props }) => <h2 className="text-2xl font-semibold my-3" {...props} />,
+    h3: ({ node, ...props }) => <h3 className="text-xl font-semibold my-2" {...props} />,
+    p: ({ node, ...props }) => <p className="my-2" {...props} />,
+    ul: ({ node, ...props }) => <ul className="list-disc list-inside my-2 pl-8" {...props} />,
+    ol: ({ node, ...props }) => <ol className="list-decimal list-outside my-2 pl-8" {...props} />,
+    li: ({ node, ...props }) => <li className="my-1" {...props} />,
+};
 
 
-export default async function Article({params}) {
-    const {Slug} = await params;
+export default async function Article({ params }) {
+    const { Slug } = await params;
 
 
 
-    const {article} = await fetchSingleArticle(Slug);
+    const { article } = await fetchSingleArticle(Slug);
 
-    console.log( article);
+    console.log(article);
 
-    if(!article){
+    if (!article) {
         return <>
             <article>
                 <div className="bg-base-100 p-20 rounded-box shadow-sm">
@@ -69,27 +71,28 @@ export default async function Article({params}) {
         </>
     }
 
-    const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image:articleImage } = article;
+    const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image: articleImage } = article;
     console.log(articleImage);
 
     return <>
         <article>
-                <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
+            <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
                 <h1 className="text-4xl mb-5 ">{Title}</h1>
-               <p>{Summary}</p>
-          
-               <Image
-                   src={cdnUrl(`https://cms.voksen-annoncer.com${articleImage?.url}`,800,800)}
-                   alt={articleImage.alt}
-                   width={articleImage.width}
-                   height={articleImage.height}
-                   layout="responsive"
-                   className="rounded-lg mx-auto size-full my-10"
-               />
-               <ReactMarkdown className="prose prose-lg" components={components}>{BodyText}</ReactMarkdown>
-               <p className="pt-10">{Author} | {formatDate(createdAt)} </p>
-                </div>
-               
+                <p>{Summary}</p>
+                {articleImage ?
+                    <Image
+                        src={cdnUrl(`https://cms.voksen-annoncer.com${articleImage?.url}`, 800, 800)}
+                        alt={articleImage.alt}
+                        width={articleImage.width}
+                        height={articleImage.height}
+                        layout="responsive"
+                        className="rounded-lg mx-auto size-full my-10"
+                    /> : <DefaultImage />}
+
+                <ReactMarkdown className="prose prose-lg" components={components}>{BodyText}</ReactMarkdown>
+                <p className="pt-10">{Author} | {formatDate(createdAt)} </p>
+            </div>
+
 
         </article>
     </>

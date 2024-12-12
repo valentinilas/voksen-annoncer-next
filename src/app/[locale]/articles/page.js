@@ -4,6 +4,7 @@ import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
 import Link from "next/link";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
+import DefaultImage from "@/components/default-image/default-image";
 
 export async function generateMetadata({ params, searchParams }, parent) {
 
@@ -40,7 +41,7 @@ export default async function Article({ params }) {
         {articles.map(article=>{
             return <Link  href={`/articles/${article.Slug}`} key={article.id} className="article-card">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat rounded-box mb-5">
-                <Image src={cdnUrl(`https://cms.voksen-annoncer.com${article.Image.url}`,400,400)} alt={article.Title} width={article.Image.width} height={article.Image.height} />
+                {article.Image ? <Image src={cdnUrl(`https://cms.voksen-annoncer.com${article.Image.url}`,400,400)} alt={article.Title} width={article.Image.width} height={article.Image.height} /> : <DefaultImage/>}
                 <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-cherry-200 bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-20"></div></div>
             <h2 className="text-lg font-bold">{article.Title}</h2>
             <p>{formatDate(article.createdAt)}</p>
