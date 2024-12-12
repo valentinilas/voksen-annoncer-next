@@ -4,6 +4,7 @@
         "description": "På Voksenannoncer kan du oprette gratis annoncer til din klinik, massagevirksomhed, find sugardating, escort"
     },
     "navigation": {
+        "home":"Home",
         "menu": "Menu",
         "admin": "Admin",
         "profile": "Profile",

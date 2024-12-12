@@ -7,8 +7,11 @@ import ReactMarkdown from 'react-markdown';
 import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
 import DefaultImage from "@/components/default-image/default-image";
+import { getTranslations } from "next-intl/server";
+
 
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
+import Link from "next/link";
 
 export async function generateMetadata({ params }) {
     const { slug, locale } = await params;
@@ -51,6 +54,8 @@ const components = {
 
 
 export default async function Article({ params }) {
+    const t = await getTranslations();
+
     const { Slug } = await params;
 
 
@@ -76,6 +81,9 @@ export default async function Article({ params }) {
 
     return <>
         <article>
+        <div className="max-w-4xl mx-auto  pb-3 ">
+            <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
+        </div>
             <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
                 <h1 className="text-4xl mb-5 ">{Title}</h1>
                 <p>{Summary}</p>
