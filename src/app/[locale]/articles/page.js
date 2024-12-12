@@ -35,7 +35,7 @@ export default async function Article({ params }) {
 
     return <>
         <h1 className="text-2xl mb-5">Artikler</h1>
-       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
         {articles.map(article=>{
             return <Link  href={`/articles/${article.Slug}`} key={article.id} className="article-card">
