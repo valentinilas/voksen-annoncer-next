@@ -27,7 +27,8 @@ export const fetchAdminAdList =  async () => {
                         slug
                     )    
                 `)
-            .order('created_at', { ascending: false });
+            .order('created_at', { ascending: false })
+            .range(0, 9); // Fetch the latest 10 ads
 
         const { data: ads, error } = await query;
 
