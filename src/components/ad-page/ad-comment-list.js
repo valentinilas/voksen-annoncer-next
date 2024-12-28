@@ -6,6 +6,8 @@ import { formatCommentDate } from '@/utils/formatter/format-comment-date';
 import CommentForm from './ad-comment-form';
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
+import DefaultImage from '../default-image/default-image';
+
 
 
 export default function CommentList({ initialComments, ad, adId, user }) {
@@ -86,7 +88,7 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     return (
       <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-100 p-5 rounded-box shadow-sm mb-5" : ''}>
         <div className="flex items-center space-x-3 mb-5">
-          <Image src={avatar_url} alt={username} width={40} height={40} className="w-10 h-10 rounded-full" />
+          {avatar_url ? (<Image src={avatar_url} alt={username} width={40} height={40} className="w-10 h-10 rounded-full" />) : <DefaultImage iconSize="size-4" width="w-10" height="h-10" rounded="rounded-full" />}
 
           <div>
             <p className="font-bold">{username}</p>
