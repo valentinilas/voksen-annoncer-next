@@ -19,7 +19,7 @@ export const fetchPublicAds = async (category, subcategory, region, search, page
       .order('created_at', { ascending: false })
       .range((Number(page) - 1) * pageSize, Number(page) * pageSize - 1);
 
-    query = query.limit(100); // Example limit
+    // query = query.limit(100); // Example limit
 
 
 

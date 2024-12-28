@@ -34,7 +34,7 @@ export default async function Ads(props) {
 
         {/* <IntroBanner /> */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
-            <h1 className="text-2xl">{t("navigation.ads")} ({ads.length})</h1>
+            <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1>
             <Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button>
         </div>
 
