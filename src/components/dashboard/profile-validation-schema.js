@@ -47,6 +47,8 @@ export const createProfileValidationSchema = (t) => {
             .required(t('validation.required')),
         sms_visible: Yup.boolean()
             .required(t('validation.required')),
+        age_visible: Yup.boolean()
+            .required(t('validation.required')),
 
     });
 }

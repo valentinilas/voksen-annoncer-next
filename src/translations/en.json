@@ -137,6 +137,7 @@
         "phone-visibility": "Phone visibility",
         "sms": "SMS",
         "sms-visibility": "SMS Visibility",
+        "age-visibility": "Age Visibility",
         "hidden": "Hidden",
         "visible": "Visible",
         "uploading": "Uploading...",
@@ -144,6 +145,7 @@
         "user-hidden-email": "The user has chosen to hide their e-mail",
         "user-hidden-phone": "The user has chosen to hide their phone number",
         "user-hidden-sms": "The user has chosen to hide their SMS number",
+        "user-hidden-age": "The user has chosen to hide their age",
         "log-in-contact": "You must be logged in to see the contact information."
     },
     "validation": {

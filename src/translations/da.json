@@ -136,7 +136,8 @@
         "phone": "Telefon",
         "phone-visibility": "Telefonsynlighed",
         "sms": "SMS",
-        "sms-visibility": "SMS-synlighed",
+        "sms-visibility": "alder-synlighed",
+        "age-visibility": "Alder-synlighed",
         "hidden": "Skjult",
         "visible": "Synlig",
         "uploading": "Uploader...",
@@ -144,6 +145,7 @@
         "user-hidden-email": "Brugeren har valgt at skjule deres e-mail",
         "user-hidden-phone": "Brugeren har valgt at skjule deres telefonnummer",
         "user-hidden-sms": "Brugeren har valgt at skjule deres SMS-nummer",
+        "user-hidden-age": "Brugeren har valgt at skjule deres alder",
         "log-in-contact": "Du skal være logget ind for at se kontaktoplysningerne."
     },
     "validation": {

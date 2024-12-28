@@ -49,7 +49,7 @@ export default function ProfileDetail({ currentUser, profile, regions, genders }
         resolver: yupResolver(validationSchema)
     });
 
-    const fieldsToLoad = ["username", "birthday", "bio", "gender_id", "region_id", "contact_email", "contact_phone", "contact_sms", "email_visible", "phone_visible", "sms_visible"];
+    const fieldsToLoad = ["username", "birthday", "bio", "gender_id", "region_id", "contact_email", "contact_phone", "contact_sms", "email_visible", "phone_visible", "sms_visible", "age_visible"];
 
     useEffect(() => {
         if (profile) {
@@ -194,8 +194,24 @@ export default function ProfileDetail({ currentUser, profile, regions, genders }
                     />
                     {errors?.birthday && <p className="error text-red-500 text-sm mt-2">{errors?.birthday?.message}</p>}
                 </div>
+                 {/* AGE Visibility */}
+                 <div className="mt-4">
+                    <label className="label cursor-pointer">
+                        <span className="label-text">{t("profile.age-visibility")}</span>
+                        <input
+                            name="age_visible"
+                            type="checkbox"
+                            className="checkbox"
+                            disabled={!editing}
+                            {...register("age_visible")}
+                        />
+                        {errors?.age_visible && <p className="error text-red-500 text-sm mt-2">{errors?.age_visible?.message}</p>}
+                    </label>
+                </div>
 
-                {/* Birthday */}
+
+
+                {/* BIo */}
                 <div className="mt-4">
                     <label htmlFor="bio" className="block  text-sm font-bold mb-2">{t("profile.bio")}</label>
                     <textarea
@@ -208,6 +224,8 @@ export default function ProfileDetail({ currentUser, profile, regions, genders }
                     />
                     {errors?.bio && <p className="error text-red-500 text-sm mt-2">{errors?.bio?.message}</p>}
                 </div>
+
+                
 
                 {/* Gender */}
                 <div className="mt-4">

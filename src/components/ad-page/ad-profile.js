@@ -9,7 +9,7 @@ export default function AdProfile({ profileData, currentSessionUser }) {
     const t = useTranslations();
     const isLoggedIn = currentSessionUser !== null;
 
-    const { avatar_url, username, bio, birthday, regions, genders, contact_email, contact_phone, contact_sms, email_visible, phone_visible, sms_visible } = profileData;
+    const { avatar_url, username, bio, birthday, regions, genders, contact_email, contact_phone, contact_sms, email_visible, phone_visible, sms_visible, age_visible } = profileData;
 
     const age = birthday ? calculateAge(new Date(birthday).getFullYear()) : null;
 
@@ -41,7 +41,7 @@ export default function AdProfile({ profileData, currentSessionUser }) {
             <Label type="profile" Icon={SparklesIcon}>
                 <span className="font-bold mb-1">{t("profile.age")}</span>
             </Label>
-            <span className="">{age}</span>
+            {age_visible ? (<span className="">{age}</span>) : <span className="">{t("profile.user-hidden-age")}</span>}
         </p>
         }
         <p className="mb-2 bg-base-200 p-4 rounded-box">
