@@ -1,6 +1,6 @@
 
 import { AdTable } from "@/components/admin/admin-ad-table";
-import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
+// import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
 import { AdminWrapper } from "@/components/admin/admin-wrapper";
 
 import { getTranslations } from 'next-intl/server';
@@ -17,7 +17,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function AdminPage() {
 
 
-    const { ads } = await fetchAdminAdList();
+    // const { ads } = await fetchAdminAdList();
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin-ads`);
+    const { ads } = await res.json();
+
+
 
     return (
         <>
