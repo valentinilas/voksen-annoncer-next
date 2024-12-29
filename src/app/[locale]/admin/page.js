@@ -19,7 +19,7 @@ export default async function AdminPage() {
 
     // const { ads } = await fetchAdminAdList();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin-ads`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`);
     const { ads } = await res.json();
 
 
