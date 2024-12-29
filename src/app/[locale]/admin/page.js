@@ -21,7 +21,7 @@ export default async function AdminPage() {
 
     let ads = [];
     try {
-        const url =`/api/get-admin-ads`;
+        const url =`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`;
         console.log(url);
         const res = await fetch(url);
         if (!res.ok) {
