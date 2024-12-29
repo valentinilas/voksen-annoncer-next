@@ -118,7 +118,8 @@
         "create-ad": "Create ad",
         "no-results": "No results found.",
         "views": "Views",
-        "New":"New"
+        "New":"New",
+        "start-here": "Start here"
     },
     "profile": {
         "no-profile": "No profile available.",

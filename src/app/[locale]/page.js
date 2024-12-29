@@ -11,6 +11,7 @@ import IntroBanner from "@/components/intro-banner/intro-banner";
 import SeoSiteDescriptor from "@/components/seo-site-descriptor/seoSiteDescriptor";
 import Button from "@/components/button/button";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 export default async function Ads(props) {
     const searchParams = await props.searchParams;
@@ -35,7 +36,7 @@ export default async function Ads(props) {
         {/* <IntroBanner /> */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1>
-            <Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button>
+            <div><span className="mr-[42] relative font-medium text-cherry-700">{t('ads.start-here')} <Image className="absolute top-0 left-full" src='/elements/arrow.svg' alt="Arrow" width="32" height="32" /></span><Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button></div>
         </div>
 
         <div className="grid grid-cols-12 gap-5">
