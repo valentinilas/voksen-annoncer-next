@@ -84,7 +84,7 @@ export default function NavBar() {
 
                             {avatar_url ? (
                     
-                                <Image  src={cdnUrl(avatar_url, 300, 300)}  alt={`Avatar ${username ?? username}`} width={32} height={32} className="rounded-full  w-8 h-8"/>
+                                <Image  src={cdnUrl(avatar_url, 48, 48)}  alt={`Avatar ${username ?? username}`} width={48} height={48} className="rounded-full  w-8 h-8"/>
                             ) : (
                                 <UserIcon className="size-5" />
                             )}
