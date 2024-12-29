@@ -13,6 +13,13 @@ const intlMiddleware = createMiddleware({
 
 // The combined middleware function
 export async function middleware(request) {
+  const { pathname } = request.nextUrl;
+
+  // Exclude API routes from the internationalization middleware
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
   // Run the internationalization middleware
   const intlResponse = intlMiddleware(request);
 

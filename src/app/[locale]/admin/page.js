@@ -21,7 +21,9 @@ export default async function AdminPage() {
 
     let ads = [];
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin-ads`);
+        const url =`/api/get-admin-ads`;
+        console.log(url);
+        const res = await fetch(url);
         if (!res.ok) {
             throw new Error(`Failed to fetch: ${res.status}`);
         }
