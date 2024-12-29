@@ -19,8 +19,17 @@ export default async function AdminPage() {
 
     // const { ads } = await fetchAdminAdList();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`);
-    const { ads } = await res.json();
+    let ads = [];
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin-ads`);
+        if (!res.ok) {
+            throw new Error(`Failed to fetch: ${res.status}`);
+        }
+        const data = await res.json();
+        ads = data.ads;
+    } catch (error) {
+        console.error('Error fetching admin ads:', error);
+    }
 
 
 
