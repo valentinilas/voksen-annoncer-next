@@ -117,7 +117,8 @@
         "delete": "Delete",
         "create-ad": "Create ad",
         "no-results": "No results found.",
-        "views": "Views"
+        "views": "Views",
+        "New":"New"
     },
     "profile": {
         "no-profile": "No profile available.",

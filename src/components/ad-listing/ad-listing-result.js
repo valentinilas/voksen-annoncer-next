@@ -12,7 +12,7 @@ export default function AdListingResult({ data }) {
     const t = useTranslations();
 
 
-    const {slug = "", uuid = "", title = "", created_at = null, description = "", ad_images = [], regions = [], ad_categories = [], ad_sub_categories = [] } = data;
+    const { slug = "", uuid = "", title = "", created_at = null, description = "", ad_images = [], regions = [], ad_categories = [], ad_sub_categories = [] } = data;
 
 
     function truncateText(text, maxLength) {
@@ -24,14 +24,24 @@ export default function AdListingResult({ data }) {
 
 
     return (<div>
-        <div className="bg-base-100 p-5 mb-2 rounded-box shadow-sm">
+        <div className="bg-base-100 p-5 mb-5 rounded-box shadow-sm">
             {/* Card main content */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                 <div className="result-image col-span-1 md:col-span-3">
-                    <Link href={`/posts/${slug}`}>{ad_images.length > 0 ? <Image src={ad_images[0].image_url} width={300} height={300}  className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt={title} /> : <DefaultImage />}</Link>
+                    <Link href={`/posts/${slug}`}>{ad_images.length > 0 ? <Image src={ad_images[0].image_url} width={300} height={300} className="rounded-box w-full object-cover aspect-square bg-neutral border-base-100" alt={title} /> : <DefaultImage />}</Link>
                 </div>
                 <div className="result-text col-span-1 md:col-span-9  flex flex-col justify-start items-start gap-2">
-                    <Link href={`/posts/${slug}`}><h2 className=" text-2xl mb-4">{title}</h2></Link>
+                    <Link href={`/posts/${slug}`}>
+                        
+                        <h2 className=" text-2xl mb-4">{title}
+                        {
+                            created_at &&
+                            new Date(created_at) >= new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) && (
+                                <sup className="text-xs bg-secondary text-black ml-2 font-medium rounded-md px-2 py-1 inline-block">{t("ads.New")}</sup>
+                            )
+                        }
+                        </h2>
+                    </Link>
                     <Link href={`/posts/${slug}`}><div>{truncateText(description, 350)}</div></Link>
                 </div>
 

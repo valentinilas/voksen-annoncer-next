@@ -4,7 +4,7 @@
         "description": "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!"
     },
     "navigation": {
-        "home":"Hjem",
+        "home": "Hjem",
         "menu": "Menu",
         "admin": "Administration",
         "profile": "Profil",
@@ -17,7 +17,7 @@
         "sign-up": "Tilmeld",
         "create-ad": "Opret annonce",
         "site-name": "Voksenannoncer",
-        "articles":"Artikler"
+        "articles": "Artikler"
     },
     "pagination": {
         "Page": "Side",
@@ -117,7 +117,8 @@
         "delete": "Slet",
         "create-ad": "Opret annonce",
         "no-results": "Ingen resultater fundet.",
-        "views": "Visninger"
+        "views": "Visninger",
+        "New": "Ny"
     },
     "profile": {
         "no-profile": "Ingen profil tilgængelig.",
