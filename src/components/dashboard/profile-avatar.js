@@ -76,7 +76,7 @@ export default function Avatar({ profile }) {
                     <Image 
                     onClick={handleProfileImageClick}
                      className="rounded-full border-4 border-cherry-600 size-32 mx-auto mb-2 hover:border-white transition-colors cursor-pointer"
-                     src={cdnUrl(profile?.avatar_url, 300, 300)}
+                     src={cdnUrl(profile?.avatar_url, 128, 128)}
                      alt={`Avatar ${profile?.username}`}
                     width={128} height={128} 
                     />
