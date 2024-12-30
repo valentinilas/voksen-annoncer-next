@@ -17,21 +17,13 @@ export async function GET(req) {
         }
 
         // Set cache headers
-        // return new Response(JSON.stringify({ ads, total }), {
-        //   status: 200,
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // });
-        return NextResponse.json(
-            { ads, total },
-            {
-                status: 200,
-                headers: {
-                    'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
-                },
-            }
-        );
+        return new Response(JSON.stringify({ ads, total }), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
     } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
             status: 500,
