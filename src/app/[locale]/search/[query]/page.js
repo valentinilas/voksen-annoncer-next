@@ -23,9 +23,18 @@ export default async function SearchPage(props) {
     const t = await getTranslations();
     const pageSize = 10;
     const { page = 1 } = searchParams;
-    const { ads, total } = await fetchPublicAds(null, null, null, searchTerm, page, pageSize);
+    // const { ads, total } = await fetchPublicAds(null, null, null, searchTerm, page, pageSize);
 
+    // Fetch ads from the new API endpoint
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?search=${searchTerm}&page=${page}&pageSize=${pageSize}`, {
+        next: { tags: ['public-posts'] }
+    });
 
+    if (!res.ok) {
+        throw new Error(`Failed to fetch ads: ${res.status}`);
+    }
+
+    const { ads, total } = await res.json();
 
 
     const totalPages = Math.ceil(total / pageSize);
