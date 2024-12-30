@@ -22,6 +22,7 @@ export async function GET(req) {
           headers: {
             'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=59', // 1 day cache
             'Content-Type': 'application/json',
+            'Cache-Tag': 'public-posts',
           },
         });
 
