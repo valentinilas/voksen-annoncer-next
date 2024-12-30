@@ -28,6 +28,5 @@ export async function handleAdminAdApproval(ad) {
         return {error: error.message};
     }
 
-    revalidatePath('/');
 
 }
