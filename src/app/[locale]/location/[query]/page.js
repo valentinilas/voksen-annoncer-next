@@ -14,7 +14,7 @@ export async function generateMetadata(props, parent) {
     const searchRegion = regions.find((region) => region.slug === params.query);
 
     return {
-        title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name)})}`,
+        title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name) })}`,
     };
 }
 
@@ -36,7 +36,17 @@ export default async function RegionPage(props) {
 
     const pageSize = 10;
     const { page = 1 } = searchParams;
-    const { ads, total } = await fetchPublicAds(null, null, searchRegion?.id, null, page, pageSize);
+    // const { ads, total } = await fetchPublicAds(null, null, searchRegion?.id, null, page, pageSize);
+    // Fetch ads from the new API endpoint
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?region=${searchRegion.id}&page=${page}&pageSize=${pageSize}`, {
+        next: { tags: ['public-posts'] }
+    });
+
+    if (!res.ok) {
+        throw new Error(`Failed to fetch ads: ${res.status}`);
+    }
+
+    const { ads, total } = await res.json();
 
 
     const totalPages = Math.ceil(total / pageSize);
