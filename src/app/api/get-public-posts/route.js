@@ -20,6 +20,7 @@ export async function GET(req) {
     return new Response(JSON.stringify({ ads, total }), {
       status: 200,
       headers: {
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
         'Content-Type': 'application/json',
       },
     });
