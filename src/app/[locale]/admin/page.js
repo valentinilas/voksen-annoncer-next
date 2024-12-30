@@ -1,6 +1,6 @@
 
 import { AdTable } from "@/components/admin/admin-ad-table";
-// import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
+import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
 import { AdminWrapper } from "@/components/admin/admin-wrapper";
 
 import { getTranslations } from 'next-intl/server';
@@ -17,26 +17,26 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function AdminPage() {
 
 
-    // const { ads } = await fetchAdminAdList();
+    const { ads } = await fetchAdminAdList();
 
-    let ads = [];
-    try {
-        const url =`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`;
-        console.log(url);
-        const res = await fetch(url,{
-            next: { 
-                revalidate: 30, // Use Next.js 13+ cache revalidation
-                tags: ['admin-ads'] // Add a cache tag for manual revalidation
-            }
-        });
-        if (!res.ok) {
-            throw new Error(`Failed to fetch: ${res.status}`);
-        }
-        const data = await res.json();
-        ads = data.ads;
-    } catch (error) {
-        console.error('Error fetching admin ads:', error);
-    }
+    // let ads = [];
+    // try {
+    //     const url =`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`;
+    //     console.log(url);
+    //     const res = await fetch(url,{
+    //         next: { 
+    //             revalidate: 30, // Use Next.js 13+ cache revalidation
+    //             tags: ['admin-ads'] // Add a cache tag for manual revalidation
+    //         }
+    //     });
+    //     if (!res.ok) {
+    //         throw new Error(`Failed to fetch: ${res.status}`);
+    //     }
+    //     const data = await res.json();
+    //     ads = data.ads;
+    // } catch (error) {
+    //     console.error('Error fetching admin ads:', error);
+    // }
 
 
 
