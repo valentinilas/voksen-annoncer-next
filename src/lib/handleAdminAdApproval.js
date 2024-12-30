@@ -19,7 +19,7 @@ export async function handleAdminAdApproval(ad) {
         }
 
         // Invalidate the cache for the public ads
-    revalidateTag('public-ads');
+    revalidateTag('public-posts');
 
         // console.log(`Ad ${ad.uuid} approval status changed to ${newStatus}`);
 
