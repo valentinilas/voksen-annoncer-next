@@ -47,8 +47,8 @@ export default async function CategoryPage(props) {
 
     const pageSize = 10;
     const { page = 1 } = searchParams;
-    const categoryId = searchCategory?.category_id || null;
-    const subCategoryId = searchSubCategory?.sub_category_id || null;
+    const categoryId = searchCategory?.category_id || 'all';
+    const subCategoryId = searchSubCategory?.sub_category_id || 'all';
     // const { ads, total } = await fetchPublicAds(categoryId, subCategoryId, null, null, page, pageSize);
 
        // Fetch ads from the new API endpoint
