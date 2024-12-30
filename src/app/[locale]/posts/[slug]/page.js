@@ -21,7 +21,10 @@ export async function generateMetadata({ params }) {
     const { slug, locale } = await  params
 
     try {
-        const { ad } = await fetchPublicSingleAd(slug);
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`);
+        const { ad } = await response.json();
+        // const { ad } = await fetchPublicSingleAd(slug);
 
         return {
             title: ad.title + ' | Voksenannoncer',
@@ -52,12 +55,19 @@ export default async function AdDetailPage({params}) {
 
 
     const t = await getTranslations();
+    // const [adData, userData] = await Promise.all([
+    //     fetchPublicSingleAd(slug),
+    //     fetchCurrentUser()
+    // ]);
+    // Use Promise.all to fetch data in parallel
     const [adData, userData] = await Promise.all([
-        fetchPublicSingleAd(slug),
+        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`),
         fetchCurrentUser()
     ]);
     const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
-    const { ad } = adData;
+    // const { ad } = adData;
+    const { ad } = await adData.json();
+
     const { user } = userData;
     const { is_admin } = profile || {};
     const { uuid } = ad;
