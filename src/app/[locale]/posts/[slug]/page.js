@@ -17,12 +17,14 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 
 
 export async function generateMetadata({ params }) {
-    
-    const { slug, locale } = await  params
+
+    const { slug, locale } = await params
 
     try {
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`, {
+            next: { tags: ['public-posts'] }
+        });
         const { ad } = await response.json();
         // const { ad } = await fetchPublicSingleAd(slug);
 
@@ -50,7 +52,7 @@ export async function generateMetadata({ params }) {
     }
 }
 
-export default async function AdDetailPage({params}) {
+export default async function AdDetailPage({ params }) {
     const { slug } = await params;
 
 
@@ -61,7 +63,9 @@ export default async function AdDetailPage({params}) {
     // ]);
     // Use Promise.all to fetch data in parallel
     const [adData, userData] = await Promise.all([
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`),
+        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,{
+            next: {tags: ['public-posts'] } 
+        }),
         fetchCurrentUser()
     ]);
     const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
