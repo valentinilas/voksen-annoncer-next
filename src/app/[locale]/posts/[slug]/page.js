@@ -72,7 +72,6 @@ export default async function AdDetailPage({params}) {
     const { is_admin } = profile || {};
     const { uuid } = ad;
     const { data: comments } = await fetchComments(uuid);
-    console.log(is_admin);
 
 
     if (!is_admin && !ad.is_approved) {
