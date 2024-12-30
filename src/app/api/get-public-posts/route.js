@@ -16,7 +16,7 @@ export async function GET(req) {
             throw new Error(error);
         }
 
-        // Set cache headers
+        // Set cache headers, cache for 3 hours
         return new Response(JSON.stringify({ ads, total }), {
           status: 200,
           headers: {

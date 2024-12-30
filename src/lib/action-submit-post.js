@@ -20,7 +20,7 @@ const MAX_IMAGES = 12;
 // Maximum file size allowed (2 MB in bytes)
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-const supabase = createClient();
+// const supabase = createClient();
 
 // Helper function to handle image upload
 const handleImageUpload = async (file, supabase) => {
