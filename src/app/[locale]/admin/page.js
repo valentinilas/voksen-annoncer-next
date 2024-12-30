@@ -23,7 +23,12 @@ export default async function AdminPage() {
     try {
         const url =`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-admin-ads`;
         console.log(url);
-        const res = await fetch(url);
+        const res = await fetch(url,{
+            next: { 
+                revalidate: 30, // Use Next.js 13+ cache revalidation
+                tags: ['admin-ads'] // Add a cache tag for manual revalidation
+            }
+        });
         if (!res.ok) {
             throw new Error(`Failed to fetch: ${res.status}`);
         }

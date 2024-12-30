@@ -1,6 +1,8 @@
 'use server';
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';  // Make sure this import is present
+
 
 export async function handleAdminAdApproval(ad) {
     const supabase = await createClient();
@@ -17,7 +19,7 @@ export async function handleAdminAdApproval(ad) {
         }
 
          // Revalidate the cache for the admin ads path
-         revalidatePath('/api/get-admin-ads');
+         revalidateTag('admin-ads');
 
          return { success: true, is_approved: newStatus };
 
