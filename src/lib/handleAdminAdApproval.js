@@ -1,6 +1,8 @@
 'use server';
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
+
 
 export async function handleAdminAdApproval(ad) {
     const supabase = await createClient();
@@ -15,6 +17,9 @@ export async function handleAdminAdApproval(ad) {
         if (error) {
             throw new Error('Error toggling ad approval status: ' + error.message);
         }
+
+        // Invalidate the cache for the public ads
+    revalidateTag('public-ads');
 
         // console.log(`Ad ${ad.uuid} approval status changed to ${newStatus}`);
 

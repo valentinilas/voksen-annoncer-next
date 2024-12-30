@@ -4,7 +4,7 @@ import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
 
-import {Link} from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 
 import { getTranslations } from "next-intl/server";
 import IntroBanner from "@/components/intro-banner/intro-banner";
@@ -17,11 +17,21 @@ export default async function Ads(props) {
     const searchParams = await props.searchParams;
     const t = await getTranslations();
     const pageSize = 10;
-    const { category, subcategory, region, search, page = 1 } = searchParams;
+    const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
-    const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
+    // const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
 
+    // Fetch ads from the new API endpoint
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
+        next: { revalidate: 86400 } // Cache for 1 day
+    });
+
+    if (!res.ok) {
+        throw new Error(`Failed to fetch ads: ${res.status}`);
+    }
+
+    const { ads, total } = await res.json();
 
     const totalPages = Math.ceil(total / pageSize);
 
@@ -47,7 +57,7 @@ export default async function Ads(props) {
                 {ads.map(ad => {
                     return <AdListingResult key={ad.uuid} data={ad} />
                 })}
-                 {!ads.length && <div className="bg-base-100 p-5  rounded-box shadow-sm h-full"><p className="text-center">{t('ads.no-results')}</p></div>}
+                {!ads.length && <div className="bg-base-100 p-5  rounded-box shadow-sm h-full"><p className="text-center">{t('ads.no-results')}</p></div>}
             </div>
 
         </div>
@@ -55,7 +65,7 @@ export default async function Ads(props) {
 
 
 
-       
+
 
         {/* Pagination Controls */}
 
