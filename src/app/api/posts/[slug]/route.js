@@ -17,7 +17,7 @@ export async function GET(req, { params }) {
     return new Response(JSON.stringify({ ad }), {
       status: 200,
       headers: {
-        // 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
         'Content-Type': 'application/json',
       },
     });
