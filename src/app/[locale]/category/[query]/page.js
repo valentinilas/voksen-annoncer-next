@@ -49,7 +49,18 @@ export default async function CategoryPage(props) {
     const { page = 1 } = searchParams;
     const categoryId = searchCategory?.category_id || null;
     const subCategoryId = searchSubCategory?.sub_category_id || null;
-    const { ads, total } = await fetchPublicAds(categoryId, subCategoryId, null, null, page, pageSize);
+    // const { ads, total } = await fetchPublicAds(categoryId, subCategoryId, null, null, page, pageSize);
+
+       // Fetch ads from the new API endpoint
+       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${categoryId}&subcategory=${subCategoryId}&page=${page}&pageSize=${pageSize}`, {
+        next: { tags: ['public-posts'] }
+    });
+
+    if (!res.ok) {
+        throw new Error(`Failed to fetch ads: ${res.status}`);
+    }
+
+    const { ads, total } = await res.json();
 
 
     const totalPages = Math.ceil(total / pageSize);
