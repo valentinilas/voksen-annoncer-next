@@ -22,7 +22,9 @@ export async function generateMetadata({ params }) {
 
     try {
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,{
+            cache: 'force-cache',
+        });
         const { ad } = await response.json();
         // const { ad } = await fetchPublicSingleAd(slug);
 
@@ -61,7 +63,9 @@ export default async function AdDetailPage({ params }) {
     // ]);
     // Use Promise.all to fetch data in parallel
     const [adData, userData] = await Promise.all([
-        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`),
+        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,{
+            cache: 'force-cache',
+        }),
         fetchCurrentUser()
     ]);
     const { userProfile: profile } = await fetchUserProfile(userData?.user?.id);
