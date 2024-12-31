@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
 export default async function Ads(props) {
     const searchParams = await props.searchParams;
     const t = await getTranslations();
-    const pageSize = 20;
+    const pageSize = 10;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
@@ -53,8 +53,7 @@ export default async function Ads(props) {
 
     // Fetch ads from the new API endpoint
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
-        cache: 'force-cache',
-        next: { tags: ['public-posts'], revalidate: 60 }
+        next: { tags: ['public-posts'] }
     });
 
     if (!res.ok) {
