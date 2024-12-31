@@ -37,8 +37,8 @@ export async function generateMetadata({ params }) {
                 description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
                 url: `https://www.voksen-annoncer.com/${locale}`,
                 siteName: t("navigation.site-name"),
-                locale: locale, 
-                type: 'website', 
+                locale: locale,
+                type: 'website',
                 images: [
                     {
                         url: '/og/og-banner.jpg',
@@ -48,28 +48,7 @@ export async function generateMetadata({ params }) {
                     },
                 ],
             },
-            jsonLd: {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                name: `${t("navigation.about")} | ${t("navigation.site-name")}`,
-                description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
-                url: `https://www.voksen-annoncer.com/da/about`,
-                inLanguage: locale,
-                publisher: {
-                    "@type": "Organization",
-                    name: t("navigation.site-name"),
-                    logo: {
-                        "@type": "ImageObject",
-                        url: "/logo/logo_flat_200x200.png", 
-                    },
-                },
-                image: {
-                    "@type": "ImageObject",
-                    url: "/og/og-banner.jpg",
-                    width: 1200,
-                    height: 630,
-                },
-            },
+
 
         };
     } catch (error) {
@@ -83,6 +62,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Ads(props) {
     const searchParams = await props.searchParams;
+    const {locale} = await props.params;
     const t = await getTranslations();
     const pageSize = 10;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
@@ -94,6 +74,29 @@ export default async function Ads(props) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
         next: { tags: ['public-posts'] }
     });
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+        description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+        url: `https://www.voksen-annoncer.com/da/about`,
+        inLanguage: locale,
+        publisher: {
+            "@type": "Organization",
+            name: t("navigation.site-name"),
+            logo: {
+                "@type": "ImageObject",
+                url: "/logo/logo_flat_200x200.png",
+            },
+        },
+        image: {
+            "@type": "ImageObject",
+            url: "/og/og-banner.jpg",
+            width: 1200,
+            height: 630,
+        },
+    };
 
     if (!res.ok) {
         throw new Error(`Failed to fetch ads: ${res.status}`);
@@ -110,11 +113,15 @@ export default async function Ads(props) {
     };
 
     return <>
-
+        {/* Add JSON-LD to your page */}
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* <IntroBanner /> */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block mx-auto bg-clip-text text-center text-5xl text-transparent font-black leading-normal	">Hav et godt nytår!</span>
-            
+
         </div>
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             {/* <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1> */}
