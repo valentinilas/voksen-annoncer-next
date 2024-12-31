@@ -39,6 +39,36 @@ export async function generateMetadata({ params }) {
                 siteName: t("navigation.site-name"),
                 locale: locale, 
                 type: 'website', 
+                images: [
+                    {
+                        url: '/og/og-banner.jpg',
+                        width: 1200,
+                        height: 630,
+                        alt: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer", // Accessible text for the image
+                    },
+                ],
+            },
+            jsonLd: {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                name: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+                description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+                url: `https://www.voksen-annoncer.com/da/about`,
+                inLanguage: locale,
+                publisher: {
+                    "@type": "Organization",
+                    name: t("navigation.site-name"),
+                    logo: {
+                        "@type": "ImageObject",
+                        url: "/logo/logo_flat_200x200.png", 
+                    },
+                },
+                image: {
+                    "@type": "ImageObject",
+                    url: "/og/og-banner.jpg",
+                    width: 1200,
+                    height: 630,
+                },
             },
 
         };
