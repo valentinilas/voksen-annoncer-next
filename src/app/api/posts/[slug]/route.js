@@ -30,3 +30,7 @@ export async function GET(req, { params }) {
     });
   }
 }
+
+
+export const dynamic = 'force-static'
+export const revalidate = 3600
