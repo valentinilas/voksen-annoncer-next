@@ -13,11 +13,11 @@ export async function GET(req, { params }) {
       });
     }
 
-    // Cache for 1 hour
+    // Cache for 1 week (7 days in seconds = 604800)
     return new Response(JSON.stringify({ ad }), {
       status: 200,
       headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
+        'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=59', 
         'Content-Type': 'application/json',
       },
     });
