@@ -8,6 +8,15 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      screens: {
+        sm: '500px',
+        md: '640px',
+        lg: '768px',
+        xl: '960px',
+        '2xl': '1280px',
+      },
+    },
     extend: {
       colors: {
         cherry: {
