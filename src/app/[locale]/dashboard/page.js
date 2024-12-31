@@ -11,9 +11,16 @@ import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
-
+    const { locale } = await params;
     return {
         title: `${t("navigation.profile")} | ${t("navigation.site-name")}`,
+        alternates: {
+            canonical: `https://voksen-annoncer.com/${locale}/dashboard`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/dashboard`,
+                'da': `https://voksen-annoncer.com/da/dashboard`
+            },
+        },
     };
 
 }
