@@ -1,5 +1,7 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
 
+export const dynamic = 'force-static';
+
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get('category') || 'all';
@@ -20,7 +22,7 @@ export async function GET(req) {
         return new Response(JSON.stringify({ ads, total }), {
           status: 200,
           headers: {
-            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
+            // 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
             'Content-Type': 'application/json',
           },
         });

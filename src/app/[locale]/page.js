@@ -53,7 +53,8 @@ export default async function Ads(props) {
 
     // Fetch ads from the new API endpoint
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
-        next: { tags: ['public-posts'] }
+        cache: 'force-cache',
+        next: { tags: ['public-posts'], revalidate: 60 }
     });
 
     if (!res.ok) {
