@@ -13,6 +13,35 @@ import Button from "@/components/button/button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
+
+export async function generateMetadata({ params }) {
+
+    const { locale } = await params
+
+    try {
+
+
+        return {
+            title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
+            description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+            alternates: {
+                canonical: `https://voksen-annoncer.com/${locale}`,
+                languages: {
+                    'en': `https://voksen-annoncer.com/en`,
+                    'da': `https://voksen-annoncer.com/da`
+                },
+            },
+
+        };
+    } catch (error) {
+        console.error("Failed to fetch ad data:", error);
+        return {
+            title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
+            description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+        };
+    }
+}
+
 export default async function Ads(props) {
     const searchParams = await props.searchParams;
     const t = await getTranslations();
@@ -24,7 +53,7 @@ export default async function Ads(props) {
 
     // Fetch ads from the new API endpoint
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
-        next: {tags: ['public-posts']} 
+        next: { tags: ['public-posts'] }
     });
 
     if (!res.ok) {
