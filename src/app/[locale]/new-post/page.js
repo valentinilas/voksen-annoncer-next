@@ -10,10 +10,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("navigation.create-ad")} | ${t("navigation.site-name")}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/new-post`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/new-post`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/new-post`,
-                'da': `https://voksen-annoncer.com/da/new-post`
+                'en': `https://www.voksen-annoncer.com/en/new-post`,
+                'da': `https://www.voksen-annoncer.com/da/new-post`
             },
         },
     };

@@ -15,10 +15,10 @@ export async function generateMetadata({ params, searchParams }) {
     description:
       "Udforsk indsigtsfulde og engagerende blogindlæg om sex og seksualitet. Find artikler, der dækker et bredt udvalg af emner, herunder seksuel sundhed, forhold, intimitet og meget mere, alt sammen med det formål at fremme forståelse og sunde diskussioner.",
     alternates: {
-      canonical: `https://voksen-annoncer.com/${locale}/articles`,
+      canonical: `https://www.voksen-annoncer.com/${locale}/articles`,
       languages: {
-        'en': `https://voksen-annoncer.com/en/articles`,
-        'da': `https://voksen-annoncer.com/da/articles`
+        'en': `https://www.voksen-annoncer.com/en/articles`,
+        'da': `https://www.voksen-annoncer.com/da/articles`
       },
     },
   };

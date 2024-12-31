@@ -30,10 +30,10 @@ export async function generateMetadata({ params }) {
             title: ad.title + ' | Voksenannoncer',
             description: ad.description.slice(0, 150),
             alternates: {
-                canonical: `https://voksen-annoncer.com/${locale}/posts/${slug}`,
+                canonical: `https://www.voksen-annoncer.com/${locale}/posts/${slug}`,
                 languages: {
-                    'en': `https://voksen-annoncer.com/en/posts/${slug}`,
-                    'da': `https://voksen-annoncer.com/da/posts/${slug}`
+                    'en': `https://www.voksen-annoncer.com/en/posts/${slug}`,
+                    'da': `https://www.voksen-annoncer.com/da/posts/${slug}`
                 },
             },
             openGraph: {

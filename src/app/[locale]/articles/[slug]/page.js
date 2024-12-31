@@ -25,10 +25,10 @@ export async function generateMetadata({ params }) {
                 images: [article.Image?.url || ''],
             },
             alternates: {
-                canonical: `https://voksen-annoncer.com/${locale}/articles/${slug}`,
+                canonical: `https://www.voksen-annoncer.com/${locale}/articles/${slug}`,
                 languages: {
-                    'en': `https://voksen-annoncer.com/en/articles/${slug}`,
-                    'da': `https://voksen-annoncer.com/da/articles/${slug}`
+                    'en': `https://www.voksen-annoncer.com/en/articles/${slug}`,
+                    'da': `https://www.voksen-annoncer.com/da/articles/${slug}`
                 },
             },
 

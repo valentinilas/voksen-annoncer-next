@@ -7,10 +7,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("navigation.cookie-policy")} | ${t("navigation.site-name")}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/cookie-policy`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/cookie-policy`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/cookie-policy`,
-                'da': `https://voksen-annoncer.com/da/cookie-policy`
+                'en': `https://www.voksen-annoncer.com/en/cookie-policy`,
+                'da': `https://www.voksen-annoncer.com/da/cookie-policy`
             },
         },
     };

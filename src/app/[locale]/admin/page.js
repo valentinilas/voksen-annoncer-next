@@ -12,10 +12,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("navigation.admin")} | ${t("navigation.site-name")}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/admin`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/admin`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/admin`,
-                'da': `https://voksen-annoncer.com/da/admin`
+                'en': `https://www.voksen-annoncer.com/en/admin`,
+                'da': `https://www.voksen-annoncer.com/da/admin`
             },
         },
     };

@@ -15,10 +15,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("navigation.profile")} | ${t("navigation.site-name")}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/dashboard`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/dashboard`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/dashboard`,
-                'da': `https://voksen-annoncer.com/da/dashboard`
+                'en': `https://www.voksen-annoncer.com/en/dashboard`,
+                'da': `https://www.voksen-annoncer.com/da/dashboard`
             },
         },
     };

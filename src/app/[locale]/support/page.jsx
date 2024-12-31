@@ -10,10 +10,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: `${t("navigation.support")} | ${t("navigation.site-name")}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/support`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/support`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/support`,
-                'da': `https://voksen-annoncer.com/da/support`
+                'en': `https://www.voksen-annoncer.com/en/support`,
+                'da': `https://www.voksen-annoncer.com/da/support`
             },
         },
     };

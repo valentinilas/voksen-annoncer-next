@@ -34,10 +34,10 @@ export const metadata = {
     title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
     description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
     alternates: {
-        canonical: 'https://voksen-annoncer.com',
+        canonical: 'https://www.voksen-annoncer.com',
         languages: {
-            'en': 'https://voksen-annoncer.com/en',
-            'da': 'https://voksen-annoncer.com/da',
+            'en': 'https://www.voksen-annoncer.com/en',
+            'da': 'https://www.voksen-annoncer.com/da',
         },
     },
 };

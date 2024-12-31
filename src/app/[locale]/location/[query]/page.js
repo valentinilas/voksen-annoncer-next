@@ -17,10 +17,10 @@ export async function generateMetadata(props, parent) {
     return {
         title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name) })}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/location/${params.query}`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/location/${params.query}`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/location/${params.query}`,
-                'da': `https://voksen-annoncer.com/da/location/${params.query}`
+                'en': `https://www.voksen-annoncer.com/en/location/${params.query}`,
+                'da': `https://www.voksen-annoncer.com/da/location/${params.query}`
             },
         },
     };

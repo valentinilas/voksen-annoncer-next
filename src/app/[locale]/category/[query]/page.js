@@ -24,10 +24,10 @@ export async function generateMetadata(props, parent) {
     return {
         title: `${t("categories.category-title", { term: t(translationKey) })}`,
         alternates: {
-            canonical: `https://voksen-annoncer.com/${locale}/category/${params.query}`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/category/${params.query}`,
             languages: {
-                'en': `https://voksen-annoncer.com/en/category/${params.query}`,
-                'da': `https://voksen-annoncer.com/da/category/${params.query}`
+                'en': `https://www.voksen-annoncer.com/en/category/${params.query}`,
+                'da': `https://www.voksen-annoncer.com/da/category/${params.query}`
             },
         },
 
