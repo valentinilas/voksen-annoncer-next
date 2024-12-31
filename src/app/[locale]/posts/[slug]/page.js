@@ -24,6 +24,7 @@ export async function generateMetadata({ params }) {
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,{
             cache: 'force-cache',
+            next:{revalidate: false}
         });
         const { ad } = await response.json();
         // const { ad } = await fetchPublicSingleAd(slug);
@@ -65,6 +66,7 @@ export default async function AdDetailPage({ params }) {
     const [adData, userData] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`,{
             cache: 'force-cache',
+            next:{revalidate: false}
         }),
         fetchCurrentUser()
     ]);
