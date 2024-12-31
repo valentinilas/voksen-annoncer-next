@@ -16,11 +16,11 @@ export async function GET(req) {
             throw new Error(error);
         }
 
-        // Set cache headers, cache for 3 hours
+        // Set cache headers, cache for 1 hour
         return new Response(JSON.stringify({ ads, total }), {
           status: 200,
           headers: {
-            // 'Cache-Control': 'public, s-maxage=10800, stale-while-revalidate=59', // 1 day cache
+            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
             'Content-Type': 'application/json',
           },
         });
