@@ -14,6 +14,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
                 'da': `https://www.voksen-annoncer.com/da/about`
             },
         },
+        
 
     };
 

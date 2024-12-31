@@ -17,6 +17,7 @@ import Image from "next/image";
 export async function generateMetadata({ params }) {
 
     const { locale } = await params
+    const t = await getTranslations();
 
     try {
 
@@ -30,6 +31,14 @@ export async function generateMetadata({ params }) {
                     'en': `https://www.voksen-annoncer.com/en`,
                     'da': `https://www.voksen-annoncer.com/da`
                 },
+            },
+            openGraph: {
+                title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
+                description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+                url: `https://www.voksen-annoncer.com/${locale}`,
+                siteName: t("navigation.site-name"),
+                locale: locale, 
+                type: 'website', 
             },
 
         };
