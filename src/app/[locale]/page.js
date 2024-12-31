@@ -74,6 +74,10 @@ export default async function Ads(props) {
 
         {/* <IntroBanner /> */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
+            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block mx-auto bg-clip-text text-center text-5xl text-transparent font-black leading-normal	">Hav et godt nytår!</span>
+            
+        </div>
+        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             {/* <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1> */}
             <h1 className="text-2xl">{t("about.welcome")}</h1>
             <div><span className="mr-9 relative font-medium text-cherry-700">{t('ads.start-here')} <Image className="absolute top-0 left-full" src='/elements/arrow.svg' alt="Arrow" width="32" height="32" /></span><Button Icon={PlusIcon} to="/new-post" className="inline-flex">{t('ads.create-ad')}</Button></div>
