@@ -9,12 +9,20 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata(props, parent) {
     const params = await props.params;
+    const { locale } = params
     const t = await getTranslations();
     const { regions } = await fetchRegions();
     const searchRegion = regions.find((region) => region.slug === params.query);
 
     return {
         title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name) })}`,
+        alternates: {
+            canonical: `https://voksen-annoncer.com/${locale}/location/${params.query}`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/location/${params.query}`,
+                'da': `https://voksen-annoncer.com/da/location/${params.query}`
+            },
+        },
     };
 }
 

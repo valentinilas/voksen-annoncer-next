@@ -7,11 +7,18 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata(props, parent) {
     const params = await props.params;
+    const { locale } = params;
     const t = await getTranslations();
 
     return {
         title: `${t("search-results.result-title", { term: decodeURIComponent(params.query) })}`,
-
+        alternates: {
+            canonical: `https://voksen-annoncer.com/${locale}/search/${params.query}`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/search/${params.query}`,
+                'da': `https://voksen-annoncer.com/da/search/${params.query}`
+            },
+        },
     };
 }
 

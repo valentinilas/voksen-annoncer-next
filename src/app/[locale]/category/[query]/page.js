@@ -9,6 +9,7 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata(props, parent) {
     const params = await props.params;
+    const { locale } = params
     const t = await getTranslations();
     const { categories } = await fetchCategories();
     const { subCategories } = await fetchSubCategories();
@@ -22,6 +23,13 @@ export async function generateMetadata(props, parent) {
 
     return {
         title: `${t("categories.category-title", { term: t(translationKey) })}`,
+        alternates: {
+            canonical: `https://voksen-annoncer.com/${locale}/category/${params.query}`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/category/${params.query}`,
+                'da': `https://voksen-annoncer.com/da/category/${params.query}`
+            },
+        },
 
     };
 }

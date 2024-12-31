@@ -14,12 +14,12 @@ export async function generateMetadata({ params, searchParams }) {
     title: "Artikler | Voksenannoncer.com",
     description:
       "Udforsk indsigtsfulde og engagerende blogindlæg om sex og seksualitet. Find artikler, der dækker et bredt udvalg af emner, herunder seksuel sundhed, forhold, intimitet og meget mere, alt sammen med det formål at fremme forståelse og sunde diskussioner.",
-      alternates: {
-        canonical: `https://voksen-annoncer.com/${locale}/articles`,
-        languages: {
-            'en': `https://voksen-annoncer.com/en/articles`,
-            'da': `https://voksen-annoncer.com/da/articles`
-        },
+    alternates: {
+      canonical: `https://voksen-annoncer.com/${locale}/articles`,
+      languages: {
+        'en': `https://voksen-annoncer.com/en/articles`,
+        'da': `https://voksen-annoncer.com/da/articles`
+      },
     },
   };
 }
@@ -65,31 +65,31 @@ export default async function Articles(props) {
       </div>
 
       {/* Pagination Controls */}
-      
-              {totalPages > 1 && (<div className="flex justify-center mt-10">
-                  <div className="join mx-auto mt-2">
-                      <Link
-                          className={`join-item btn ${currentPage <= 1 ? 'btn-disabled' : ''}`}
-                          href={`/articles?page=${currentPage > 1 ? currentPage - 1 : 1}`}
-                      >
-                          «
-                      </Link>
-                      <button className="join-item btn">
-                          {t("pagination.Page")} {currentPage} {t("pagination.of")} {totalPages}
-                      </button>
-                      <Link
-                          className={`join-item btn ${currentPage >= totalPages ? 'btn-disabled' : ''}`}
-                          href={`/articles?page=${currentPage < totalPages ? currentPage + 1 : totalPages}`}
-                      >
-                          »
-                      </Link>
-                  </div>
-              </div>
-              )}
+
+      {totalPages > 1 && (<div className="flex justify-center mt-10">
+        <div className="join mx-auto mt-2">
+          <Link
+            className={`join-item btn ${currentPage <= 1 ? 'btn-disabled' : ''}`}
+            href={`/articles?page=${currentPage > 1 ? currentPage - 1 : 1}`}
+          >
+            «
+          </Link>
+          <button className="join-item btn">
+            {t("pagination.Page")} {currentPage} {t("pagination.of")} {totalPages}
+          </button>
+          <Link
+            className={`join-item btn ${currentPage >= totalPages ? 'btn-disabled' : ''}`}
+            href={`/articles?page=${currentPage < totalPages ? currentPage + 1 : totalPages}`}
+          >
+            »
+          </Link>
+        </div>
+      </div>
+      )}
 
 
 
-     
+
     </>
   );
 }
