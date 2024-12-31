@@ -7,11 +7,20 @@ import Link from "next/link";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import DefaultImage from "@/components/default-image/default-image";
 import { getTranslations } from "next-intl/server";
-export async function generateMetadata({ searchParams }) {
+export async function generateMetadata({ params, searchParams }) {
+  const { locale } = await params;
+
   return {
     title: "Artikler | Voksenannoncer.com",
     description:
       "Udforsk indsigtsfulde og engagerende blogindlæg om sex og seksualitet. Find artikler, der dækker et bredt udvalg af emner, herunder seksuel sundhed, forhold, intimitet og meget mere, alt sammen med det formål at fremme forståelse og sunde diskussioner.",
+      alternates: {
+        canonical: `https://voksen-annoncer.com/${locale}/articles`,
+        languages: {
+            'en': `https://voksen-annoncer.com/en/articles`,
+            'da': `https://voksen-annoncer.com/da/articles`
+        },
+    },
   };
 }
 export default async function Articles(props) {

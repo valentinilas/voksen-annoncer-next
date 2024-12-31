@@ -5,9 +5,17 @@ import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
+    const { locale } = await params
 
     return {
-        title: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+        title: `${t("navigation.support")} | ${t("navigation.site-name")}`,
+        alternates: {
+            canonical: `https://voksen-annoncer.com/${locale}/support`,
+            languages: {
+                'en': `https://voksen-annoncer.com/en/support`,
+                'da': `https://voksen-annoncer.com/da/support`
+            },
+        },
     };
 
 }
