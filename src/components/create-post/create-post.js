@@ -6,6 +6,8 @@ import { SubmitButton } from "./submit-button";
 import { submitPost } from '@/lib/action-submit-post';
 import translateArray from '@/utils/translations/translate-array';
 import { useState } from 'react';
+import { useRef } from 'react';
+import Image from 'next/image';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -15,6 +17,8 @@ import { createValidationSchema } from './validation-schema';
 export default function NewPost({ categories, regions }) {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [serverValidationError, setServerValidationError] = useState({ error: null });
+    const [newImages, setNewImages] = useState([]);
+    const fileInputRef = useRef(null); // Ref for the file input
 
 
     // Translations
@@ -35,6 +39,42 @@ export default function NewPost({ categories, regions }) {
     });
 
 
+    const handleImageUpload = async (e) => {
+        const files = Array.from(e.target.files);
+
+        // Use the existing validation schema's `images` field
+        const imagesSchema = validationSchema.fields.images;
+
+        const formValue = {
+            images: files,
+        };
+
+        try {
+            // Validate the entire files array using the schema
+            await imagesSchema.validate(formValue.images);
+            setNewImages((prevImages) => [...prevImages, ...files]);
+        } catch (err) {
+            // Handle validation errors
+            alert(err.message || 'Error');
+        }
+
+        // Reset file input
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+
+
+    const handleRemoveNewImage = (index) => {
+        setNewImages((prevImages) => prevImages.filter((_, i) => i !== index));
+        // Reset file input in case no files are left
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+
     const onSubmit = handleSubmit(async data => {
 
         const formData = new FormData();
@@ -45,11 +85,13 @@ export default function NewPost({ categories, regions }) {
         formData.append('category', data.category);
         formData.append('subcategory', data.subcategory);
 
-        // Append files
-        if (data.images) {
-            for (let i = 0; i < data.images.length; i++) {
-                formData.append('images', data.images[i]);
-            }
+        newImages.forEach((image) => {
+            formData.append(`images`, image);
+        });
+        console.log('SUBMITTED DATA');
+        console.log('Form Data Contents:');
+        for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
         }
 
         const response = await submitPost(formData);
@@ -143,10 +185,10 @@ export default function NewPost({ categories, regions }) {
                     {errors?.description && <p className="error text-red-500 text-sm mt-2">{errors?.description?.message}</p>}
                 </div>
 
-                {/* Images input */}
+                {/* New Images */}
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2" htmlFor="images">
-                        {t("create-ad.upload-images")}
+                        {t('ads.ad-add-images')}
                     </label>
                     <input
                         id="images"
@@ -154,9 +196,28 @@ export default function NewPost({ categories, regions }) {
                         type="file"
                         multiple
                         className="file-input file-input-bordered w-full"
-                        {...register("images")}
+                        // ref={fileInputRef} // Assign the ref here
+                        // {...register("images")}
+                        {...register('images', {
+                            onChange: (e) => handleImageUpload(e),
+                            ref: fileInputRef // Pass the ref to the register function
+                        })}
                     />
                     {errors?.images && <p className="error text-red-500 text-sm mt-2">{errors?.images?.message}</p>}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                        {newImages.map((image, index) => (
+                            <div key={index} className="border-2 rounded-xl p-2 text-center">
+                                <Image src={URL.createObjectURL(image)} alt="New Image" width={100} height={100} className="rounded-sm border-2" />
+                                <button
+                                    type="button"
+                                    className="mt-2 bg-red-500 text-white rounded-full px-3 py-1"
+                                    onClick={() => handleRemoveNewImage(index)}
+                                >
+                                    {t('ads.delete')}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Region select */}

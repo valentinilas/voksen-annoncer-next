@@ -68,6 +68,7 @@ const getPublicUrl = (filePath, supabase) => {
 };
 
 export async function submitPost(formData) {
+    console.log("submitPost called");
     const supabase = await createClient(); // Create the client in the request context
 
 
@@ -80,7 +81,7 @@ export async function submitPost(formData) {
 
     // Extract files
     const images = formData.getAll('images');
-    console.log(images);
+    console.log('IMAGES RECEIVED:', images);
 
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
