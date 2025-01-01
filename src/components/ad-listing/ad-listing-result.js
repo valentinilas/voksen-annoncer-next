@@ -33,7 +33,7 @@ export default function AdListingResult({ data }) {
                 <div className="result-text col-span-1 md:col-span-9  flex flex-col justify-start items-start gap-2">
                     <Link href={`/posts/${slug}`}>
                         
-                        <h2 className=" text-2xl mb-4">{title}
+                        <h2 className=" text-3xl mb-4 font-normal text-black dark:text-white">{title}
                         {
                             created_at &&
                             new Date(created_at) >= new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) && (
@@ -55,7 +55,7 @@ export default function AdListingResult({ data }) {
                         <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_categories?.slug}`}>{t(`categories.${ad_categories?.category_name}`)}</Link></Label>
                         <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_sub_categories?.slug}`}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Link></Label>
                     </div>
-                    <Button Icon={ChevronRightIcon} iconDirection="right" className="self-start hidden md:inline-flex" to={`/posts/${slug}`}>{t("ads.Details")}</Button>
+                    <Button Icon={ChevronRightIcon} iconDirection="right" className="self-start hidden md:inline-flex" variant="secondary" to={`/posts/${slug}`}>{t("ads.Details")}</Button>
                 </div>
             </div>
 
