@@ -64,7 +64,7 @@ export default async function Ads(props) {
     const searchParams = await props.searchParams;
     const {locale} = await props.params;
     const t = await getTranslations();
-    const pageSize = 10;
+    const pageSize = 20;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await fetchCategories();
     const { regions } = await fetchRegions();
