@@ -114,12 +114,15 @@
         "approved": "Approved",
         "pending-approval": "Pending Approval",
         "edit": "Edit",
+        "edit-ad":"Edit ad",
         "delete": "Delete",
         "create-ad": "Create ad",
         "no-results": "No results found.",
         "views": "Views",
         "New":"New",
-        "start-here": "Start here"
+        "start-here": "Start here",
+        "ad-images":"Images",
+        "ad-add-images":"Add more images"
     },
     "profile": {
         "no-profile": "No profile available.",

@@ -7,6 +7,8 @@ import { createServerValidationSchema } from '@/components/create-post/validatio
 import { getTranslations } from 'next-intl/server';
 
 import slugify from 'slugify';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 function generateSlug(title) {
@@ -24,8 +26,9 @@ const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
 // Helper function to handle image upload
 const handleImageUpload = async (file, supabase) => {
+
     const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}.${fileExt}`;
+    const fileName = `${uuidv4()}.${fileExt}`;
     const filePath = `ad-images/${fileName}`;
 
     // Validate file type (should be image)
@@ -77,6 +80,7 @@ export async function submitPost(formData) {
 
     // Extract files
     const images = formData.getAll('images');
+    console.log(images);
 
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
@@ -105,11 +109,13 @@ export async function submitPost(formData) {
         const imageDetails = await Promise.all(
             images.map(async (image) => {
                 const uploadResult = await handleImageUpload(image, supabase);
+                console.log(uploadResult);
                 if (uploadResult?.error) {
                     throw new Error(uploadResult.error);
                 }
 
                 const publicUrl = getPublicUrl(uploadResult.filePath, supabase);
+                console.log(publicUrl);
                 if (!publicUrl) {
                     throw new Error('Failed to get public URL for uploaded image.');
                 }

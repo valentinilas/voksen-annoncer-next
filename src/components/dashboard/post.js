@@ -56,6 +56,7 @@ export default function Post({ ad }) {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle"><EllipsisVerticalIcon className="size-5 " /></div>
                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><Link href={`/edit-post/${slug}`}>Edit</Link></li>
                                 <li><button onClick={() => showModal()}>{t("ads.delete")}</button></li>
                             </ul>
                         </div>
@@ -78,8 +79,8 @@ export default function Post({ ad }) {
 
                 <div className="border-t pt-5 mt-5 border-base-300  flex  flex-wrap gap-2">
                     <Label Icon={CalendarDaysIcon}>{formatDate(created_at)}</Label>
-                    <Label Icon={MapPinIcon}><Link className="link link-hover"  href={`/location/${regions?.slug}`}>{regions?.region_name}</Link></Label>
-                    <Label Icon={TagIcon}><Link className="link link-hover"  href={`/category/${ad_categories?.slug}`}> {t(`categories.${ad_categories?.category_name}`)}</Link></Label>
+                    <Label Icon={MapPinIcon}><Link className="link link-hover" href={`/location/${regions?.slug}`}>{regions?.region_name}</Link></Label>
+                    <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_categories?.slug}`}> {t(`categories.${ad_categories?.category_name}`)}</Link></Label>
                     <Label Icon={TagIcon}><Link className="link link-hover" href={`/category/${ad_sub_categories?.slug}`}>{t(`subcategories.${ad_sub_categories?.sub_category_name}`)}</Link></Label>
 
                 </div>

@@ -114,12 +114,15 @@
         "approved": "Godkendt",
         "pending-approval": "Afventer godkendelse",
         "edit": "Rediger",
+        "edit-ad": "Rediger annonce",
         "delete": "Slet",
         "create-ad": "Opret annonce",
         "no-results": "Ingen resultater fundet.",
         "views": "Visninger",
         "New": "Ny",
-        "start-here": "Start her"
+        "start-here": "Start her",
+        "ad-images": "Billeder",
+        "ad-add-images": "Tilføj billeder"
     },
     "profile": {
         "no-profile": "Ingen profil tilgængelig.",
