@@ -88,11 +88,7 @@ export default function NewPost({ categories, regions }) {
         newImages.forEach((image) => {
             formData.append(`images`, image);
         });
-        console.log('SUBMITTED DATA');
-        console.log('Form Data Contents:');
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
+       
 
         const response = await submitPost(formData);
 

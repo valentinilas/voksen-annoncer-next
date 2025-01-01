@@ -132,11 +132,6 @@ export default function EditPost({ categories, regions, initialData }) {
         });
 
 
-    console.log('SUBMITTED DATA');
-    console.log('Form Data Contents:');
-    for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-    }
 
 
         const response = await editPost(formData, initialData.slug);

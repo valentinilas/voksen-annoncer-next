@@ -157,17 +157,14 @@ export async function editPost(formData, slug) {
 
 
         }
-        console.log('newImages', newImages);
         const newImageDetails = await Promise.all(
             newImages.map(async (image) => {
                 const uploadResult = await handleImageUpload(image, supabase);
-                console.log('UPLOAD RESULT',uploadResult);
                 if (uploadResult?.error) {
                     throw new Error(uploadResult.error);
                 }
 
                 const publicUrl = getPublicUrl(uploadResult.filePath, supabase);
-                console.log('PUBLIC URL',publicUrl);
                 if (!publicUrl) {
                     throw new Error('Failed to get public URL for uploaded image.');
                 }
@@ -180,7 +177,6 @@ export async function editPost(formData, slug) {
                 };
             })
         );
-        console.log('NEW IMAGE DETAILS',newImageDetails);
 
         if (newImageDetails.length > 0) {
             const { error: insertError } = await supabase

@@ -68,7 +68,6 @@ const getPublicUrl = (filePath, supabase) => {
 };
 
 export async function submitPost(formData) {
-    console.log("submitPost called");
     const supabase = await createClient(); // Create the client in the request context
 
 
@@ -81,7 +80,6 @@ export async function submitPost(formData) {
 
     // Extract files
     const images = formData.getAll('images');
-    console.log('IMAGES RECEIVED:', images);
 
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
@@ -110,13 +108,11 @@ export async function submitPost(formData) {
         const imageDetails = await Promise.all(
             images.map(async (image) => {
                 const uploadResult = await handleImageUpload(image, supabase);
-                console.log(uploadResult);
                 if (uploadResult?.error) {
                     throw new Error(uploadResult.error);
                 }
 
                 const publicUrl = getPublicUrl(uploadResult.filePath, supabase);
-                console.log(publicUrl);
                 if (!publicUrl) {
                     throw new Error('Failed to get public URL for uploaded image.');
                 }
@@ -132,7 +128,6 @@ export async function submitPost(formData) {
         const slug = generateSlug(title);
 
         // Save the ad details to the database
-        // console.log('Saving to DB');
         const { data: adData, error: adError } = await supabase
             .from('ads')
             .insert({
@@ -154,7 +149,6 @@ export async function submitPost(formData) {
         }
 
         // Save the image details in the ad_images table
-        console.log('Saving images to DB');
         const { error: imageError } = await supabase
             .from('ad_images')
             .insert(
