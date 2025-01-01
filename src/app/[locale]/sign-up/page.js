@@ -53,36 +53,6 @@ export default function SignUp() {
     });
 
 
-    // In your SignUp component
-
-const handleGoogleSignUp = async () => {
-  
-    try {
-      const response = await fetch('/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ provider: 'google' }),
-      });
-  
-      const result = await response.json();
-  
-      if (response.ok) {
-        // Handle successful login
-        // e.g., redirect to a dashboard or home page
-        window.location.href = '/dashboard'; // Example redirect
-      } else {
-        const errorArray = Array.isArray(result.error) ? result.error : [result.error];
-        setServerValidationError({ error: errorArray });
-      }
-    } catch (error) {
-        setServerValidationError({ error: ["Something went wrong, please try again."] });
-    } 
-  };
-  
-
-
 
 
 
@@ -133,7 +103,6 @@ const handleGoogleSignUp = async () => {
                   
                     <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
                 </form>
-                <div><button onClick={handleGoogleSignUp }>G</button></div>
                 <p className="mt-10 text-center text-sm ">
                     <span className="mr-1">{t("auth.yes-account")}</span>
                     <Link href="/sign-in" className="font-semibold leading-6 text-cherry-600 hover:text-cherry-700">{t("auth.login")}</Link>
