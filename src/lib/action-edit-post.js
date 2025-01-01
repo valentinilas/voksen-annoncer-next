@@ -98,12 +98,6 @@ export async function editPost(formData, slug) {
     const removedImages = JSON.parse(formData.get('removedImages') || '[]');
     const newImages = formData.getAll('newImages');
 
-    console.log("--- NEW IMAGES ---", newImages);
-    // console.log('RECEIVED DATA');
-    // console.log('Form Data Contents:');
-    // for (const [key, value] of formData.entries()) {
-    //     console.log(`${key}:`, value);
-    // }
 
     const t = await getTranslations();
     const serverValidationSchema = createServerValidationSchema(t);
@@ -123,6 +117,7 @@ export async function editPost(formData, slug) {
     }
 
     try {
+        const newSlug = generateSlug(title);
         const { data: adData, error: adError } = await supabase
             .from('ads')
             .update({
@@ -131,6 +126,7 @@ export async function editPost(formData, slug) {
                 region_id: region,
                 category_id: category,
                 sub_category_id: subcategory,
+                slug: newSlug
             })
             .eq('slug', slug)
             .select();
