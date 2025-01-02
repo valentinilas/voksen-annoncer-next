@@ -1,5 +1,5 @@
 import { fetchCategories } from "@/lib/fetchCategories";
-import { fetchRegions } from "@/lib/fetchRegions";
+// import { fetchRegions } from "@/lib/fetchRegions";
 import NewPost from "./create-post";
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { redirect } from "next/navigation";
@@ -14,6 +14,17 @@ export async function CreatePostWrapper() {
 
 
     const { categories } = await fetchCategories();
-    const { regions } = await fetchRegions();
+    // const { regions } = await fetchRegions();
+    // Regions
+    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
+        next: { tags: ['regions'] }
+    });
+
+    if (!regionsRequest.ok) {
+        throw new Error(`Failed to fetch Regions: ${res.status}`);
+    }
+
+    const { regions } = await regionsRequest.json();
+    
     return <NewPost categories={categories} regions={regions} />;
 }

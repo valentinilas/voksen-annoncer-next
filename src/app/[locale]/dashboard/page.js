@@ -4,7 +4,7 @@ import { DashboardProfile } from "@/components/dashboard/profile";
 
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 import { fetchUserProfile } from "@/lib/fetchUserProfile";
-import { fetchRegions } from "@/lib/fetchRegions";
+// import { fetchRegions } from "@/lib/fetchRegions";
 import { fetchGenders } from "@/lib/fetchGenders";
 
 import { getTranslations } from 'next-intl/server';
@@ -33,8 +33,18 @@ export default async function Dashboard() {
         return <span>Could not load profile</span>
     }
 
-    const {regions} = await fetchRegions();
-    const {genders} = await fetchGenders()
+    // Regions
+    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
+        next: { tags: ['regions'] }
+    });
+
+    if (!regionsRequest.ok) {
+        throw new Error(`Failed to fetch Regions: ${res.status}`);
+    }
+
+    const { regions } = await regionsRequest.json();
+
+    const { genders } = await fetchGenders()
 
 
     return <>

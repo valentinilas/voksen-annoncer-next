@@ -1,6 +1,6 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
-import { fetchRegions } from "@/lib/fetchRegions";
+// import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
@@ -30,7 +30,17 @@ export default async function RegionPage(props) {
     const searchParams = await props.searchParams;
     const params = await props.params;
 
-    const { regions } = await fetchRegions();
+    // const { regions } = await fetchRegions();
+    // Regions
+    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
+        next: { tags: ['regions'] }
+    });
+
+    if (!regionsRequest.ok) {
+        throw new Error(`Failed to fetch Regions: ${res.status}`);
+    }
+
+    const { regions } = await regionsRequest.json();
 
     const searchRegion = regions.find((region) => region.slug === params.query);
 

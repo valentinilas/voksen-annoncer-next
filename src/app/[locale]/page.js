@@ -1,6 +1,6 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
-import { fetchRegions } from "@/lib/fetchRegions";
+// import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
 
@@ -62,12 +62,24 @@ export async function generateMetadata({ params }) {
 
 export default async function Ads(props) {
     const searchParams = await props.searchParams;
-    const {locale} = await props.params;
+    const { locale } = await props.params;
     const t = await getTranslations();
     const pageSize = 20;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await fetchCategories();
-    const { regions } = await fetchRegions();
+    // const { regions } = await fetchRegions();
+
+    // Regions
+    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
+        next: { tags: ['regions'] }
+    });
+
+    if (!regionsRequest.ok) {
+        throw new Error(`Failed to fetch Regions: ${res.status}`);
+    }
+
+    const { regions } = await regionsRequest.json();
+
     // const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
 
     // Fetch ads from the new API endpoint

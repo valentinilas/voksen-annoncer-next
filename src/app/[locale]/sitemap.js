@@ -1,6 +1,6 @@
 import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
-import { fetchRegions } from "@/lib/fetchRegions";
+// import { fetchRegions } from "@/lib/fetchRegions";
 import { fetchAllArticles } from "@/lib/fetchAllArticles";
 
 const locales = ['en', 'da'];
@@ -10,21 +10,32 @@ export default async function Sitemap() {
 
     const { ads } = await fetchAllPublicAds();
     const { categories } = await fetchCategories();
-    const { regions } = await fetchRegions();
+    // const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
+
+    // Regions
+    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
+        next: { tags: ['regions'] }
+    });
+
+    if (!regionsRequest.ok) {
+        throw new Error(`Failed to fetch Regions: ${res.status}`);
+    }
+
+    const { regions } = await regionsRequest.json();
 
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
             ...options
         }));
-        const createDanishEntries = (path, options = {}) =>
-            locales
-                .filter(locale => locale === 'da') // Filter to only include Danish locale
-                .map(locale => ({
-                    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
-                    ...options
-                }));
+    const createDanishEntries = (path, options = {}) =>
+        locales
+            .filter(locale => locale === 'da') // Filter to only include Danish locale
+            .map(locale => ({
+                url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
+                ...options
+            }));
 
     // Ads
     const adEntries = ads.flatMap(({ slug, created_at }) =>
