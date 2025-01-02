@@ -59,7 +59,7 @@ export default function Footer() {
                 </nav>
 
             </footer>
-            <footer className="footer border-t-2 footer-center bg-base-100 text-base-content p-10 rounded-b-2xl">
+            <footer className="footer border-t-2 border-base-200 footer-center bg-base-100 text-base-content p-10 rounded-b-2xl">
                 <aside>
                     <aside className="col-span-4">{t('footer.disclaimer')}</aside>
                 </aside>
