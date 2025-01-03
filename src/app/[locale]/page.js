@@ -13,6 +13,10 @@ import Button from "@/components/button/button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
+// Api
+import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+import { apiFetchPosts } from "@/utils/api/fetch-helpers";
+
 
 export async function generateMetadata({ params }) {
 
@@ -67,26 +71,16 @@ export default async function Ads(props) {
     const pageSize = 20;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await fetchCategories();
-    // const { regions } = await fetchRegions();
+    const { regions } = await apiFetchRegions();
+    const { ads, total } = await apiFetchPosts({ category, subcategory, region, search, page, pageSize });
+    const totalPages = Math.ceil(total / pageSize);
 
-    // Regions
-    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
-        cache: 'force-cache',
-        next: { tags: ['regions'],revalidate: 3600,  },
-    });
+    const buildUrl = (newPage) => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', newPage.toString());
+        return `?${params.toString()}`;
+    };
 
-    if (!regionsRequest.ok) {
-        throw new Error(`Failed to fetch Regions: ${res.status}`);
-    }
-
-    const { regions } = await regionsRequest.json();
-
-    // const { ads, total } = await fetchPublicAds(category, subcategory, region, search, page, pageSize);
-
-    // Fetch ads from the new API endpoint
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${category}&subcategory=${subcategory}&region=${region}&search=${search}&page=${page}&pageSize=${pageSize}`, {
-        next: { tags: ['public-posts'] }
-    });
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -111,19 +105,6 @@ export default async function Ads(props) {
         },
     };
 
-    if (!res.ok) {
-        throw new Error(`Failed to fetch ads: ${res.status}`);
-    }
-
-    const { ads, total } = await res.json();
-
-    const totalPages = Math.ceil(total / pageSize);
-
-    const buildUrl = (newPage) => {
-        const params = new URLSearchParams(searchParams);
-        params.set('page', newPage.toString());
-        return `?${params.toString()}`;
-    };
 
     return <>
         {/* Add JSON-LD to your page */}
