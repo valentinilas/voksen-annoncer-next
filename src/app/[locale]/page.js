@@ -71,7 +71,8 @@ export default async function Ads(props) {
 
     // Regions
     const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
-        next: { tags: ['regions'] }
+        cache: 'force-cache',
+        next: { tags: ['regions'],revalidate: 3600,  },
     });
 
     if (!regionsRequest.ok) {

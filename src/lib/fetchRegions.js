@@ -11,6 +11,7 @@ export const fetchRegions = async () => {
         if (error) {
             throw error;
         }
+        console.log("Fetched regions from supabase");
         return { regions: data, regionsError: null };
     } catch (error) {
         console.error('Error fetching data:', error);
