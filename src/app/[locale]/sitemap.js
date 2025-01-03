@@ -2,6 +2,7 @@ import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
 import { fetchCategories } from "@/lib/fetchCategories";
 // import { fetchRegions } from "@/lib/fetchRegions";
 import { fetchAllArticles } from "@/lib/fetchAllArticles";
+import { apiFetchRegions } from "@/utils/api/fetch-helpers";
 
 const locales = ['en', 'da'];
 
@@ -12,18 +13,7 @@ export default async function Sitemap() {
     const { categories } = await fetchCategories();
     // const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
-
-    // Regions
-    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
-        cache: 'force-cache',
-        next: { tags: ['regions'],revalidate: 3600,  },
-    });
-
-    if (!regionsRequest.ok) {
-        throw new Error(`Failed to fetch Regions: ${res.status}`);
-    }
-
-    const { regions } = await regionsRequest.json();
+    const { regions } = apiFetchRegions();
 
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({

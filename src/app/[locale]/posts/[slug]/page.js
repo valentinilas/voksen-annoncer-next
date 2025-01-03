@@ -1,7 +1,8 @@
 
 
 
-import { fetchPublicSingleAd } from "@/lib/fetchPublicSingleAd";
+// import { fetchPublicSingleAd } from "@/lib/fetchPublicSingleAd";
+import { apiFetchSinglePost } from "@/utils/api/fetch-helpers";
 import { fetchCurrentUser } from "@/lib/fetchCurrentUser";
 
 import AdDetail from "@/components/ad-page/ad-detail";
@@ -22,9 +23,10 @@ export async function generateMetadata({ params }) {
 
     try {
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`);
-        const { ad } = await response.json();
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`);
+        // const { ad } = await response.json();
         // const { ad } = await fetchPublicSingleAd(slug);
+        const {ad} = await apiFetchSinglePost(slug);
 
         return {
             title: ad.title + ' | Voksenannoncer',

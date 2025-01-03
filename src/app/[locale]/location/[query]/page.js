@@ -5,6 +5,7 @@ import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { apiFetchRegions } from "@/utils/api/fetch-helpers";
 
 
 export async function generateMetadata(props, parent) {
@@ -30,18 +31,7 @@ export default async function RegionPage(props) {
     const searchParams = await props.searchParams;
     const params = await props.params;
 
-    // const { regions } = await fetchRegions();
-    // Regions
-    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
-        cache: 'force-cache',
-        next: { tags: ['regions'],revalidate: 3600,  },
-    });
-
-    if (!regionsRequest.ok) {
-        throw new Error(`Failed to fetch Regions: ${res.status}`);
-    }
-
-    const { regions } = await regionsRequest.json();
+    const { regions } = await apiFetchRegions();
 
     const searchRegion = regions.find((region) => region.slug === params.query);
 

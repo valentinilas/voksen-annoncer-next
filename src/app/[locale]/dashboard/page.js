@@ -9,6 +9,8 @@ import { fetchGenders } from "@/lib/fetchGenders";
 
 import { getTranslations } from 'next-intl/server';
 
+import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
     const { locale } = await params;
@@ -33,17 +35,8 @@ export default async function Dashboard() {
         return <span>Could not load profile</span>
     }
 
-    // Regions
-    const regionsRequest = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
-        cache: 'force-cache',
-        next: { tags: ['regions'],revalidate: 3600,  },
-    });
 
-    if (!regionsRequest.ok) {
-        throw new Error(`Failed to fetch Regions: ${res.status}`);
-    }
-
-    const { regions } = await regionsRequest.json();
+    const { regions } = await apiFetchRegions();
 
     const { genders } = await fetchGenders()
 

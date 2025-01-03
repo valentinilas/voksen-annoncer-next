@@ -37,3 +37,22 @@ export const apiFetchPosts = async ( { category, subcategory, region, search, pa
     }
 };
 
+
+export const apiFetchSinglePost = async (slug) => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`, {
+            cache: 'force-cache',
+            next: { tags: ['post'], revalidate: 3600 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch post: ${req.status}`);
+        }
+
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        throw error;
+    }
+};
