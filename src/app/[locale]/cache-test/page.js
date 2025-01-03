@@ -5,30 +5,10 @@ import { routing } from '@/i18n/routing';
 
 
 export function generateStaticParams() {
-    return routing.locales.map((locale) => ({ locale }));
+    return [{ locale: 'en' }, { locale: 'da' }];
 }
 
-
-
-
-// export async function generateMetadata(props) {
-//     const params = await props.params;
-//     const locale = params.locale;
-
-//     setRequestLocale(locale);
-//     const t = await getTranslations('');
-//     return {
-//         title: `${t("navigation.cookie-policy")} | ${t("navigation.site-name")}`,
-//         alternates: {
-//             canonical: `https://www.voksen-annoncer.com/${locale}/cookie-policy`,
-//             languages: {
-//                 'en': `https://www.voksen-annoncer.com/en/cookie-policy`,
-//                 'da': `https://www.voksen-annoncer.com/da/cookie-policy`
-//             },
-//         },
-//     };
-
-// }
+export const revalidate = 3600;
 export default function CacheTest() {
 
 
