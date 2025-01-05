@@ -19,7 +19,7 @@ import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
 
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 100;
 // This ensures all possible paths are generated at build time
 export async function generateStaticParams() {
     try {
