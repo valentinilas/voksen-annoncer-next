@@ -12,13 +12,42 @@ import { getTranslations } from "next-intl/server";
 
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import Link from "next/link";
+import { routing } from '@/i18n/routing';
+// import { setRequestLocale } from "next-intl/server";
+import { apiFetchAllPublicArticles } from "@/utils/api/fetch-helpers";
+import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
+
+
+// export const dynamic = 'force-static';
+export const revalidate = 3600;
+// This ensures all possible paths are generated at build time
+export async function generateStaticParams() {
+    try {
+        const { articles } = await apiFetchAllPublicArticles();
+        console.log('Fetched Articles');
+        // Generate paths for each article in each locale
+        const paths = routing.locales.flatMap(locale =>
+            articles.map(article => ({
+                locale,
+                slug: article.Slug
+            }))
+        );
+
+
+        return paths;
+    } catch (error) {
+        console.error('Error generating static params:', error);
+        return [];
+    }
+}
 
 export async function generateMetadata({ params }) {
     const { slug, locale } = await params;
-
     try {
-        const { article } = await fetchSingleArticle(slug);
+        const { article } = await apiFetchSingleArticle(slug);
+        console.log('Fetched article:', article.Slug);
         return {
+            metadataBase: new URL('https://www.voksen-annoncer.com'),
             title: article.Title + ' | Voksenannoncer',
             description: article.Summary,
             openGraph: {
@@ -34,7 +63,7 @@ export async function generateMetadata({ params }) {
 
         };
     } catch (error) {
-        console.error("Failed to fetch ad data:", error);
+        console.error("Failed to fetch article data:", error);
         return {
             title: "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
             description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
@@ -56,13 +85,11 @@ const components = {
 export default async function Article({ params }) {
     const t = await getTranslations();
 
-    const { Slug } = await params;
+    const { slug } = await params;
 
 
+    const { article } = await apiFetchSingleArticle(slug);
 
-    const { article } = await fetchSingleArticle(Slug);
-
-    console.log(article);
 
     if (!article) {
         return <>
@@ -77,13 +104,13 @@ export default async function Article({ params }) {
     }
 
     const { id, Title, 'Body Text': BodyText, createdAt, Author, Summary, Image: articleImage } = article;
-    console.log(articleImage);
+    // console.log(articleImage);
 
     return <>
         <article>
-        <div className="max-w-4xl mx-auto  pb-3 ">
-            <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
-        </div>
+            <div className="max-w-4xl mx-auto  pb-3 ">
+                <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
+            </div>
             <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
                 <h1 className="text-4xl mb-5 ">{Title}</h1>
                 <p>{Summary}</p>
@@ -93,7 +120,6 @@ export default async function Article({ params }) {
                         alt={articleImage.alt}
                         width={articleImage.width}
                         height={articleImage.height}
-                        layout="responsive"
                         className="rounded-lg mx-auto size-full my-10"
                     /> : <DefaultImage />}
 
