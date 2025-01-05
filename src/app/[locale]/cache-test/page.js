@@ -8,7 +8,7 @@ import { routing } from '@/i18n/routing';
 export function generateStaticParams({params}) {
     return routing.locales.map((locale) => ({ locale }));
 }
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 export const revalidate = 3600;
 export default  function CacheTest({params}) {
 
