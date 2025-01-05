@@ -4,17 +4,19 @@ import { routing } from '@/i18n/routing';
 // import { setRequestLocale } from "next-intl/server";
 
 
+// This ensures all possible paths are generated at build time
 export function generateStaticParams() {
-    return [{ locale: 'en' }, { locale: 'da' }];
+    return routing.locales.map((locale) => ({ locale }));
 }
-
+// export const dynamic = 'force-static';
 export const revalidate = 3600;
-export default function CacheTest() {
-
+export default  function CacheTest({params}) {
 
     return (
         <section className="cache-test">
             <h1>This page should be static!</h1>
+            <p>{params.locale}</p>
+       
         </section>
     );
 }

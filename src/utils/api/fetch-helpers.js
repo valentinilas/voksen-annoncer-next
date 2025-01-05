@@ -56,3 +56,42 @@ export const apiFetchSinglePost = async (slug) => {
         throw error;
     }
 };
+
+// Articles
+export const apiFetchAllPublicArticles = async () => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-all-public-articles`, {
+            cache: 'force-cache',
+            next: { tags: ['public-articles'], revalidate: 3600 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch articles: ${req.statusText}`);
+        }
+
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching articles:', error);
+        throw error;
+    }
+};
+
+export const apiFetchSingleArticle = async (slug) => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-article/${slug}`, {
+            cache: 'force-cache',
+            next: { tags: ['public-articles'], revalidate: 3600 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch article: ${req.statusText}`);
+        }
+
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Failed to fetch article:', error);
+        throw error;
+    }
+};

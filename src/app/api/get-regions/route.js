@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600; // This is key for enabling route handler caching
 export async function GET(req) {
-  console.log('API called at:', new Date().toISOString());
 
   try {
     const { regions, regionsError:error } = await fetchRegions();
