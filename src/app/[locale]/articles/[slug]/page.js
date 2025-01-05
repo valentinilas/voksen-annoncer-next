@@ -65,8 +65,7 @@ export async function generateMetadata({ params }) {
     } catch (error) {
         console.error("Failed to fetch article data:", error);
         return {
-            title: "Gratis Voksenannoncer | Post Dine Annoncer på Vores Platform",
-            description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+          
         };
     }
 }
