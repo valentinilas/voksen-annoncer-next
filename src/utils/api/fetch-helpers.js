@@ -81,7 +81,7 @@ export const apiFetchSingleArticle = async (slug) => {
     try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-article/${slug}`, {
             cache: 'force-cache',
-            next: { tags: ['public-articles'], revalidate: 3600 },
+            next: { tags: ['public-articles'], revalidate: 100 },
         });
 
         if (!req.ok) {
