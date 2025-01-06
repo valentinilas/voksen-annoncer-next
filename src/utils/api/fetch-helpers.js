@@ -57,6 +57,25 @@ export const apiFetchSinglePost = async (slug) => {
     }
 };
 
+export const apiFetchAllPublicPosts = async () => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-all-public-posts`, {
+            cache: 'force-cache',
+            next: { tags: ['post'], revalidate: 3600 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch post: ${req.status}`);
+        }
+
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        throw error;
+    }
+};
+
 // Articles
 export const apiFetchAllPublicArticles = async () => {
     try {

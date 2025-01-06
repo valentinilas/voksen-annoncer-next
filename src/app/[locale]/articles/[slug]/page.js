@@ -24,7 +24,7 @@ export const revalidate = 3600;
 export async function generateStaticParams() {
     try {
         const { articles } = await apiFetchAllPublicArticles();
-        console.log('Fetched Articles');
+        // console.log('Fetched Articles');
         // Generate paths for each article in each locale
         const paths = routing.locales.flatMap(locale =>
             articles.map(article => ({
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
     const { slug, locale } = await params;
     try {
         const { article } = await apiFetchSingleArticle(slug);
-        console.log('Fetched article:', article.Slug);
+        // console.log('Fetched article:', article.Slug);
         return {
             metadataBase: new URL('https://www.voksen-annoncer.com'),
             title: article.Title + ' | Voksenannoncer',
