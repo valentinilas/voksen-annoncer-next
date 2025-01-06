@@ -19,27 +19,27 @@ import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
 
 
 // export const dynamic = 'force-static';
-export const revalidate = 3600;
-// This ensures all possible paths are generated at build time
-export async function generateStaticParams() {
-    try {
-        const { articles } = await apiFetchAllPublicArticles();
-        // console.log('Fetched Articles');
-        // Generate paths for each article in each locale
-        const paths = routing.locales.flatMap(locale =>
-            articles.map(article => ({
-                locale,
-                slug: article.Slug
-            }))
-        );
+// export const revalidate = 3600;
+// // This ensures all possible paths are generated at build time
+// export async function generateStaticParams() {
+//     try {
+//         const { articles } = await apiFetchAllPublicArticles();
+//         // console.log('Fetched Articles');
+//         // Generate paths for each article in each locale
+//         const paths = routing.locales.flatMap(locale =>
+//             articles.map(article => ({
+//                 locale,
+//                 slug: article.Slug
+//             }))
+//         );
 
 
-        return paths;
-    } catch (error) {
-        console.error('Error generating static params:', error);
-        return [];
-    }
-}
+//         return paths;
+//     } catch (error) {
+//         console.error('Error generating static params:', error);
+//         return [];
+//     }
+// }
 
 export async function generateMetadata({ params }) {
     const { slug, locale } = await params;

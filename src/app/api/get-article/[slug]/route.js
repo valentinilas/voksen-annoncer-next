@@ -1,7 +1,7 @@
 import { fetchSingleArticle } from "@/lib/fetchSingleArticle";
 
 export async function GET(req, { params }) {
-
+console.log('Getting article');
   try {
     const { slug } = await params;
     const { article, articleError } = await fetchSingleArticle(slug);

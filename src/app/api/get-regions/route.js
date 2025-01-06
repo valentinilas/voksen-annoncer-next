@@ -8,7 +8,7 @@ export const revalidate = 3600; // This is key for enabling route handler cachin
 export async function GET(req) {
 
   try {
-    const { regions, regionsError:error } = await fetchRegions();
+    const { regions, regionsError: error } = await fetchRegions();
 
     if (error) {
       throw new Error(error);
