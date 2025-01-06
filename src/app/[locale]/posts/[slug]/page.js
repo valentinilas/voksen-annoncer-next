@@ -19,7 +19,7 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 import { apiFetchAllPublicPosts } from "@/utils/api/fetch-helpers";
 import { routing } from '@/i18n/routing';
 
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 export const revalidate = 3600;
 // This ensures all possible paths are generated at build time
 export async function generateStaticParams() {
