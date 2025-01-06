@@ -19,29 +19,29 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 import { apiFetchAllPublicPosts } from "@/utils/api/fetch-helpers";
 import { routing } from '@/i18n/routing';
 
-// export const dynamic = 'force-static';
-export const revalidate = 3600;
-// This ensures all possible paths are generated at build time
-export async function generateStaticParams() {
-    try {
-        const { ads } = await apiFetchAllPublicPosts();
-        console.log('Fetched All Posts');
-        // Generate paths for each article in each locale
-        const paths = routing.locales.flatMap(locale =>
-            ads.map(ad => ({
-                locale,
-                slug: ad.slug
-            }))
-        );
-        console.log(paths);
+// // export const dynamic = 'force-static';
+// export const revalidate = 3600;
+// // This ensures all possible paths are generated at build time
+// export async function generateStaticParams() {
+//     try {
+//         const { ads } = await apiFetchAllPublicPosts();
+//         console.log('Fetched All Posts');
+//         // Generate paths for each article in each locale
+//         const paths = routing.locales.flatMap(locale =>
+//             ads.map(ad => ({
+//                 locale,
+//                 slug: ad.slug
+//             }))
+//         );
+//         console.log(paths);
 
 
-        return paths;
-    } catch (error) {
-        console.error('Error generating static params:', error);
-        return [];
-    }
-}
+//         return paths;
+//     } catch (error) {
+//         console.error('Error generating static params:', error);
+//         return [];
+//     }
+// }
 
 export async function generateMetadata({ params }) {
 
