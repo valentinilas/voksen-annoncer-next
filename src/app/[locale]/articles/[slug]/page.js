@@ -18,7 +18,7 @@ import { apiFetchAllPublicArticles } from "@/utils/api/fetch-helpers";
 import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
 
 
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 export const revalidate = 3600;
 // This ensures all possible paths are generated at build time
 export async function generateStaticParams() {

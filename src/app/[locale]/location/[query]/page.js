@@ -12,7 +12,7 @@ export async function generateMetadata(props, parent) {
     const params = await props.params;
     const { locale } = params
     const t = await getTranslations();
-    const { regions } = await fetchRegions();
+    const { regions } = await apiFetchRegions();
     const searchRegion = regions.find((region) => region.slug === params.query);
 
     return {
