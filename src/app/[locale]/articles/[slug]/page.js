@@ -18,28 +18,28 @@ import { apiFetchAllPublicArticles } from "@/utils/api/fetch-helpers";
 import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
 
 
-// // export const dynamic = 'force-static';
-// export const revalidate = 3600;
-// // This ensures all possible paths are generated at build time
-// export async function generateStaticParams() {
-//     try {
-//         const { articles } = await apiFetchAllPublicArticles();
-//         // console.log('Fetched Articles');
-//         // Generate paths for each article in each locale
-//         const paths = routing.locales.flatMap(locale =>
-//             articles.map(article => ({
-//                 locale,
-//                 slug: article.Slug
-//             }))
-//         );
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+// This ensures all possible paths are generated at build time
+export async function generateStaticParams() {
+    try {
+        const { articles } = await apiFetchAllPublicArticles();
+        // console.log('Fetched Articles');
+        // Generate paths for each article in each locale
+        const paths = routing.locales.flatMap(locale =>
+            articles.map(article => ({
+                locale,
+                slug: article.Slug
+            }))
+        );
 
 
-//         return paths;
-//     } catch (error) {
-//         console.error('Error generating static params:', error);
-//         return [];
-//     }
-// }
+        return paths;
+    } catch (error) {
+        console.error('Error generating static params:', error);
+        return [];
+    }
+}
 
 export async function generateMetadata({ params }) {
     const { slug, locale } = await params;
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }) {
     } catch (error) {
         console.error("Failed to fetch article data:", error);
         return {
-          
+
         };
     }
 }
@@ -107,10 +107,9 @@ export default async function Article({ params }) {
 
     return <>
         <article>
-            <div className="max-w-4xl mx-auto  pb-3 ">
-                <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
-            </div>
-            <div className="max-w-4xl mx-auto bg-base-100 p-10 rounded-box">
+
+            <div className=" mx-auto bg-base-100 p-10 rounded-box">
+  
                 <h1 className="text-4xl mb-5 ">{Title}</h1>
                 <p>{Summary}</p>
                 {articleImage ?
@@ -126,7 +125,9 @@ export default async function Article({ params }) {
                 <p className="pt-10">{Author} | {formatDate(createdAt)} </p>
             </div>
 
-
+            <div className=" mx-auto  px-2 py-3 ">
+                    <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
+                </div>
         </article>
     </>
 }

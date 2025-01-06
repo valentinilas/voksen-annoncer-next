@@ -16,21 +16,27 @@ import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import { useUser } from "@/lib/userContextProvider";
-
+import { useState, useEffect } from "react";
 // import { useAuth } from "../../lib/auth-context";
-
+import { fetchCurrentUserClientSide } from "@/lib/fetchCurrentUserClient";
 
 export default function NavBar() {
 
     const t = useTranslations();
-    const { user, userProfile } = useUser();
-    const isLoggedIn = user !== null
+    const [user, setUser] = useState(null);
+    const [userProfile, setUserProfile] = useState(null);
 
+    useEffect(() => {
+        async function fetchUser() {
+            const { user, userProfile } = await fetchCurrentUserClientSide();
+            setUser(user);
+            setUserProfile(userProfile);
+        }
+        fetchUser();
+    }, []);
 
-
-    // const { profile, loading: loadingProfile, error: errorProfile } = profileData;
+    const isLoggedIn = user !== null;
     const { avatar_url, username, is_admin } = userProfile || {};
-
 
 
 
