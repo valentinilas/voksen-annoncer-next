@@ -202,6 +202,7 @@
         "homepage": "Homepage"
     },
     "create-ad": {
+        "disclaimer":"We check each ad manually, to ensure there is no illegal content. This is why it can take up to 24 hours before your ad is approved. We reserve the right to delete any ads that promote illegal activities or contain defamatory content.",
         "image-length": "You can upload a maximum of 12 images.",
         "image-type": "Only image files are allowed.",
         "image-size": "Images must be less than 2 MB.",

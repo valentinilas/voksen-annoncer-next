@@ -142,9 +142,11 @@ export default function NewPost({ categories, regions }) {
 
         <div className="bg-base-100 p-5  rounded-box shadow-sm">
             <h1 className="text-2xl font-bold mb-4 ">{t("navigation.create-ad")}</h1>
+            <p>{t('create-ad.disclaimer')}</p>
             <form
                 onSubmit={onSubmit}
                 encType="multipart/form-data"
+                className="mt-4"
             >
                 {serverValidationError.error && <p className="error text-red-500 text-sm mt-2">{serverValidationError.error}</p>}
 
@@ -184,7 +186,7 @@ export default function NewPost({ categories, regions }) {
                 {/* New Images */}
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2" htmlFor="images">
-                        {t('ads.ad-add-images')}
+                        {t('create-ad.upload-images')}
                     </label>
                     <input
                         id="images"

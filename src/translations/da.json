@@ -202,6 +202,7 @@
         "homepage": "Hjemmeside"
     },
     "create-ad": {
+        "disclaimer": "Vi gennemgår hver annonce manuelt for at sikre, at der ikke er ulovligt indhold. Derfor kan det tage op til 24 timer, før din annonce bliver godkendt. Vi forbeholder os retten til at slette annoncer, der promoverer ulovlige aktiviteter eller indeholder ærekrænkende indhold.",
         "image-length": "Du kan uploade højst 12 billeder.",
         "image-type": "Kun billedfiler er tilladt.",
         "image-size": "Billeder skal være mindre end 2 MB.",
