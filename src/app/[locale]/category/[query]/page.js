@@ -1,17 +1,16 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
-import { fetchCategories } from "@/lib/fetchCategories";
 import { fetchSubCategories } from "@/lib/fetchSubCategories";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-
+import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
 export async function generateMetadata(props, parent) {
     const params = await props.params;
     const { locale } = params
     const t = await getTranslations();
-    const { categories } = await fetchCategories();
+    const { categories } = await apiFetchCategories();
     const { subCategories } = await fetchSubCategories();
 
     const searchCategory = categories.find((category) => category.slug === params.query);
@@ -38,7 +37,7 @@ export default async function CategoryPage(props) {
     const searchParams = await props.searchParams;
     const params = await props.params;
 
-    const { categories } = await fetchCategories();
+    const { categories } = await apiFetchCategories();
     const { subCategories } = await fetchSubCategories();
 
 

@@ -1,6 +1,4 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
-import { fetchCategories } from "@/lib/fetchCategories";
-// import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Filters from "@/components/filters/filters";
 
@@ -16,6 +14,7 @@ import Image from "next/image";
 // Api
 import { apiFetchRegions } from "@/utils/api/fetch-helpers";
 import { apiFetchPosts } from "@/utils/api/fetch-helpers";
+import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
 
 export async function generateMetadata({ params }) {
@@ -70,7 +69,7 @@ export default async function Ads(props) {
     const t = await getTranslations();
     const pageSize = 20;
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
-    const { categories } = await fetchCategories();
+    const { categories } = await apiFetchCategories();
     const { regions } = await apiFetchRegions();
     const { ads, total } = await apiFetchPosts({ category, subcategory, region, search, page, pageSize });
     const totalPages = Math.ceil(total / pageSize);

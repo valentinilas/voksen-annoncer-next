@@ -16,6 +16,24 @@ export const apiFetchRegions = async () => {
     }
 };
 
+export const apiFetchCategories = async () => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-categories`, {
+            cache: 'force-cache',
+            next: { tags: ['categories'], revalidate: 3600 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch categories: ${req.status}`);
+        }
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        throw error;
+    }
+};
+
 
 
 

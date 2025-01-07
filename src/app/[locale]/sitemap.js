@@ -1,8 +1,7 @@
 import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
-import { fetchCategories } from "@/lib/fetchCategories";
-// import { fetchRegions } from "@/lib/fetchRegions";
 import { fetchAllArticles } from "@/lib/fetchAllArticles";
 import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
 const locales = ['en', 'da'];
 
@@ -10,7 +9,7 @@ const locales = ['en', 'da'];
 export default async function Sitemap() {
 
     const { ads } = await fetchAllPublicAds();
-    const { categories } = await fetchCategories();
+    const { categories } = await apiFetchCategories();
     // const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
     const { regions } = apiFetchRegions();

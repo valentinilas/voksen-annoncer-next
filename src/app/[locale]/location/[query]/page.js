@@ -1,12 +1,9 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
-import { fetchCategories } from "@/lib/fetchCategories";
-// import { fetchRegions } from "@/lib/fetchRegions";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { apiFetchRegions } from "@/utils/api/fetch-helpers";
-
 
 export async function generateMetadata(props, parent) {
     const params = await props.params;
