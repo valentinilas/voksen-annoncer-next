@@ -10,9 +10,8 @@ export default async function Sitemap() {
 
     const { ads } = await fetchAllPublicAds();
     const { categories } = await apiFetchCategories();
-    // const { regions } = await fetchRegions();
     const { articles } = await fetchAllArticles();
-    const { regions } = apiFetchRegions();
+    const { regions } = await apiFetchRegions();
 
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({
