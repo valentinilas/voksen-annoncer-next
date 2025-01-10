@@ -2,7 +2,7 @@ export const apiFetchRegions = async () => {
     try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-regions`, {
             cache: 'force-cache',
-            next: { tags: ['regions'], revalidate: 3600 },
+            next: { tags: ['regions'], revalidate: 2592000 },
         });
 
         if (!req.ok) {
@@ -20,7 +20,25 @@ export const apiFetchCategories = async () => {
     try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-categories`, {
             cache: 'force-cache',
-            next: { tags: ['categories'], revalidate: 3600 },
+            next: { tags: ['categories'], revalidate: 2592000 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch categories: ${req.status}`);
+        }
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        throw error;
+    }
+};
+
+export const apiFetchSubCategories = async () => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-sub-categories`, {
+            cache: 'force-cache',
+            next: { tags: ['subcategories'], revalidate: 2592000 },
         });
 
         if (!req.ok) {
@@ -99,7 +117,7 @@ export const apiFetchAllPublicArticles = async () => {
     try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-all-public-articles`, {
             cache: 'force-cache',
-            next: { tags: ['public-articles'], revalidate: 3600 },
+            next: { tags: ['public-articles'], revalidate: 2592000 },
         });
 
         if (!req.ok) {
@@ -118,7 +136,7 @@ export const apiFetchSingleArticle = async (slug) => {
     try {
         const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-article/${slug}`, {
             cache: 'force-cache',
-            next: { tags: ['public-articles'], revalidate: 3600 },
+            next: { tags: ['public-article'], revalidate: 2592000 },
         });
 
         if (!req.ok) {

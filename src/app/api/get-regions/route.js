@@ -4,7 +4,6 @@ import { fetchRegions } from "@/lib/fetchRegions";
 import { NextResponse } from 'next/server';
 
 
-export const revalidate = 3600; // This is key for enabling route handler caching
 export async function GET(req) {
 
   try {
@@ -19,7 +18,7 @@ export async function GET(req) {
       {
         status: 200,
         headers: {
-          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59',
+          'Cache-Control': 'public, s-maxage=2592000, stale-while-revalidate=59',
         },
       }
     );

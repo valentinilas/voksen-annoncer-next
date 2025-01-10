@@ -17,7 +17,7 @@ console.log('Getting article');
     return new Response(JSON.stringify({ article }), {
       status: 200,
       headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
+        'Cache-Control': 'public, s-maxage=2592000, stale-while-revalidate=59', 
         'Content-Type': 'application/json',
       },
     });

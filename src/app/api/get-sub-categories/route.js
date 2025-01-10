@@ -1,19 +1,19 @@
 
 
-import { fetchCategories } from '@/lib/fetchCategories';
+import { fetchSubCategories } from '@/lib/fetchSubCategories';
 import { NextResponse } from 'next/server';
 
 
 export async function GET(req) {
 
   try {
-    const { categories, categoriesError: error } = await fetchCategories();
+    const { subCategories, subCategoriesError: error } = await fetchSubCategories();
     if (error) {
       throw new Error(error);
     }
 
     return NextResponse.json(
-      { categories, timestamp: new Date().toISOString() },
+      { subCategories, timestamp: new Date().toISOString() },
       {
         status: 200,
         headers: {
