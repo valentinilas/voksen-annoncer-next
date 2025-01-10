@@ -3,6 +3,8 @@ import { fetchPublicSingleAd } from "@/lib/fetchPublicSingleAd";
 export async function GET(req, { params }) {
   try {
     const { slug } = await params;
+    console.log('GET', slug);
+
     const { ad, adError } = await fetchPublicSingleAd(slug);
     if (adError) {
       return new Response(JSON.stringify({ error: adError.message }), {
