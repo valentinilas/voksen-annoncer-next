@@ -80,6 +80,7 @@ export const apiFetchSinglePost = async (slug) => {
             cache: 'force-cache',
             next: { tags: ['post'], revalidate: 3600 },
         });
+        console.log('Fetched post', slug);
 
         if (!req.ok) {
             throw new Error(`Failed to fetch post: ${req.status}`);

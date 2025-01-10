@@ -51,7 +51,6 @@ export async function generateMetadata({ params }) {
 
 
         const {ad} = await apiFetchSinglePost(slug);
-        console.log('Fetched: ', ad.title);
 
         return {
             title: ad.title + ' | Voksenannoncer',
