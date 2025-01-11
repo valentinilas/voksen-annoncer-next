@@ -27,8 +27,8 @@ export async function generateMetadata({ params }) {
 
 
         return {
-            title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
-            description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+            title: t("meta.posts.title"),
+            description: t("meta.posts.description"),
             alternates: {
                 canonical: `https://www.voksen-annoncer.com/${locale}`,
                 languages: {
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }) {
                 },
             },
             openGraph: {
-                title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
-                description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+                title: t("meta.posts.title"),
+                description: t("meta.posts.description"),
                 url: `https://www.voksen-annoncer.com/${locale}`,
                 siteName: t("navigation.site-name"),
                 locale: locale,
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }) {
                         url: '/og/og-banner.jpg',
                         width: 1200,
                         height: 630,
-                        alt: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer", // Accessible text for the image
+                        alt: t("meta.posts.title"), 
                     },
                 ],
             },
@@ -58,8 +58,8 @@ export async function generateMetadata({ params }) {
     } catch (error) {
         console.error("Failed to fetch ad data:", error);
         return {
-            title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
-            description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
+            title: t("meta.posts.title"),
+            description: t("meta.posts.description"),
         };
     }
 }

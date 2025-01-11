@@ -6,7 +6,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
 
     return {
-        title: `${t("navigation.about")} | ${t("navigation.site-name")}`,
+        title: t("meta.about.title"),
+        description: t("meta.about.description"),
         alternates: {
             canonical: `https://www.voksen-annoncer.com/da/about`,
             languages: {

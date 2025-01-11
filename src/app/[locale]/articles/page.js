@@ -9,11 +9,11 @@ import DefaultImage from "@/components/default-image/default-image";
 import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params, searchParams }) {
   const { locale } = await params;
+  const t = await getTranslations();
 
   return {
-    title: "Artikler | Voksenannoncer.com",
-    description:
-      "Udforsk indsigtsfulde og engagerende blogindlæg om sex og seksualitet. Find artikler, der dækker et bredt udvalg af emner, herunder seksuel sundhed, forhold, intimitet og meget mere, alt sammen med det formål at fremme forståelse og sunde diskussioner.",
+    title: t("meta.articles.title"),
+    description: t("meta.articles.description"),
     alternates: {
       canonical: `https://www.voksen-annoncer.com/${locale}/articles`,
       languages: {

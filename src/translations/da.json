@@ -1,7 +1,25 @@
 {
     "meta": {
-        "title": "Gratis Voksenannoncer | Nå ud til dit voksne publikum",
-        "description": "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!"
+        "posts": {
+            "title": "Gratis sexannoncer, massageannoncer, escortannoncer, swingerannoncer, sugar dating-annoncer | Voksenannoncer",
+            "description": "Din ultimative portal til sexannoncer, escorter, swingere, events, massagetjenester og sugar dating-muligheder. Opslå eller gennemse med lethed og diskretion på en pålidelig platform skræddersyet til voksenforbindelser."
+        },
+        "articles": {
+            "title": "Artikler om seksualitet og sundhed | Indsigter til et balanceret liv",
+            "description": "Udforsk ekspertartikler om seksualitet, relationer og sundhed. Find tips, råd og indsigter, der forbedrer dit velvære, styrker forbindelser og hjælper dig med at navigere i voksenlivets kompleksiteter med selvtillid."
+        },
+        "login": {
+            "title": "Log ind | Adgang til din konto",
+            "description": "Log ind for at få adgang til dine personlige annoncer, indstillinger og opdateringer. Få fuld kontrol over din konto og dine præferencer på en sikker og brugervenlig platform."
+        },
+        "signup": {
+            "title": "Tilmeld dig | Opret din konto",
+            "description": "Tilmeld dig for at begynde at oprette annoncer, administrere dine præferencer og oprette forbindelser. Bliv en del af vores platform for nem adgang til en sikker og personlig oplevelse."
+        },
+        "about": {
+            "title": "Om os | Voksenannoncer",
+            "description": "Hos Voksenannoncer tilbyder vi en sikker og imødekommende platform, hvor voksne kan oprette annoncer og komme i kontakt med ligesindede. Uanset om du leder efter at møde nye mennesker, finde en særlig forbindelse eller udforske dine lyster, er Voksenannoncer her for at hjælpe."
+        }
     },
     "navigation": {
         "home": "Hjem",

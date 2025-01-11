@@ -1,10 +1,28 @@
 {
     "meta": {
-        "title": "Gratis Voksenannoncer | Nå ud til dit voksne publikum",
-        "description": "På Voksenannoncer kan du oprette gratis annoncer til din klinik, massagevirksomhed, find sugardating, escort"
+        "posts": {
+            "title": "Free sex ads, massage ads, escort ads, swinger ads, sugar dating ads | Voksenannoncer",
+            "description": "Your ultimate portal for sex ads, escorts, swingers, events, massage services, and sugar dating opportunities. Post or browse with ease and discretion on a trusted platform tailored for adult connections."
+        },
+        "articles": {
+            "title": "Articles on Sexuality and Health | Insights for a Balanced Life",
+            "description": "Explore expert articles on sexuality, relationships, and health. Discover tips, advice, and insights to enhance well-being, foster connections, and navigate the complexities of adult life with confidence."
+        },
+        "login": {
+            "title": "Login | Access Your Account",
+            "description": "Log in to access your personal ads, settings, and updates. Gain full control over your account and preferences on a secure and user-friendly platform."
+        },
+        "signup": {
+            "title": "Sign Up | Create Your Account",
+            "description": "Sign up to start posting ads, manage your preferences, and connect with others. Join our platform for easy access to a secure and personalized experience."
+        },
+        "about":{
+            "title": "About us | Voksenannoncer",
+            "description": "At Voksenannoncer, we provide a safe and welcoming platform for adults to create ads and connect with like-minded individuals. Whether you’re looking to meet new people, find a special connection, or explore your desires, Voksenannoncer is here to help."
+        }
     },
     "navigation": {
-        "home":"Home",
+        "home": "Home",
         "menu": "Menu",
         "admin": "Admin",
         "profile": "Profile",
@@ -17,7 +35,7 @@
         "sign-up": "Sign up",
         "create-ad": "Create ad",
         "site-name": "Voksenannoncer",
-        "articles":"Articles"
+        "articles": "Articles"
     },
     "featured": {
         "headline": "Today's featured ads",
@@ -118,15 +136,15 @@
         "approved": "Approved",
         "pending-approval": "Pending Approval",
         "edit": "Edit",
-        "edit-ad":"Edit ad",
+        "edit-ad": "Edit ad",
         "delete": "Delete",
         "create-ad": "Create ad",
         "no-results": "No results found.",
         "views": "Views",
-        "New":"New",
+        "New": "New",
         "start-here": "Start here",
-        "ad-images":"Images",
-        "ad-add-images":"Add more images"
+        "ad-images": "Images",
+        "ad-add-images": "Add more images"
     },
     "profile": {
         "no-profile": "No profile available.",
@@ -206,7 +224,7 @@
         "homepage": "Homepage"
     },
     "create-ad": {
-        "disclaimer":"We check each ad manually, to ensure there is no illegal content. This is why it can take up to 24 hours before your ad is approved. We reserve the right to delete any ads that promote illegal activities or contain defamatory content.",
+        "disclaimer": "We check each ad manually, to ensure there is no illegal content. This is why it can take up to 24 hours before your ad is approved. We reserve the right to delete any ads that promote illegal activities or contain defamatory content.",
         "image-length": "You can upload a maximum of 12 images.",
         "image-type": "Only image files are allowed.",
         "image-size": "Images must be less than 2 MB.",
