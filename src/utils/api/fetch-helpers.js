@@ -112,6 +112,25 @@ export const apiFetchAllPublicPosts = async () => {
     }
 };
 
+export const apiFetchFeaturedPublicPosts = async () => {
+    try {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-featured-posts`, {
+            cache: 'force-cache',
+            next: { tags: ['featured-posts'], revalidate: 86400 },
+        });
+
+        if (!req.ok) {
+            throw new Error(`Failed to fetch posts: ${req.status}`);
+        }
+
+        const response = await req.json();
+        return response;
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        throw error;
+    }
+};
+
 // Articles
 export const apiFetchAllPublicArticles = async () => {
     try {

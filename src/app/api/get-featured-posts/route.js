@@ -1,19 +1,17 @@
-import { fetchAllPublicAds } from "@/lib/fetchAllPublicAds";
 import { fetchRandomPublicAds } from "@/lib/fetchRandomAds";
 
 export async function GET(req) {
     try {
-        const { ads, error } = await fetchRandomPublicAds();
-
+        const { featuredAds, error } = await fetchRandomPublicAds();
         if (error) {
             throw new Error(error);
         }
 
         // Set cache headers, cache for 1 hour
-        return new Response(JSON.stringify({ ads }), {
+        return new Response(JSON.stringify({ featuredAds }), {
           status: 200,
           headers: {
-            'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59', 
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=59', 
             'Content-Type': 'application/json',
           },
         });

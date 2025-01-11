@@ -12,10 +12,11 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 // Api
-import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+import { apiFetchFeaturedPublicPosts, apiFetchRegions } from "@/utils/api/fetch-helpers";
 import { apiFetchPosts } from "@/utils/api/fetch-helpers";
 import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
+import {FeaturedAds} from "@/components/featured-ads/featured-ads";
 
 export async function generateMetadata({ params }) {
 
@@ -71,6 +72,8 @@ export default async function Ads(props) {
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await apiFetchCategories();
     const { regions } = await apiFetchRegions();
+    const x = await apiFetchFeaturedPublicPosts();
+    const { featuredAds } = await apiFetchFeaturedPublicPosts();
     const { ads, total } = await apiFetchPosts({ category, subcategory, region, search, page, pageSize });
     const totalPages = Math.ceil(total / pageSize);
 
@@ -111,11 +114,10 @@ export default async function Ads(props) {
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* <IntroBanner /> */}
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
-            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block mx-auto bg-clip-text text-center text-5xl text-transparent font-black leading-normal	">Hav et godt nytår!</span>
 
-        </div>
+        {/* Featured ads */}
+        <FeaturedAds featuredAds={featuredAds} />
+
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             {/* <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1> */}
             <h1 className="text-2xl">{t("about.welcome")}</h1>
