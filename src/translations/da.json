@@ -19,6 +19,10 @@
         "site-name": "Voksenannoncer",
         "articles": "Artikler"
     },
+    "featured": {
+        "headline": "Dagens fremhævede annoncer",
+        "no-featured": "Ingen fremhævede annoncer tilgængelige."
+    },
     "pagination": {
         "Page": "Side",
         "of": "af"
