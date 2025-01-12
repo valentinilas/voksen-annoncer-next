@@ -56,7 +56,7 @@ export async function generateMetadata({ params, searchParams }) {
             openGraph: {
                 images: [article.Image?.url || ''],
             },
-            alternates: generateAlternatesBlock(locale, `/articles/${slug}`, await searchParams),
+            alternates: generateAlternatesBlock(locale, `/articles/${slug}`, await searchParams, true),
 
         };
     } catch (error) {

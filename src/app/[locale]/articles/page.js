@@ -16,7 +16,7 @@ export async function generateMetadata({ params, searchParams }) {
   return {
     title: t("meta.articles.title"),
     description: t("meta.articles.description"),
-    alternates: generateAlternatesBlock(locale, '/articles', await searchParams)
+    alternates: generateAlternatesBlock(locale, '/articles', await searchParams, true)
   };
 }
 export default async function Articles(props) {

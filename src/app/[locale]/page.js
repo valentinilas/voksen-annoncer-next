@@ -23,7 +23,7 @@ export async function generateMetadata({ params, searchParams }) {
 
     const { locale } = await params;
     const t = await getTranslations();
-    const alternates = generateAlternatesBlock(locale, '/', await searchParams);
+    const alternates = generateAlternatesBlock(locale, '/', await searchParams, true);
     try {
 
 

@@ -59,7 +59,7 @@ export async function generateMetadata({ params, searchParams }) {
             title: ad.title + ' | Voksenannoncer',
             description: ad.description.slice(0, 150),
            
-            alternates: generateAlternatesBlock(locale, `/posts/${slug}`, await searchParams),
+            alternates: generateAlternatesBlock(locale, `/posts/${slug}`, await searchParams, true),
 
             openGraph: {
                 images: [ad.ad_images[0]?.image_url || ''],
