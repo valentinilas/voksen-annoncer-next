@@ -13,7 +13,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
             canonical: `https://www.voksen-annoncer.com/${locale}/edit-post`,
             languages: {
                 'en': `https://www.voksen-annoncer.com/en/edit-post`,
-                'da': `https://www.voksen-annoncer.com/da/edit-post`
+                'da': `https://www.voksen-annoncer.com/da/edit-post`,
+                'x-default': `https://www.voksen-annoncer.com/da/edit-post`
             },
         },
     };

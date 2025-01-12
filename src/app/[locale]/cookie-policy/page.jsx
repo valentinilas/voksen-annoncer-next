@@ -23,7 +23,8 @@ export async function generateMetadata(props) {
             canonical: `https://www.voksen-annoncer.com/${locale}/cookie-policy`,
             languages: {
                 'en': `https://www.voksen-annoncer.com/en/cookie-policy`,
-                'da': `https://www.voksen-annoncer.com/da/cookie-policy`
+                'da': `https://www.voksen-annoncer.com/da/cookie-policy`,
+                'x-default': `https://www.voksen-annoncer.com/da/cookie-policy`
             },
         },
     };

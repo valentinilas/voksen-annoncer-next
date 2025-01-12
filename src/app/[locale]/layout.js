@@ -38,6 +38,7 @@ export const metadata = {
         languages: {
             'en': 'https://www.voksen-annoncer.com/en',
             'da': 'https://www.voksen-annoncer.com/da',
+            'x-default': 'https://www.voksen-annoncer.com/da',
         },
     },
 };

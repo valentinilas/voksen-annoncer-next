@@ -18,7 +18,8 @@ export async function generateMetadata(props, parent) {
             canonical: `https://www.voksen-annoncer.com/${locale}/location/${params.query}`,
             languages: {
                 'en': `https://www.voksen-annoncer.com/en/location/${params.query}`,
-                'da': `https://www.voksen-annoncer.com/da/location/${params.query}`
+                'da': `https://www.voksen-annoncer.com/da/location/${params.query}`,
+                'x-default': `https://www.voksen-annoncer.com/da/location/${params.query}`
             },
         },
     };

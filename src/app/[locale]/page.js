@@ -33,7 +33,8 @@ export async function generateMetadata({ params }) {
                 canonical: `https://www.voksen-annoncer.com/${locale}`,
                 languages: {
                     'en': `https://www.voksen-annoncer.com/en`,
-                    'da': `https://www.voksen-annoncer.com/da`
+                    'da': `https://www.voksen-annoncer.com/da`,
+                    'x-default': `https://www.voksen-annoncer.com/da`
                 },
             },
             openGraph: {

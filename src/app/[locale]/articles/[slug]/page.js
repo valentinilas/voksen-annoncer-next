@@ -57,7 +57,8 @@ export async function generateMetadata({ params }) {
                 canonical: `https://www.voksen-annoncer.com/${locale}/articles/${slug}`,
                 languages: {
                     'en': `https://www.voksen-annoncer.com/en/articles/${slug}`,
-                    'da': `https://www.voksen-annoncer.com/da/articles/${slug}`
+                    'da': `https://www.voksen-annoncer.com/da/articles/${slug}`,
+                    'x-default': `https://www.voksen-annoncer.com/da/articles/${slug}`
                 },
             },
 

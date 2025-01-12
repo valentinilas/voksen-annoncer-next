@@ -15,7 +15,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
             canonical: `https://www.voksen-annoncer.com/${locale}/admin`,
             languages: {
                 'en': `https://www.voksen-annoncer.com/en/admin`,
-                'da': `https://www.voksen-annoncer.com/da/admin`
+                'da': `https://www.voksen-annoncer.com/da/admin`,
+                'x-default': `https://www.voksen-annoncer.com/da/admin`
             },
         },
     };

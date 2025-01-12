@@ -20,7 +20,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
             canonical: `https://www.voksen-annoncer.com/${locale}/dashboard`,
             languages: {
                 'en': `https://www.voksen-annoncer.com/en/dashboard`,
-                'da': `https://www.voksen-annoncer.com/da/dashboard`
+                'da': `https://www.voksen-annoncer.com/da/dashboard`,
+                'x-default': `https://www.voksen-annoncer.com/da/dashboard`
             },
         },
     };

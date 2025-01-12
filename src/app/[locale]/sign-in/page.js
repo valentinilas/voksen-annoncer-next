@@ -13,7 +13,8 @@ export async function generateMetadata({ params, searchParams }) {
       canonical: `https://www.voksen-annoncer.com/${locale}/sign-in`,
       languages: {
         'en': `https://www.voksen-annoncer.com/en/sign-in`,
-        'da': `https://www.voksen-annoncer.com/da/sign-in`
+        'da': `https://www.voksen-annoncer.com/da/sign-in`,
+        'x-default': `https://www.voksen-annoncer.com/da/sign-in`
       },
     },
   };
