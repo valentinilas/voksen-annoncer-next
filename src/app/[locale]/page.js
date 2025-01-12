@@ -17,30 +17,24 @@ import { apiFetchPosts } from "@/utils/api/fetch-helpers";
 import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
 import FeaturedAdsWrapper from "@/components/featured-ads/featured-ads-wrapper";
+import {generateAlternatesBlock} from "@/utils/generate-canonical/generateAlternatesBlock";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
 
-    const { locale } = await params
+    const { locale } = await params;
     const t = await getTranslations();
-
+    const alternates = generateAlternatesBlock(locale, '/', await searchParams);
     try {
 
 
         return {
             title: t("meta.posts.title"),
             description: t("meta.posts.description"),
-            alternates: {
-                canonical: `https://www.voksen-annoncer.com/${locale}`,
-                languages: {
-                    'en': `https://www.voksen-annoncer.com/en`,
-                    'da': `https://www.voksen-annoncer.com/da`,
-                    'x-default': `https://www.voksen-annoncer.com/da`
-                },
-            },
+            alternates: alternates,
             openGraph: {
                 title: t("meta.posts.title"),
                 description: t("meta.posts.description"),
-                url: `https://www.voksen-annoncer.com/${locale}`,
+                url: alternates.canonical,
                 siteName: t("navigation.site-name"),
                 locale: locale,
                 type: 'website',

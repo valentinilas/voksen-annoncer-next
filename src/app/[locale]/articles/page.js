@@ -7,6 +7,8 @@ import Link from "next/link";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import DefaultImage from "@/components/default-image/default-image";
 import { getTranslations } from "next-intl/server";
+import  {generateAlternatesBlock}  from "@/utils/generate-canonical/generateAlternatesBlock";
+
 export async function generateMetadata({ params, searchParams }) {
   const { locale } = await params;
   const t = await getTranslations();
@@ -14,14 +16,7 @@ export async function generateMetadata({ params, searchParams }) {
   return {
     title: t("meta.articles.title"),
     description: t("meta.articles.description"),
-    alternates: {
-      canonical: `https://www.voksen-annoncer.com/${locale}/articles`,
-      languages: {
-        'en': `https://www.voksen-annoncer.com/en/articles`,
-        'da': `https://www.voksen-annoncer.com/da/articles`,
-        'x-default': `https://www.voksen-annoncer.com/da/articles`
-      },
-    },
+    alternates: generateAlternatesBlock(locale, '/articles', await searchParams)
   };
 }
 export default async function Articles(props) {

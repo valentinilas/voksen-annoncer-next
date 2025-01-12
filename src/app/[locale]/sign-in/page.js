@@ -1,4 +1,5 @@
 
+import { generateAlternatesBlock } from '@/utils/generate-canonical/generateAlternatesBlock';
 import SignIn from './sign-in-page';
 import { getTranslations } from 'next-intl/server';
 
@@ -9,14 +10,8 @@ export async function generateMetadata({ params, searchParams }) {
   return {
     title: t("meta.login.title"),
     description: t("meta.login.description"),
-    alternates: {
-      canonical: `https://www.voksen-annoncer.com/${locale}/sign-in`,
-      languages: {
-        'en': `https://www.voksen-annoncer.com/en/sign-in`,
-        'da': `https://www.voksen-annoncer.com/da/sign-in`,
-        'x-default': `https://www.voksen-annoncer.com/da/sign-in`
-      },
-    },
+    
+    alternates: generateAlternatesBlock(locale, '/sign-in', await searchParams)
   };
 }
 

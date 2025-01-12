@@ -16,6 +16,8 @@ import { routing } from '@/i18n/routing';
 // import { setRequestLocale } from "next-intl/server";
 import { apiFetchAllPublicArticles } from "@/utils/api/fetch-helpers";
 import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
+
 
 
 // export const dynamic = 'force-static';
@@ -41,8 +43,9 @@ import { apiFetchSingleArticle } from "@/utils/api/fetch-helpers";
 //     }
 // }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
     const { slug, locale } = await params;
+
     try {
         const { article } = await apiFetchSingleArticle(slug);
         // console.log('Fetched article:', article.Slug);
@@ -53,14 +56,7 @@ export async function generateMetadata({ params }) {
             openGraph: {
                 images: [article.Image?.url || ''],
             },
-            alternates: {
-                canonical: `https://www.voksen-annoncer.com/${locale}/articles/${slug}`,
-                languages: {
-                    'en': `https://www.voksen-annoncer.com/en/articles/${slug}`,
-                    'da': `https://www.voksen-annoncer.com/da/articles/${slug}`,
-                    'x-default': `https://www.voksen-annoncer.com/da/articles/${slug}`
-                },
-            },
+            alternates: generateAlternatesBlock(locale, `/articles/${slug}`, await searchParams),
 
         };
     } catch (error) {
@@ -110,7 +106,7 @@ export default async function Article({ params }) {
         <article>
 
             <div className=" mx-auto bg-base-100 p-10 rounded-box">
-  
+
                 <h1 className="text-4xl mb-5 ">{Title}</h1>
                 <p>{Summary}</p>
                 {articleImage ?
@@ -127,8 +123,8 @@ export default async function Article({ params }) {
             </div>
 
             <div className=" mx-auto  px-2 py-3 ">
-                    <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
-                </div>
+                <Link href="/">{t("navigation.home")}</Link> / <Link href="/articles">{t("navigation.articles")}</Link> / <span>{Title}</span>
+            </div>
         </article>
     </>
 }

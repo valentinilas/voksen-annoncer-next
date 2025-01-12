@@ -10,20 +10,15 @@ import { fetchGenders } from "@/lib/fetchGenders";
 import { getTranslations } from 'next-intl/server';
 
 import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
     const { locale } = await params;
     return {
         title: `${t("navigation.profile")} | ${t("navigation.site-name")}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/dashboard`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/dashboard`,
-                'da': `https://www.voksen-annoncer.com/da/dashboard`,
-                'x-default': `https://www.voksen-annoncer.com/da/dashboard`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/dashboard', await searchParams)
+
     };
 
 }

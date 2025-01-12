@@ -3,23 +3,25 @@ import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 
-export async function generateMetadata(props, parent) {
-    const params = await props.params;
-    const { locale } = params;
+export async function generateMetadata({params, searchParams}) {
+    const { locale, query } = await params;
     const t = await getTranslations();
 
     return {
-        title: `${t("search-results.result-title", { term: decodeURIComponent(params.query) })}`,
+        title: `${t("search-results.result-title", { term: decodeURIComponent(query) })}`,
+        description: `${t("search-results.result-description", { term: decodeURIComponent(query) })}`,
         alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/search/${params.query}`,
+            canonical: `https://www.voksen-annoncer.com/${locale}/search/${query}`,
             languages: {
-                'en': `https://www.voksen-annoncer.com/en/search/${params.query}`,
-                'da': `https://www.voksen-annoncer.com/da/search/${params.query}`,
-                'x-default': `https://www.voksen-annoncer.com/da/search/${params.query}`
+                'en': `https://www.voksen-annoncer.com/en/search/${query}`,
+                'da': `https://www.voksen-annoncer.com/da/search/${query}`,
+                'x-default': `https://www.voksen-annoncer.com/da/search/${query}`
             },
         },
+         alternates: generateAlternatesBlock(locale, `/search/${query}`, await searchParams)
     };
 }
 

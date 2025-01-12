@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { getTranslations } from 'next-intl/server';
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
@@ -9,14 +10,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     return {
         title: `${t("navigation.support")} | ${t("navigation.site-name")}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/support`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/support`,
-                'da': `https://www.voksen-annoncer.com/da/support`,
-                'x-default': `https://www.voksen-annoncer.com/da/support`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/support', await searchParams)
     };
 
 }

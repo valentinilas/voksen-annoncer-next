@@ -27,19 +27,24 @@ export function DrawerMenu() {
     const pathname = usePathname();
 
     const handleLanguageChange = (locale) => {
-
-
         const currentPathname = pathname;
-
+    
         // Remove the current locale from the pathname if it exists
-        const pathnameWithoutLocale = currentPathname.replace(/^\/[a-z]{2}/, '');
-
+        const pathnameWithoutLocale = currentPathname.replace(/^\/[a-z]{2}(\/|$)/, '');
+    
+        let newPath = '/';
+    
         // Construct the new path with the selected locale
-        const newPath = `/${locale}${pathnameWithoutLocale}`;
-
-        // router.push(newPath);
-        router.push(newPath, undefined, { locale });
-        router.refresh(); // clear caching to make sure the locale cookie is set correctly
+        if (locale === 'da') {
+            newPath = `/${pathnameWithoutLocale}`;
+        } else {
+            newPath = `/${locale}/${pathnameWithoutLocale}`;
+        }
+    
+        // Ensure the path doesn't have duplicate slashes
+        newPath = newPath.replace(/\/+/g, '/');
+    
+        router.push(newPath);
     };
 
 

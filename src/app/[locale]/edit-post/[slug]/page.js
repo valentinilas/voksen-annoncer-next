@@ -1,6 +1,7 @@
 
 
 import { EditPostWrapper } from '@/components/edit-post/edit-post-wrapper';
+import { generateAlternatesBlock } from '@/utils/generate-canonical/generateAlternatesBlock';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -9,14 +10,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     return {
         title: `${t("ads.edit-ad")} | ${t("navigation.site-name")}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/edit-post`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/edit-post`,
-                'da': `https://www.voksen-annoncer.com/da/edit-post`,
-                'x-default': `https://www.voksen-annoncer.com/da/edit-post`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/edit-post', await searchParams)
     };
 
 }

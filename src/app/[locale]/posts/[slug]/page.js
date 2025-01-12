@@ -19,6 +19,7 @@ import CommentList from "@/components/ad-page/ad-comment-list";
 // get-all-public-posts
 import { apiFetchAllPublicPosts } from "@/utils/api/fetch-helpers";
 import { routing } from '@/i18n/routing';
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 
 // // export const dynamic = 'force-static';
@@ -45,7 +46,7 @@ import { routing } from '@/i18n/routing';
 //     }
 // }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
 
     const { slug, locale } = await params
 
@@ -57,14 +58,9 @@ export async function generateMetadata({ params }) {
         return {
             title: ad.title + ' | Voksenannoncer',
             description: ad.description.slice(0, 150),
-            alternates: {
-                canonical: `https://www.voksen-annoncer.com/${locale}/posts/${slug}`,
-                languages: {
-                    'en': `https://www.voksen-annoncer.com/en/posts/${slug}`,
-                    'da': `https://www.voksen-annoncer.com/da/posts/${slug}`,
-                    'x-default': `https://www.voksen-annoncer.com/da/posts/${slug}`
-                },
-            },
+           
+            alternates: generateAlternatesBlock(locale, `/posts/${slug}`, await searchParams),
+
             openGraph: {
                 images: [ad.ad_images[0]?.image_url || ''],
             },

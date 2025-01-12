@@ -1,21 +1,17 @@
 import { useTranslations } from "next-intl";
 
 import { getTranslations } from 'next-intl/server';
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
+
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
-
+    const {locale} = await params; 
+    
     return {
         title: t("meta.about.title"),
         description: t("meta.about.description"),
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/da/about`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/about`,
-                'da': `https://www.voksen-annoncer.com/da/about`,
-                'x-default': `https://www.voksen-annoncer.com/da/about`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/about', searchParams),
         
 
     };

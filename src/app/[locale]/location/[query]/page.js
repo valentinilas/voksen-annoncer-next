@@ -4,24 +4,19 @@ import AdListingResult from "@/components/ad-listing/ad-listing-result";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { apiFetchRegions } from "@/utils/api/fetch-helpers";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
-export async function generateMetadata(props, parent) {
-    const params = await props.params;
-    const { locale } = params
+export async function generateMetadata({params, searchParams}) {
+    
+    const { locale, query } = await params
     const t = await getTranslations();
     const { regions } = await apiFetchRegions();
-    const searchRegion = regions.find((region) => region.slug === params.query);
+    const searchRegion = regions.find((region) => region.slug === query);
 
     return {
         title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name) })}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/location/${params.query}`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/location/${params.query}`,
-                'da': `https://www.voksen-annoncer.com/da/location/${params.query}`,
-                'x-default': `https://www.voksen-annoncer.com/da/location/${params.query}`
-            },
-        },
+        description: `${t("location-results.location-description", { term: decodeURIComponent(searchRegion?.region_name) })}`,
+        alternates: generateAlternatesBlock(locale, `/location/${query}`, await searchParams)
     };
 }
 

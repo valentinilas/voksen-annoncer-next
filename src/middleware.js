@@ -6,9 +6,9 @@ import { NextResponse } from 'next/server';
 // Define routing configuration for next-intl
 const intlMiddleware = createMiddleware({
   locales: ['da', 'en'],
-  localeDetection: true,
+  localeDetection: false,
   defaultLocale: 'da',
-  LocalePrefix: 'always',
+  localePrefix: 'as-needed',
 });
 
 // The combined middleware function

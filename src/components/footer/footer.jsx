@@ -18,15 +18,25 @@ export default function Footer() {
 
     const handleLanguageChange = (locale) => {
         const currentPathname = pathname;
-
+    
         // Remove the current locale from the pathname if it exists
-        const pathnameWithoutLocale = currentPathname.replace(/^\/[a-z]{2}/, '');
-
+        const pathnameWithoutLocale = currentPathname.replace(/^\/[a-z]{2}(\/|$)/, '');
+    
+        let newPath = '/';
+    
         // Construct the new path with the selected locale
-        const newPath = `/${locale}${pathnameWithoutLocale}`;
-
+        if (locale === 'da') {
+            newPath = `/${pathnameWithoutLocale}`;
+        } else {
+            newPath = `/${locale}/${pathnameWithoutLocale}`;
+        }
+    
+        // Ensure the path doesn't have duplicate slashes
+        newPath = newPath.replace(/\/+/g, '/');
+    
         router.push(newPath);
     };
+    
 
     const year = new Date().getFullYear();
     return (

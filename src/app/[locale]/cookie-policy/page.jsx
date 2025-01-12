@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from "next-intl/server";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 
 export function generateStaticParams() {
@@ -11,22 +12,14 @@ export function generateStaticParams() {
 
 
 
-export async function generateMetadata(props) {
-    const params = await props.params;
-    const locale = params.locale;
+export async function generateMetadata({params, searchParams}) {
+    const {locale} = await params;
 
     setRequestLocale(locale);
     const t = await getTranslations('');
     return {
         title: `${t("navigation.cookie-policy")} | ${t("navigation.site-name")}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/cookie-policy`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/cookie-policy`,
-                'da': `https://www.voksen-annoncer.com/da/cookie-policy`,
-                'x-default': `https://www.voksen-annoncer.com/da/cookie-policy`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/cookie-policy', await searchParams)
     };
 
 }

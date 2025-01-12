@@ -53,6 +53,7 @@
         "Prefer not to say": "Foretrækker ikke at sige"
     },
     "categories": {
+        "category-description": "Gennemse frække annoncer i \"{term}\" for at finde tjenester og oplevelser skræddersyet til dine ønsker.",
         "category-title": "{term} | Voksenannoncer",
         "All categories": "Alle kategorier",
         "Personal Ads": "Personlige annoncer",
@@ -349,10 +350,12 @@
         "p7": "Vi håber, du får en fantastisk oplevelse med Voksenannoncer, en side for sexannoncer, escorttjenester, massage og erotisk indhold."
     },
     "search-results": {
+        "result-description": "Udforsk søgeresultater for {term} på Voksenannoncer",
         "result-title": "Søgeresultater for {term} | Voksenannoncer",
         "result-headline": "Søgeresultater for \"{term}\""
     },
     "location-results": {
+        "location-description": "Udforsk voksne tjenester og annoncer i \"{term}\" på Voksenannoncer. Find det, du søger i dit område.",
         "location-title": "Sted - {term} | Voksenannoncer",
         "location-headline": "Sted - \"{term}\""
     },

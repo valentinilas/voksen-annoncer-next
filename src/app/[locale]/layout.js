@@ -33,14 +33,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 export const metadata = {
     title: "Gratis annoncer for massage, sex, escort, swingers | Voksenannoncer",
     description: "Udforsk og opret gratis voksenannoncer på vores  platform. Nem, hurtig og sikker måde at dele dine annoncer på. Start i dag og nå ud til flere!",
-    alternates: {
-        canonical: 'https://www.voksen-annoncer.com',
-        languages: {
-            'en': 'https://www.voksen-annoncer.com/en',
-            'da': 'https://www.voksen-annoncer.com/da',
-            'x-default': 'https://www.voksen-annoncer.com/da',
-        },
-    },
 };
 
 export default async function RootLayout(props) {

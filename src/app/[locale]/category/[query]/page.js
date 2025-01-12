@@ -5,34 +5,30 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 import { apiFetchSubCategories } from "@/utils/api/fetch-helpers";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
-export async function generateMetadata(props, parent) {
-    const params = await props.params;
-    const { locale } = params
+export async function generateMetadata({ params, searchParams }) {
+    const { locale, query } = await params
     const t = await getTranslations();
     const { categories } = await apiFetchCategories();
     const { subCategories } = await apiFetchSubCategories();
 
-    const searchCategory = categories.find((category) => category.slug === params.query);
-    const searchSubCategory = subCategories.find((subCategory) => subCategory.slug === params.query);
+    const searchCategory = categories.find((category) => category.slug === query);
+    const searchSubCategory = subCategories.find((subCategory) => subCategory.slug === query);
 
-    const categoryName = searchCategory ? searchCategory.category_name : searchSubCategory ? searchSubCategory.sub_category_name : null;
 
     const translationKey = searchCategory ? `categories.${decodeURIComponent(searchCategory.category_name)}` : `subcategories.${decodeURIComponent(searchSubCategory.sub_category_name)}`;
 
     return {
         title: `${t("categories.category-title", { term: t(translationKey) })}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/category/${params.query}`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/category/${params.query}`,
-                'da': `https://www.voksen-annoncer.com/da/category/${params.query}`,
-                'x-default': `https://www.voksen-annoncer.com/da/category/${params.query}`
-            },
-        },
+        description: `${t("categories.category-description", { term: t(translationKey) })}`,
+        alternates: generateAlternatesBlock(locale, `/category/${query}`, await searchParams)
 
     };
 }
+
+
+
 
 export default async function CategoryPage(props) {
     const searchParams = await props.searchParams;
@@ -59,8 +55,8 @@ export default async function CategoryPage(props) {
     const subCategoryId = searchSubCategory?.sub_category_id || 'all';
     // const { ads, total } = await fetchPublicAds(categoryId, subCategoryId, null, null, page, pageSize);
 
-       // Fetch ads from the new API endpoint
-       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${categoryId}&subcategory=${subCategoryId}&page=${page}&pageSize=${pageSize}`, {
+    // Fetch ads from the new API endpoint
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-public-posts?category=${categoryId}&subcategory=${subCategoryId}&page=${page}&pageSize=${pageSize}`, {
         next: { tags: ['public-posts'] }
     });
 

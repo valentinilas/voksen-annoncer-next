@@ -4,21 +4,14 @@ import { fetchAdminAdList } from "@/lib/fetchAdminAdList";
 import { AdminWrapper } from "@/components/admin/admin-wrapper";
 
 import { getTranslations } from 'next-intl/server';
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const t = await getTranslations();
     const { locale } = await params;
-
     return {
         title: `${t("navigation.admin")} | ${t("navigation.site-name")}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/admin`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/admin`,
-                'da': `https://www.voksen-annoncer.com/da/admin`,
-                'x-default': `https://www.voksen-annoncer.com/da/admin`
-            },
-        },
+        alternates: generateAlternatesBlock(locale, '/admin', await searchParams)
     };
 
 }
