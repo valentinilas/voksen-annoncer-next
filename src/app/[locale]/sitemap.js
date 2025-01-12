@@ -15,14 +15,16 @@ export default async function Sitemap() {
 
     const createLocalizedEntries = (path, options = {}) =>
         locales.map(locale => ({
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
+            url: locale === 'da' 
+                ? `${process.env.NEXT_PUBLIC_BASE_URL}${path}` 
+                : `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
             ...options
         }));
     const createDanishEntries = (path, options = {}) =>
         locales
             .filter(locale => locale === 'da') // Filter to only include Danish locale
             .map(locale => ({
-                url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}${path}`,
+                url: `${process.env.NEXT_PUBLIC_BASE_URL}${path}`,
                 ...options
             }));
 
