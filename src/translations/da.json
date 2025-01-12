@@ -197,8 +197,9 @@
         "category-required": "Kategori er påkrævet",
         "subcategory-required": "Underkategori er påkrævet",
         "submit": "Indsend",
-        "passwords-must-match": "Adgangskoderne skal være ens",
-        "code-required": "Verifikationstoken mangler"
+        "password-must-match": "Adgangskoderne skal være ens",
+        "code-required": "Verifikationstoken mangler",
+        "password-set-new": "Indstil en ny adgangskode"
     },
     "auth": {
         "login": "Log ind",
@@ -217,7 +218,8 @@
         "set-new-password": "Indstil en ny adgangskode",
         "new-password": "Ny adgangskode",
         "repeat-password": "Gentag adgangskode",
-        "password-success-change": "Din adgangskode er blevet ændret med succes."
+        "password-success-change": "Din adgangskode er blevet ændret med succes.",
+        "reset-password-description":"Hvis du har glemt din kontoadgangskode, kan du nulstille den her."
     },
     "welcome": {
         "headline": "Tak for din tilmelding!",

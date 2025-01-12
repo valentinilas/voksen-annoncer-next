@@ -198,7 +198,8 @@
     "subcategory-required": "Sub-category is required",
     "submit": "Submit",
     "password-must-match": "Password must match",
-    "code-required": "Verification token missing"
+    "code-required": "Verification token missing",
+    "password-set-new": "Set a new password"
   },
   "auth": {
     "login": "Log in",
@@ -217,7 +218,8 @@
     "set-new-password": "Set a new password",
     "new-password": "New password",
     "repeat-password": "Repeat password",
-    "password-success-change": "Your password has been successfully changed."
+    "password-success-change": "Your password has been successfully changed.",
+    "reset-password-description":"If you've forgotten your account password, you can reset it here."
   },
   "welcome": {
     "headline": "Thank you for signing up!",

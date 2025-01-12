@@ -1,6 +1,21 @@
 import Button from "@/components/button/button";
+import { generateAlternatesBlock } from "@/utils/generate-canonical/generateAlternatesBlock";
 
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({ params, searchParams }, parent) {
+    const t = await getTranslations();
+    const { locale } = await params
+
+    return {
+        title: `${t("auth.email-confirmed-headline")} | ${t("navigation.site-name")}`,
+        description: t('auth.email-confirmed-body2'),
+        alternates: generateAlternatesBlock(locale, '/email-confirmation', await searchParams)
+    };
+
+}
+
 export default function EmailConfirmation() {
     const t = useTranslations();
 
