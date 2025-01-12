@@ -42,7 +42,7 @@ export function FeaturedAds({ featuredAds = [], vertical = true }) {
             const { ad_images, title } = ad;
             return (
 
-              <div key={index} className={`embla__slide grow-0 shrink-0  ${vertical ? 'pb-2  basis-1/4': 'pr-2 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4'}`}>
+              <div key={index} className={`embla__slide grow-0 shrink-0 py-2  ${vertical ? 'pb-2  basis-1/4': 'pr-2 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4'}`}>
                 {/* <img src={ad.uui} alt={ad.title} /> */}
                 <Link className="embla__slide-wrapper flex h-full shadow-md bg-base-200 hover:bg-base-100  px-4 py-4 gap-4 items-center rounded-box" href={`/posts/${ad.slug}`}>
                   <div className="size-16 shrink-0">
