@@ -1,5 +1,6 @@
 export function generateAlternatesBlock(locale, path, searchParams = {}) {
-    const domain = 'https://www.voksen-annoncer.com';
+    // const domain = 'https://www.voksen-annoncer.com';
+    const domain = `${process.env.NEXT_PUBLIC_BASE_URL}`;
     const cleanPath = path.replace(/^\/+|\/+$/g, '');
     const locales = ['da', 'en'];
     
