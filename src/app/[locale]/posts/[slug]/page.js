@@ -12,12 +12,14 @@ import { getTranslations } from "next-intl/server";
 
 import ViewIncrementer from "@/components/view-incrementer/view-incrementer";
 
+import FeaturedAdsWrapper from "@/components/featured-ads/featured-ads-wrapper";
 import { fetchComments } from "@/lib/comments";
 
 import CommentList from "@/components/ad-page/ad-comment-list";
 // get-all-public-posts
 import { apiFetchAllPublicPosts } from "@/utils/api/fetch-helpers";
 import { routing } from '@/i18n/routing';
+
 
 // // export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -50,7 +52,7 @@ export async function generateMetadata({ params }) {
     try {
 
 
-        const {ad} = await apiFetchSinglePost(slug);
+        const { ad } = await apiFetchSinglePost(slug);
 
         return {
             title: ad.title + ' | Voksenannoncer',
@@ -120,13 +122,14 @@ export default async function AdDetailPage({ params }) {
             <div className="grid grid-cols-12 gap-6">
                 <div className="bg-base-100 p-5  rounded-box shadow-sm col-span-12 lg:col-span-8 flex flex-col">
                     <AdDetail data={ad} slug={slug} />
+                    <div className="mt-10"><CommentList initialComments={comments} ad={ad} adId={uuid} user={profile} /></div>
                 </div>
                 <div className="col-span-12 lg:col-span-4">
                     <AdProfile profileData={ad.profiles} currentSessionUser={user} />
+                    <div className="mt-10"><FeaturedAdsWrapper vertical="true" /></div>
+
                 </div>
-                <div className="col-span-12 lg:col-span-8">
-                    <CommentList initialComments={comments} ad={ad} adId={uuid} user={profile} />
-                </div>
+
             </div>
         </section>
     </>

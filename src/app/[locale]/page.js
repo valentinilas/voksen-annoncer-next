@@ -16,7 +16,7 @@ import { apiFetchFeaturedPublicPosts, apiFetchRegions } from "@/utils/api/fetch-
 import { apiFetchPosts } from "@/utils/api/fetch-helpers";
 import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 
-import {FeaturedAds} from "@/components/featured-ads/featured-ads";
+import FeaturedAdsWrapper from "@/components/featured-ads/featured-ads-wrapper";
 
 export async function generateMetadata({ params }) {
 
@@ -72,8 +72,6 @@ export default async function Ads(props) {
     const { category = 'all', subcategory = 'all', region = 'all', search = '', page = 1 } = searchParams;
     const { categories } = await apiFetchCategories();
     const { regions } = await apiFetchRegions();
-    const x = await apiFetchFeaturedPublicPosts();
-    const { featuredAds } = await apiFetchFeaturedPublicPosts();
     const { ads, total } = await apiFetchPosts({ category, subcategory, region, search, page, pageSize });
     const totalPages = Math.ceil(total / pageSize);
 
@@ -116,7 +114,7 @@ export default async function Ads(props) {
         />
 
         {/* Featured ads */}
-        <FeaturedAds featuredAds={featuredAds} />
+        <FeaturedAdsWrapper />
 
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-5">
             {/* <h1 className="text-2xl">{t("navigation.ads")} ({total})</h1> */}

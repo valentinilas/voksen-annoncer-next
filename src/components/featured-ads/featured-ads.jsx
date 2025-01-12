@@ -12,7 +12,7 @@ import {
 } from './embla-buttons';
 import { useTranslations } from 'next-intl';
 
-export function FeaturedAds({ featuredAds = [] }) {
+export function FeaturedAds({ featuredAds = [], vertical = true }) {
 
   const t = useTranslations();
 
@@ -20,6 +20,7 @@ export function FeaturedAds({ featuredAds = [] }) {
     align: 'start',
     containScroll: 'trim',
     loop: false,
+    axis: vertical ? 'y' : 'x'
   });
 
   const {
@@ -36,12 +37,12 @@ export function FeaturedAds({ featuredAds = [] }) {
     <>
       <h2 className="text-sm mb-4">{t('featured.headline')}</h2>
       <div className="embla overflow-hidden mb-10" ref={emblaRef}>
-        <div className="embla__container grid grid-flow-col xl:auto-cols-[25%] md:auto-cols-[50%] lg:auto-cols-[33.33%] auto-cols-[100%] min-h-10">
+        <div className={`embla__container flex ${vertical ? 'flex-col h-[500px]' : ''}`}>
           {featuredAds.map((ad, index) => {
             const { ad_images, title } = ad;
             return (
 
-              <div key={index} className="embla__slide mr-2">
+              <div key={index} className={`embla__slide grow-0 shrink-0  ${vertical ? 'pb-2  basis-1/4': 'pr-2 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4'}`}>
                 {/* <img src={ad.uui} alt={ad.title} /> */}
                 <Link className="embla__slide-wrapper flex h-full shadow-md bg-base-200 hover:bg-base-100  px-4 py-4 gap-4 items-center rounded-box" href={`/posts/${ad.slug}`}>
                   <div className="size-16 shrink-0">
@@ -57,12 +58,13 @@ export function FeaturedAds({ featuredAds = [] }) {
             )
           })}
         </div>
-        <div className="embla__controls flex justify-center gap-2 mt-4">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="hover:text-cherry-500 rounded-full disabled:opacity-25" />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="hover:text-cherry-500 rounded-full disabled:opacity-25" />
+
+      </div>
+      <div className="embla__controls flex justify-center gap-2 mt-4">
+        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="hover:text-cherry-500 rounded-full disabled:opacity-25" />
+        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="hover:text-cherry-500 rounded-full disabled:opacity-25" />
 
 
-        </div>
       </div>
     </>
   )
