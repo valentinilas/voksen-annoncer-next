@@ -78,11 +78,11 @@ export default async function RootLayout(props) {
                             <Script
                                 id="cookieyes"
                                 src={`https://cdn-cookieyes.com/client_data/64376506a85904a59f66f025/script.js`}
-                                strategy="beforeInteractive"
+                                strategy="afterInteractive"
                             >
                             </Script>
                             {/* <GoogleTagManager gtmId="GTM-K9P4CJ8N" /> */}
-                            <GoogleAnalytics gaId="G-JN6QV704E2" />
+                            <GoogleAnalytics gaId="G-JN6QV704E2" strategy="afterInteractive" />
                             <Analytics />
                             <SpeedInsights />
                         </head>
