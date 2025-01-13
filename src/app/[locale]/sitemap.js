@@ -82,7 +82,7 @@ export default async function Sitemap() {
 
     // Home pages for each locale
     const homeEntries = locales.map(locale => ({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}`
+        url:  locale === 'da' ? `${process.env.NEXT_PUBLIC_BASE_URL}` :`${process.env.NEXT_PUBLIC_BASE_URL}/${locale}`
     }));
 
     return [
