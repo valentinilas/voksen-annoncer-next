@@ -10,7 +10,7 @@ export default async function Sitemap() {
 
     const { ads } = await fetchAllPublicAds();
     const { categories } = await apiFetchCategories();
-    const { articles } = await fetchAllArticles();
+    const { articles } = await fetchAllArticles(1, 100);
     const { regions } = await apiFetchRegions();
 
     const createLocalizedEntries = (path, options = {}) =>
@@ -73,7 +73,9 @@ export default async function Sitemap() {
         '/new-post',
         '/dashboard',
         '/sign-up',
-        '/sign-in'
+        '/sign-in',
+        '/cookie-policy',
+        '/password-reset'
     ];
 
     const staticEntries = staticPages.flatMap(page =>
