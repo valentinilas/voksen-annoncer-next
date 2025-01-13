@@ -22,7 +22,7 @@ export async function generateMetadata({ params, searchParams }) {
     return {
         title: `${t("categories.category-title", { term: t(translationKey) })}`,
         description: `${t("categories.category-description", { term: t(translationKey) })}`,
-        alternates: generateAlternatesBlock(locale, `/category/${query}`, await searchParams)
+        alternates: generateAlternatesBlock(locale, `/category/${query}`, await searchParams, true)
 
     };
 }

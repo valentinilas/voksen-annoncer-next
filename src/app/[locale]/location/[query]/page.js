@@ -16,7 +16,7 @@ export async function generateMetadata({params, searchParams}) {
     return {
         title: `${t("location-results.location-title", { term: decodeURIComponent(searchRegion?.region_name) })}`,
         description: `${t("location-results.location-description", { term: decodeURIComponent(searchRegion?.region_name) })}`,
-        alternates: generateAlternatesBlock(locale, `/location/${query}`, await searchParams)
+        alternates: generateAlternatesBlock(locale, `/location/${query}`, await searchParams, true)
     };
 }
 

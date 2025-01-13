@@ -13,15 +13,7 @@ export async function generateMetadata({params, searchParams}) {
     return {
         title: `${t("search-results.result-title", { term: decodeURIComponent(query) })}`,
         description: `${t("search-results.result-description", { term: decodeURIComponent(query) })}`,
-        alternates: {
-            canonical: `https://www.voksen-annoncer.com/${locale}/search/${query}`,
-            languages: {
-                'en': `https://www.voksen-annoncer.com/en/search/${query}`,
-                'da': `https://www.voksen-annoncer.com/da/search/${query}`,
-                'x-default': `https://www.voksen-annoncer.com/da/search/${query}`
-            },
-        },
-         alternates: generateAlternatesBlock(locale, `/search/${query}`, await searchParams)
+         alternates: generateAlternatesBlock(locale, `/search/${query}`, await searchParams, true)
     };
 }
 
