@@ -2,39 +2,30 @@
 'use client';
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
-import { useRouter, usePathname } from 'next/navigation';
+// import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from "@/lib/themeContextProvider";
 import { useTranslations } from "next-intl";
 
+import {useParams} from 'next/navigation';
+import {usePathname, useRouter} from '@/i18n/routing';
 
 
-export default function Footer() {
+
+
+export default function Footer({locale}) {
     const t = useTranslations();
     const { toggleTheme } = useTheme();
     const router = useRouter();
     const pathname = usePathname();
+    const params = useParams();
 
-    const handleLanguageChange = (locale) => {
-        const currentPathname = pathname;
-    
-        // Remove the current locale from the pathname if it exists
-        const pathnameWithoutLocale = currentPathname.replace(/^\/[a-z]{2}(\/|$)/, '');
-    
-        let newPath = '/';
-    
-        // Construct the new path with the selected locale
-        if (locale === 'da') {
-            newPath = `/${pathnameWithoutLocale}`;
-        } else {
-            newPath = `/${locale}/${pathnameWithoutLocale}`;
-        }
-    
-        // Ensure the path doesn't have duplicate slashes
-        newPath = newPath.replace(/\/+/g, '/');
-    
-        router.push(newPath);
+    const handleLanguageChange = (nextLocale) => {
+        router.replace(
+            {pathname, params},
+            {locale: nextLocale}
+          );
     };
     
 

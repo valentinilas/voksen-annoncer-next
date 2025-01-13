@@ -1,6 +1,6 @@
 'use client';
 import { useTranslations } from "next-intl"
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useUser } from "@/lib/userContextProvider";
 import { PlusIcon, UserIcon, Cog6ToothIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";

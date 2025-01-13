@@ -4,7 +4,7 @@ import { formatDate } from "@/utils/formatter/format-date";
 import { CalendarDaysIcon, TagIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import SimpleGallery from "./ad-gallery";
 import PostAnalytics from "./ad-analytics";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 
 

@@ -9,7 +9,7 @@
 'use client';
 
 import { PlusIcon, UserIcon, Cog6ToothIcon, ArrowLeftStartOnRectangleIcon, ArrowLeftEndOnRectangleIcon, UserPlusIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Button from '../button/button';
 import Label from "../label/label";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";

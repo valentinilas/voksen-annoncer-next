@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function Button({ children, type, className, to, href, variant = "primary", size = "m", Icon, iconDirection = "left", ...props }) {
 

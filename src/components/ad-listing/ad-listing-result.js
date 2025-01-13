@@ -1,5 +1,5 @@
 import Button from "@/components/button/button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Label from "@/components/label/label";
 import { formatDate } from "@/utils/formatter/format-date";
 import { CalendarDaysIcon, TagIcon, MapPinIcon, ChevronRightIcon } from "@heroicons/react/24/outline";

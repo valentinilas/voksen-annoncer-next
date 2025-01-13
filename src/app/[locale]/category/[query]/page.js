@@ -1,7 +1,7 @@
 import { fetchPublicAds } from "@/lib/fetchPublicAds";
 import AdListingResult from "@/components/ad-listing/ad-listing-result";
 // import Filters from "@/components/filters/filters";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { apiFetchCategories } from "@/utils/api/fetch-helpers";
 import { apiFetchSubCategories } from "@/utils/api/fetch-helpers";

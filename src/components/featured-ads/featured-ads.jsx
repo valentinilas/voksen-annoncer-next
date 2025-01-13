@@ -2,7 +2,7 @@
 
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import Link from 'next/link';
+import { Link } from "@/i18n/routing";
 import Image from 'next/image';
 import DefaultImage from '../default-image/default-image';
 import {

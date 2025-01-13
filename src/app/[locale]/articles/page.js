@@ -3,7 +3,7 @@
 import { fetchAllArticles } from "@/lib/fetchAllArticles";
 import { formatDate } from "@/utils/formatter/format-date";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
 import DefaultImage from "@/components/default-image/default-image";
 import { getTranslations } from "next-intl/server";

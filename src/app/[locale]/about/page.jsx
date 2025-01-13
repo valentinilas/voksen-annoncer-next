@@ -11,7 +11,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     return {
         title: t("meta.about.title"),
         description: t("meta.about.description"),
-        alternates: generateAlternatesBlock(locale, '/about', searchParams),
+        alternates: generateAlternatesBlock(locale, '/about', await searchParams),
         
 
     };

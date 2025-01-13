@@ -2,7 +2,7 @@
 import { CalendarDaysIcon, TagIcon, MapPinIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 
 import { formatDate } from "@/utils/formatter/format-date";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useRef } from "react";
 import Label from "../label/label";
 import { useTranslations } from "next-intl";

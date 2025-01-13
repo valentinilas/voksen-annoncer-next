@@ -11,7 +11,7 @@ import { getTranslations } from "next-intl/server";
 
 
 import { cdnUrl } from "@/utils/imagekit/cdn-url";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { routing } from '@/i18n/routing';
 // import { setRequestLocale } from "next-intl/server";
 import { apiFetchAllPublicArticles } from "@/utils/api/fetch-helpers";

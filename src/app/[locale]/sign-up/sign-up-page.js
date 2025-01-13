@@ -1,6 +1,6 @@
 "use client";
 
-import Link from 'next/link';
+import { Link } from "@/i18n/routing";
 import { useTranslations } from 'next-intl';
 import { signup } from '@/lib/action-sign-up';
 import { SubmitButton } from './submit-button';
