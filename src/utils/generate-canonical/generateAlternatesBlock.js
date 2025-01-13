@@ -22,7 +22,8 @@ export function generateAlternatesBlock(locale, path, searchParams = {}, useMain
     };
 
     // Canonical URL logic: Use Danish locale as the canonical for all languages if flag is set
-    const canonical = useMainAsCanonical ? createLocaleUrl('da') : createLocaleUrl(locale);
+    // const canonical = useMainAsCanonical ? createLocaleUrl('da') : createLocaleUrl(locale);
+    const canonical = createLocaleUrl(locale)
 
     const languages = locales.reduce((acc, loc) => ({
         ...acc,
