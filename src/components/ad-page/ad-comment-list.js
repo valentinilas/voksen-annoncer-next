@@ -8,24 +8,17 @@ import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import DefaultImage from '../default-image/default-image';
 
-
-
 export default function CommentList({ initialComments, ad, adId, user }) {
   const t = useTranslations("comments");
-
-
   const [comments, setComments] = useState(initialComments)
   const [replyContents, setReplyContents] = useState({})
   const [serverValidationError, setServerValidationError] = useState({ error: null });
-
-
-
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const { data: updatedComments } = await fetchComments(adId)
       setComments(updatedComments);
-    }, 100000) // Refresh comments every 100 seconds
+    }, 100000)
 
     return () => clearInterval(intervalId)
   }, [adId])
@@ -38,8 +31,6 @@ export default function CommentList({ initialComments, ad, adId, user }) {
   const isAdmin = user?.is_admin
   const isAdOwner = ad.user_id === currentUserId;
 
-
-
   const handleReplyChange = (commentId, content) => {
     setReplyContents(prev => ({ ...prev, [commentId]: content }))
   }
@@ -48,18 +39,18 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     try {
       const replyContent = replyContents[parentCommentId] || ''
       const newComment = await addComment(adId, replyContent, parentCommentId)
-      setComments(prevComments => [...prevComments, newComment])
+      // Add new comment at the beginning of the array
+      setComments(prevComments => [newComment, ...prevComments])
       setReplyContents(prev => ({ ...prev, [parentCommentId]: '' }))
       setServerValidationError({ error: null })
-
     } catch (error) {
-      // console.error('Error submitting reply:', error)
       setServerValidationError({ error: error.message })
     }
   }
 
   const addNewComment = (newComment) => {
-    setComments(prevComments => [...prevComments, newComment])
+    // Add new comment at the beginning of the array
+    setComments(prevComments => [newComment, ...prevComments])
   }
 
   const canViewComment = (comment) => {
@@ -67,7 +58,6 @@ export default function CommentList({ initialComments, ad, adId, user }) {
       return true;
     }
 
-    // Check if this comment is part of a thread the user is involved in
     const isPartOfUserThread = (commentId) => {
       const parentComment = comments.find(c => c.id === commentId);
       if (!parentComment) return false;
@@ -78,17 +68,49 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     return isPartOfUserThread(comment.parent_comment_id);
   };
 
+  // Helper function to check if user has an existing thread open, if yes don't show the initial comment box anymore.
+  const userHasExistingThread = () => {
+    return comments.some(comment => 
+      comment.parent_comment_id === null && 
+      comment.user_id === currentUserId
+    );
+  };
+
+  const findLastCommentInThread = (rootCommentId) => {
+    const threadComments = comments
+      .filter(c => {
+        let currentId = c.id;
+        while (currentId) {
+          const current = comments.find(comment => comment.id === currentId);
+          if (!current) break;
+          if (current.id === rootCommentId) return true;
+          currentId = current.parent_comment_id;
+        }
+        return false;
+      })
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    return threadComments[0]?.id;
+  };
+
   const renderComment = (comment, depth = 0) => {
     if (!canViewComment(comment)) return null;
 
     const { avatar_url, username } = comment.profiles;
     const subComments = comments.filter(c => c.parent_comment_id === comment.id);
-    const isLastInThread = subComments.length === 0;
+    const rootCommentId = comment.parent_comment_id === null ? comment.id : comment.parent_comment_id;
+    const isLastInThread = comment.id === findLastCommentInThread(rootCommentId);
 
     return (
-      <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-100 p-5 rounded-box shadow-sm my-5" : ''}>
+      <div key={comment.id} className={comment.parent_comment_id === null ? "bg-base-100 p-5 rounded-box border border-base-300 shadow-lg my-5" : ''}>
         <div className="flex items-center space-x-3 mb-5">
-          <div className="self-start">{avatar_url ? (<Image src={avatar_url} alt={username} width={40} height={40} className="w-10 h-10 rounded-full shrink-0" />) : <DefaultImage iconSize="size-4" width="w-10" height="h-10" rounded="rounded-full shrink-0" />}</div>
+          <div className="self-start shrink-0">
+            {avatar_url ? (
+              <Image src={avatar_url} alt={username} width={40} height={40} className="w-10 h-10 rounded-full shrink-0" />
+            ) : (
+              <DefaultImage iconSize="size-4" width="w-10" height="h-10" rounded="rounded-full shrink-0" />
+            )}
+          </div>
 
           <div>
             <p className="font-bold">{username}</p>
@@ -98,7 +120,9 @@ export default function CommentList({ initialComments, ad, adId, user }) {
         </div>
         {isLastInThread && (
           <div className="mt-2">
-            {serverValidationError.error && <div><p className="error text-red-500 text-sm mt-2">{serverValidationError.error}</p></div>}
+            {serverValidationError.error && (
+              <div><p className="error text-red-500 text-sm mt-2">{serverValidationError.error}</p></div>
+            )}
 
             <textarea
               className="textarea textarea-bordered w-full"
@@ -115,8 +139,8 @@ export default function CommentList({ initialComments, ad, adId, user }) {
           </div>
         )}
         <div className="mt-2">
-          {subComments.map((subComment, index) =>
-            renderComment(subComment, depth + 1, index === subComments.length - 1)
+          {subComments.map(subComment =>
+            renderComment(subComment, depth + 1)
           )}
         </div>
       </div>
@@ -127,14 +151,12 @@ export default function CommentList({ initialComments, ad, adId, user }) {
     comment.parent_comment_id === null && canViewComment(comment)
   );
 
-
-
   return (
     <div>
       <h3 className="text-xl mb-5">{t("Messages")} ({comments.length})</h3>
-      <CommentForm adId={adId} onCommentAdded={addNewComment} />
+      {!userHasExistingThread() && <CommentForm adId={adId} onCommentAdded={addNewComment} />}
 
-      {visibleTopLevelComments.map((comment, index) => (
+      {visibleTopLevelComments.map(comment => (
         <div key={comment.id}>
           <h4 className="text-xl mb-2">
             {t("From")} <span className="text-accent dark:text-secondary font-medium">{comment?.profiles?.username}</span>
